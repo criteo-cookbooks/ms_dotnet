@@ -55,8 +55,12 @@ when 'windows'
       end
     end
   else
-    log '.NET Framework 2.0 is already enabled on this version of Windows' { level :warn }
+    log '.NET Framework 2.0 is already enabled on this version of Windows' do
+      level :warn
+    end
   end
 else
-  log '.NET Framework 2.0 cannot be installed on platforms other than Windows' { level :warn }
+  log '.NET Framework 2.0 cannot be installed on platforms other than Windows' do
+    level :warn
+  end
 end
