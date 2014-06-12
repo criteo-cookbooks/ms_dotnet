@@ -20,6 +20,7 @@
 
 # Attributes are only needed on Windows 2008 and below.
 if node['platform_version'].to_f <= 6.0
+  default['ms_dotnet2']['name'] = 'Microsoft .NET Framework 2.0 Service Pack 2'
   if node['kernel']['machine'] == 'x86_64'
     default['ms_dotnet2']['url'] = 'http://download.microsoft.com/download/c/6/e/c6e88215-0178-4c6c-b5f3-158ff77b1f38/NetFx20SP2_x64.exe'
     default['ms_dotnet2']['checksum'] = '430315c97c57ac158e7311bbdbb7130de3e88dcf5c450a25117c74403e558fbe'

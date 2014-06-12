@@ -46,7 +46,7 @@ when 'windows'
       end
     else
       # XP, 2003 and 2003R2 don't have DISM or servermanagercmd, so download .NET 2.0 manually
-      windows_package 'Microsoft .NET Framework 2.0 Service Pack 2' do
+      windows_package node['ms_dotnet2']['name'] do
         source node['ms_dotnet2']['url']
         checksum node['ms_dotnet2']['checksum']
         installer_type :custom
