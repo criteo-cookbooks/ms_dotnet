@@ -29,10 +29,12 @@ when 'windows'
 
     windows_feature 'NetFx2-ServerCore' do
       action :install
+      notifies :request, 'windows_reboot[ms_dotnet]'
     end
     windows_feature 'NetFx2-ServerCore-WOW64' do
       action :install
       only_if { node['kernel']['machine'] == 'x86_64' }
+      notifies :request, 'windows_reboot[ms_dotnet]'
     end
 
   elsif windows_version.windows_server_2008? || windows_version.windows_server_2003_r2? ||
@@ -53,6 +55,7 @@ when 'windows'
         options '/quiet /norestart'
         timeout node['ms_dotnet']['timeout']
         action :install
+        notifies :request, 'windows_reboot[ms_dotnet]'
       end
     end
   else
