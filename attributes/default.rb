@@ -1,9 +1,9 @@
 #
-# Author:: Timothy Smith (<tsmith@llnw.com>)
-# Cookbook Name:: ms_dotnet4
-# Attribute:: default
+# Cookbook Name:: ms_dotnet
+# Attributes:: default
+# Author:: Jeremy MAURo (<j.mauro@criteo.com>)
 #
-# Copyright:: Copyright (c) 2012 Webtrends Inc
+# Copyright (C) 2014 Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,4 @@
 # limitations under the License.
 #
 
-default['ms_dotnet45']['name']     = 'Microsoft .NET Framework 4.5'
-default['ms_dotnet45']['url']      = 'http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe'
-default['ms_dotnet45']['checksum'] = 'a04d40e217b97326d46117d961ec4eda455e087b90637cb33dd6cc4a2c228d83'
-default['ms_dotnet45']['timeout'] = 600
+default['ms_dotnet']['timeout'] = 600
