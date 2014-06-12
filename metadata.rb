@@ -1,5 +1,5 @@
 name             'ms_dotnet'
-maintainer       'YOUR_COMPANY_NAME'
+maintainer       'Criteo'
 maintainer_email 'j_mauro@criteo.com'
 license          'All rights reserved'
 description      'Installs/Configures ms_dotnet'
