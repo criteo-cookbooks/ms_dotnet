@@ -51,6 +51,7 @@ when 'windows'
         checksum node['ms_dotnet2']['checksum']
         installer_type :custom
         options '/quiet /norestart'
+        timeout node['ms_dotnet']['timeout']
         action :install
       end
     end
