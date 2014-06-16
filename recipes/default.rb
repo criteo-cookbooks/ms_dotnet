@@ -18,7 +18,9 @@
 # limitations under the License.
 #
 
-include_recipe 'windows' if platform?('windows')
+return unless platform?('windows')
+
+include_recipe 'windows'
 unless Chef::Config[:solo] or Chef::Config[:local_mode]
   include_recipe 'windows::reboot_handler'
 end
