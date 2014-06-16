@@ -28,7 +28,7 @@ if platform?('windows')
       timeout node['ms_dotnet']['timeout']
       action :install
       not_if { ::File.exists?('C:/Windows/Microsoft.NET/Framework/v4.0.30319/Microsoft.Activities.Build.dll') }
-      notifies :request, 'windows_reboot[ms_dotnet]'
+      notifies :request, 'windows_reboot[ms_dotnet]', :immediately
     end
   elsif win_version.windows_server_2003_r2? || win_version.windows_server_2003? || win_version.windows_xp?
     Chef::Log.warn('The .NET 4.5 Chef recipe only supports Windows Vista, 7, 2008, and 2008 R2.')

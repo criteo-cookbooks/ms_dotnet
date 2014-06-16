@@ -56,7 +56,7 @@ when 'windows'
         options '/quiet /norestart'
         timeout node['ms_dotnet']['timeout']
         action :install
-        notifies :request, 'windows_reboot[ms_dotnet]'
+        notifies :request, 'windows_reboot[ms_dotnet]', :immediately
       end
     end
   else
