@@ -19,7 +19,9 @@
 #
 
 include_recipe 'windows' if platform?('windows')
-include_recipe 'windows::reboot_handler'
+unless Chef::Config[:solo] or Chef::Config[:local_mode]
+  include_recipe 'windows::reboot_handler'
+end
 
 windows_reboot 'ms_dotnet' do
   timeout 60
