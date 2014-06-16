@@ -18,6 +18,7 @@
 # limitations under the License.
 
 if platform?('windows')
+  include_recipe 'ms_dotnet'
   if win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?
     windows_package node['ms_dotnet45']['name'] do
       source node['ms_dotnet45']['url']
