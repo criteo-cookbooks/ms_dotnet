@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: ms_dotnet2
-# Recipe:: default
+# Cookbook Name:: ms_dotnet
+# Recipe:: ms_dotnet2
 # Author:: Julian C. Dunn (<jdunn@getchef.com>)
 #
 # Copyright (C) 2014 Chef Software, Inc.

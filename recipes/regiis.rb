@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: ms_dotnet4
+# Cookbook Name:: ms_dotnet
 # Recipe:: regiis
 # Author: Kendrick Martin(<kendrick.martin@webtrends.com>)
 #

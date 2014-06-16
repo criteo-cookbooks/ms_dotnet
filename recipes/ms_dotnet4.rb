@@ -1,6 +1,7 @@
 #
-# Cookbook Name:: ms_dotnet4
-# Recipe:: default
+# Cookbook Name:: ms_dotnet
+# Recipe:: ms_dotnet4
+# Author:: Tim Smith (<tsmith@llnw.com>)
 #
 # Copyright 2012, Webtrends, Inc.
 #
