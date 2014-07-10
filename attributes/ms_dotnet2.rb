@@ -20,12 +20,16 @@
 
 # Attributes are only needed on Windows 2008 and below.
 if node['platform_version'].to_f <= 6.0
+
+  default['ms_dotnet']['v2']['x64']['url'] = 'http://download.microsoft.com/download/c/6/e/c6e88215-0178-4c6c-b5f3-158ff77b1f38/NetFx20SP2_x64.exe'
+  default['ms_dotnet']['v2']['x64']['checksum'] = '430315c97c57ac158e7311bbdbb7130de3e88dcf5c450a25117c74403e558fbe'
+
+  default['ms_dotnet']['v2']['x86']['url'] = 'http://download.microsoft.com/download/c/6/e/c6e88215-0178-4c6c-b5f3-158ff77b1f38/NetFx20SP2_x86.exe'
+  default['ms_dotnet']['v2']['x86']['checksum'] = '6e3f363366e7d0219b7cb269625a75d410a5c80d763cc3d73cf20841084e851f'
+
+  version = node['kernel']['machine'] == 'x86_64' ? 'x64' : 'x86'
+
   default['ms_dotnet2']['name'] = 'Microsoft .NET Framework 2.0 Service Pack 2'
-  if node['kernel']['machine'] == 'x86_64'
-    default['ms_dotnet2']['url'] = 'http://download.microsoft.com/download/c/6/e/c6e88215-0178-4c6c-b5f3-158ff77b1f38/NetFx20SP2_x64.exe'
-    default['ms_dotnet2']['checksum'] = '430315c97c57ac158e7311bbdbb7130de3e88dcf5c450a25117c74403e558fbe'
-  else
-    default['ms_dotnet2']['url'] = 'http://download.microsoft.com/download/c/6/e/c6e88215-0178-4c6c-b5f3-158ff77b1f38/NetFx20SP2_x86.exe'
-    default['ms_dotnet2']['checksum'] = '6e3f363366e7d0219b7cb269625a75d410a5c80d763cc3d73cf20841084e851f'
-  end
+  default['ms_dotnet2']['url'] = node['ms_dotnet']['v2'][version]['url']
+  default['ms_dotnet2']['checksum'] = node['ms_dotnet']['v2'][version]['checksum']
 end
