@@ -27,6 +27,7 @@ when 'windows'
   if (windows_version.windows_server_2008_r2? || windows_version.windows_7?) && windows_version.core?
     # Windows Server 2008 R2 Core does not come with .NET or Powershell 2.0 enabled
 
+    include_recipe 'ms_dotnet'
     windows_feature 'NetFx2-ServerCore' do
       action :install
       notifies :request, 'windows_reboot[ms_dotnet]'
