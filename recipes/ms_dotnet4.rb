@@ -17,22 +17,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if platform?('windows')
+if platform? 'windows'
   include_recipe 'ms_dotnet'
-  if (win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?)
+
+  nt_version = node['platform_version'].to_f
+
+  if nt_version >= node['ms_dotnet4']['min_nt_version']
     windows_package node['ms_dotnet4']['name'] do
-      source node['ms_dotnet4']['url']
-      checksum node['ms_dotnet4']['checksum']
-      installer_type :custom
-      options "/quiet /norestart"
-      timeout node['ms_dotnet']['timeout']
-      action :install
-      not_if { ::File.exists?('C:/Windows/Microsoft.NET/Framework/v4.0.30319') }
-      notifies :request, 'windows_reboot[ms_dotnet]', :immediately
+      source          node['ms_dotnet4']['url']
+      checksum        node['ms_dotnet4']['checksum']
+      installer_type  :custom
+      options         '/q /norestart'
+      timeout         node['ms_dotnet']['timeout']
+      action          :install
+      not_if          nt_version > node['ms_dotnet4']['max_nt_version']
+      notifies        :request, 'windows_reboot[ms_dotnet]', :immediately
     end
-  elsif (win_version.windows_server_2003_r2? || win_version.windows_server_2003? || win_version.windows_xp?)
-    Chef::Log.warn('The .NET 4.0 Chef recipe currently only supports Windows Vista, 7, 2008, and 2008 R2.')
+  else
+    Chef::Log.warn('This version of Windows is not supported by .NET ' + node['ms_dotnet4']['version'])
   end
 else
-  Chef::Log.warn('Microsoft .NET Framework 4.0 can only be installed on the Windows platform.')
+  Chef::Log.warn 'Microsoft .NET Framework can only be installed on the Windows platform.'
 end
