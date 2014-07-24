@@ -20,21 +20,23 @@
 if platform? 'windows'
   include_recipe 'ms_dotnet'
 
+  version = node['ms_dotnet4']['version']
   nt_version = node['platform_version'].to_f
+  package_info = node['ms_dotnet']['v4'][version]
 
-  if nt_version >= node['ms_dotnet4']['min_nt_version']
-    windows_package node['ms_dotnet4']['name'] do
-      source          node['ms_dotnet4']['url']
-      checksum        node['ms_dotnet4']['checksum']
+  if nt_version >= package_info['min_nt_version']
+    windows_package package_info['name'] do
+      source          package_info['url']
+      checksum        package_info['checksum']
       installer_type  :custom
       options         '/q /norestart'
       timeout         node['ms_dotnet']['timeout']
       action          :install
-      not_if          nt_version > node['ms_dotnet4']['max_nt_version']
+      not_if          nt_version > package_info['max_nt_version']
       notifies        :request, 'windows_reboot[ms_dotnet]', :immediately
     end
   else
-    Chef::Log.warn('This version of Windows is not supported by .NET ' + node['ms_dotnet4']['version'])
+    Chef::Log.warn('This version of Windows is not supported by .NET ' + version)
   end
 else
   Chef::Log.warn 'Microsoft .NET Framework can only be installed on the Windows platform.'
