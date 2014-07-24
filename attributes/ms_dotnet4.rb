@@ -48,7 +48,7 @@ default['ms_dotnet']['v4']['4.5.2']['checksum']            = '6c2c589132e830a185
 default['ms_dotnet']['v4']['4.5.2']['min_nt_version']      = 6.0
 default['ms_dotnet']['v4']['4.5.2']['max_nt_version']      = 6.3
 
-default['ms_dotnet4']['version']                           = '4.5.2'
+default['ms_dotnet4']['version']                           = '4.0'
 
 version = node['ms_dotnet4']['version']
 node['ms_dotnet']['v4'][version].each do |k, v|
