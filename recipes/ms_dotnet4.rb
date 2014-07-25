@@ -24,6 +24,8 @@ if platform? 'windows'
   nt_version = node['platform_version'].to_f
   package_info = node['ms_dotnet']['v4'][version]
 
+  fail("The version of Microsoft .NET 4 specified is not supported: '#{version}'\n => Supported versions are: #{node['ms_dotnet']['v4'].keys}") unless package_info
+
   if nt_version >= package_info['min_nt_version']
     windows_package package_info['name'] do
       source          package_info['url']
