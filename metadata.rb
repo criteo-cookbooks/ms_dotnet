@@ -1,6 +1,6 @@
 name              'ms_dotnet45'
 maintainer        'Tim Smith'
-maintainer_email  'tsmith@llnw.com'
+maintainer_email  'tsmith84@gmail.com'
 license           'Apache 2.0'
 license           'All rights reserved'
 description       'Installs Microsoft .NET 4.5'
