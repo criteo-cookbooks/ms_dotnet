@@ -1,5 +1,6 @@
 Description
 ===========
+[![Build Status](https://travis-ci.org/tas50/ms_dotnet45.svg?branch=2.0.0)](https://travis-ci.org/tas50/ms_dotnet45)
 
 This cookbook installs the Microsoft .NET Framework 4.5
 
