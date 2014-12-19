@@ -20,7 +20,7 @@
 # limitations under the License.
 
 
-execute "aspnet_regiis" do
-  command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
+execute 'aspnet_regiis' do
+  command '%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable'
   action :run
 end
