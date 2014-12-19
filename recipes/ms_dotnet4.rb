@@ -16,30 +16,50 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+#
 if platform? 'windows'
   include_recipe 'ms_dotnet'
 
-  version = node['ms_dotnet4']['version']
-  nt_version = node['platform_version'].to_f
-  package_info = node['ms_dotnet']['v4'][version]
+  version = node['ms_dotnet']['v4']['version']
+  version_info = node['ms_dotnet']['versions'][version]
+  fail("The version of Microsoft .NET specified is not supported: '#{version}'\n => Supported versions are: #{node['ms_dotnet']['versions'].keys}") unless version_info
 
-  fail("The version of Microsoft .NET 4 specified is not supported: '#{version}'\n => Supported versions are: #{node['ms_dotnet']['v4'].keys}") unless package_info
-
-  if nt_version >= package_info['min_nt_version']
+  feature_name = version_info['feature']
+  if feature_name == :builtin
+    Chef::Log.info "Microsoft .NET Framework #{version} is builtin on your version of Windows."
+  elsif feature_name
+    windows_feature feature_name do
+      action :install
+    end
+  else
+    package_info = version_info['package']
     windows_package package_info['name'] do
       source          package_info['url']
       checksum        package_info['checksum']
       installer_type  :custom
       options         '/q /norestart'
+      success_codes   [0, 3010]
       timeout         node['ms_dotnet']['timeout']
       action          :install
-      not_if          nt_version > package_info['max_nt_version']
+      notifies        :request, 'windows_reboot[ms_dotnet]', :immediately
+      not_if          package_info['not_if'] if package_info['not_if']
+    end
+  end
+
+  # Install patch if available
+  patch_info = version_info['patch']
+  if patch_info
+    windows_package patch_info['name'] do
+      source          patch_info['url']
+      checksum        patch_info['checksum']
+      installer_type  :custom
+      options         '/q /norestart'
+      success_codes   [0, 3010]
+      timeout         node['ms_dotnet']['timeout']
+      action          :install
       notifies        :request, 'windows_reboot[ms_dotnet]', :immediately
     end
-  else
-    Chef::Log.warn('This version of Windows is not supported by .NET ' + version)
   end
 else
-  Chef::Log.warn 'Microsoft .NET Framework can only be installed on the Windows platform.'
+  Chef::Log.info 'Microsoft .NET Framework can only be installed on the Windows platform.'
 end

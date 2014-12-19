@@ -53,6 +53,7 @@ when 'windows'
         checksum node['ms_dotnet2']['checksum']
         installer_type :custom
         options '/quiet /norestart'
+        success_codes [0, 3010]
         timeout node['ms_dotnet']['timeout']
         action :install
         notifies :request, 'windows_reboot[ms_dotnet]', :immediately
