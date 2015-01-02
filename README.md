@@ -1,61 +1,64 @@
 ms_dotnet Cookbook
 ==================
-TODO: Enter the cookbook description here.
+Install the Microsoft .NET Framework.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
+This cookbook supports Chef 11.10.0+
 
-e.g.
-#### packages
-- `toaster` - ms_dotnet needs toaster to brown your bagel.
+### Platforms
+* Windows XP
+* Windows Vista
+* Windows Server 2003 R2
+* Windows 7
+* Windows Server 2008 (R1, R2)
+* Windows 8 and 8.1
+* Windows Server 2012 (R1, R2)
+
+### Cookbooks
+The following cookbook is required as noted:
+
+* [windows][windows_cookbook] (> 1.36.1)
+
+    `ms_dotnet::default` leverages the windows_reboot LWRP
+    `ms_dotnet::ms_dotnet2` and `ms_dotnet::ms_dotnet4` leverage the windows_package LWRP
+    `ms_dotnet::ms_dotnet2`, `ms_dotnet::ms_dotnet3` and `ms_dotnet::ms_dotnet4` leverage the windows_feature LWRP
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
 
-e.g.
-#### ms_dotnet::default
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['ms_dotnet']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
-  </tr>
-</table>
+#### ms_dotnet::ms_dotnet2
+  * `node['ms_dotnet']['v2']['name']` - used to configure the Windows Package name
+  * `node['ms_dotnet']['v2']['url']` - used to configure the source of the Windows Package
+  * `node['ms_dotnet']['v2']['checksum']` - used to configure the checksum of the Windows Package
+
+#### ms_dotnet::ms_dotnet4
+  * `node['ms_dotnet']['v4']['version']` - used to configure the desired version of .NET4 ('4.0', '4.5', '4.5.1', '4.5.2')
+  * `node['ms_dotnet']['versions'][desired_version][feature]['name']` - used to configure the Feature name to use instead of a Windows Package for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][package]['name']` - used to configure the Windows Package name for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][package]['url']` - used to configure the source of the Windows Package for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][package]['checksum']` - used to configure the checksum of the Windows Package for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][patch]['name']` - used to configure the Windows Package name of the patch to apply for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][patch]['url']` - used to configure the source of the Windows Package of the patch to apply  for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][patch]['checksum']` - used to configure the checksum of the Windows Package of the patch to apply  for the specified `desired_version`
 
 Usage
 -----
-#### ms_dotnet::default
-TODO: Write usage instructions for each cookbook.
 
-e.g.
-Just include `ms_dotnet` in your node's `run_list`:
+#### ms_dotnet::ms_dotnet2
+To install Microsoft .NET Framework 2.0 on your node, just include the recipe `ms_dotnet::ms_dotnet2` in its `run_list`.
+You can use a custom windows package by specifing the 3 attributes specified in the above section.
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[ms_dotnet]"
-  ]
-}
-```
+#### ms_dotnet::ms_dotnet3
+To install Microsoft .NET Framework 3.0 on your node, just include the recipe `ms_dotnet::ms_dotnet3` in its `run_list`.
+
+#### ms_dotnet::ms_dotnet4
+To install Microsoft .NET Framework 4 on your node, just include the recipe `ms_dotnet::ms_dotnet4` in its `run_list`.
+Modify the version to install by changing the attribute `node['ms_dotnet']['v4']['version']`.
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
 1. Fork the repository on Github
 2. Create a named feature branch (like `add_component_x`)
 3. Write your change
@@ -65,4 +68,24 @@ e.g.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: [Baptiste Courtois][annih] (<b.courtois@criteo.com>), [Jeremy Mauro][jmauro] (<j.mauro@criteo.com>)
+
+```text
+Copyright 2014-2015, Criteo.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+[annih]:                    https://github.com/Annih
+[jmauro]:                   https://github.com/jmauro
+[repository]:               https://github.com/criteo-cookbooks/wsus-client
+[powershell_cookbook]:      https://community.opscode.com/cookbooks/powershell
