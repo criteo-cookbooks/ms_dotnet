@@ -19,7 +19,7 @@ This cookbook supports Chef 11.10.0+
 ### Cookbooks
 The following cookbook is required as noted:
 
-* [windows][windows_cookbook] (> 1.36.1)
+* [windows](windows_cookbook) (> 1.36.1)
 
     `ms_dotnet::default` leverages the windows_reboot LWRP
     `ms_dotnet::ms_dotnet2` and `ms_dotnet::ms_dotnet4` leverage the windows_package LWRP
