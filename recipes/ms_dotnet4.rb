@@ -47,8 +47,8 @@ if platform? 'windows'
   end
 
   # Install patch if available
-  patch_info = version_info['patch']
-  if patch_info
+  if version_info['patch']
+    patch_info = version_info['patch']
     windows_package patch_info['name'] do
       source          patch_info['url']
       checksum        patch_info['checksum']
