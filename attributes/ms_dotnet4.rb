@@ -38,13 +38,13 @@ if platform? 'windows'
   end
 
   if nt_version >= 6.0
-    if nt_version < 6.1
+    if nt_version < 6.2
       default['ms_dotnet']['versions']['4.5']['package']['name']          = 'Microsoft .NET Framework 4.5'
       default['ms_dotnet']['versions']['4.5']['package']['url']           = 'http://download.microsoft.com/download/B/A/4/BA4A7E71-2906-4B2D-A0E1-80CF16844F5F/dotNetFx45_Full_x86_x64.exe'
       default['ms_dotnet']['versions']['4.5']['package']['checksum']      = 'a04d40e217b97326d46117d961ec4eda455e087b90637cb33dd6cc4a2c228d83'
     end
 
-    if nt_version < 6.2
+    if nt_version < 6.3
       default['ms_dotnet']['versions']['4.5.1']['package']['name']        = 'Microsoft .NET Framework 4.5.1'
       default['ms_dotnet']['versions']['4.5.1']['package']['url']         = 'http://download.microsoft.com/download/1/6/7/167F0D79-9317-48AE-AEDB-17120579F8E2/NDP451-KB2858728-x86-x64-AllOS-ENU.exe'
       default['ms_dotnet']['versions']['4.5.1']['package']['checksum']    = '5ded8628ce233a5afa8e0efc19ad34690f05e9bb492f2ed0413508546af890fe'
