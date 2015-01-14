@@ -21,7 +21,7 @@ The following cookbook is required as noted:
 
 * [windows](windows_cookbook) (> 1.36.1)
 
-    `ms_dotnet::default` leverages the windows_reboot LWRP
+    `ms_dotnet::default` include the recipe 'windows::default'
     `ms_dotnet::ms_dotnet2` and `ms_dotnet::ms_dotnet4` leverage the windows_package LWRP
     `ms_dotnet::ms_dotnet2`, `ms_dotnet::ms_dotnet3` and `ms_dotnet::ms_dotnet4` leverage the windows_feature LWRP
 

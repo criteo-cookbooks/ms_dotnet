@@ -41,7 +41,6 @@ if platform? 'windows'
       success_codes   [0, 3010]
       timeout         node['ms_dotnet']['timeout']
       action          :install
-      notifies        :request, 'windows_reboot[ms_dotnet]', :immediately
       not_if          package_info['not_if'] if package_info['not_if']
     end
   end
@@ -57,7 +56,6 @@ if platform? 'windows'
       success_codes   [0, 3010]
       timeout         node['ms_dotnet']['timeout']
       action          :install
-      notifies        :request, 'windows_reboot[ms_dotnet]', :immediately
     end
   end
 else

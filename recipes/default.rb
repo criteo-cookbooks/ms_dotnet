@@ -21,11 +21,3 @@
 return unless platform?('windows')
 
 include_recipe 'windows'
-include_recipe 'windows::reboot_handler' unless Chef::Config[:solo] or Chef::Config[:local_mode]
-
-
-windows_reboot 'ms_dotnet' do
-  timeout 60
-  reason 'Microsoft DotNet Installation'
-  action :nothing
-end
