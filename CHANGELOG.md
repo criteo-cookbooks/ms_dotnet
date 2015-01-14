@@ -2,7 +2,15 @@ ms_dotnet CHANGELOG
 ===================
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
-
+2.2.0
+-----
+- b.courtois - Do not use the windows_reboot resource and its request action.
+2.1.1
+-----
+- b.courtois - Update constraint to leverage windows cookbook >=1.36.1
+2.1.0
+-----
+- b.courtois - Fix .NET4.5 support on windows 7/Server 2008R2
 2.0.0
 -----
 - b.courtois - Fail chef run when an invalid .NET4 version is specified
