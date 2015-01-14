@@ -1,0 +1,17 @@
+language: ruby
+rvm:
+  - 1.9.3
+  - 2.0.0
+  - 2.1.0
+  - 2.2.0
+deploy:
+  edge: true
+  provider: chef-supermarket
+  user_id: criteo
+  cookbook_category: Programming Languages
+  client_key: .travis/client.pem
+  on:
+    tags: true
+    all_branches: true
+before_deploy:
+  - openssl aes-256-cbc -K $encrypted_b5c5332c466c_key -iv $encrypted_b5c5332c466c_iv -in criteo_supermarket.pem.enc -out ~\/.chef/criteo_supermarket.pem -d
