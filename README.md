@@ -13,9 +13,9 @@ Platform
 --------
 
 * Windows Vista SP1 or later
-* Windows Server 2008 (not supported on Server Core Role)
+* Windows Server 2008 (not supported on Server Core)
 * Windows 7
-* Windows Server 2008 R2 (not supported on Server Core Role)
+* Windows Server 2008 R2 (not supported on Server Core )
 
 Attributes
 ==========
