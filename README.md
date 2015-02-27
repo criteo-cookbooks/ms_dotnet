@@ -17,9 +17,10 @@ Platform
 * Windows 7
 * Windows Server 2008 R2 (not supported on Server Core Role)
 
-
 Attributes
 ==========
+* `default['ms_dotnet45']['http_url']`: Download URL for MS .NET 4.5 MSI
+* `default['ms_dotnet45']['timeout']`: Timeout for completing the installation
 
 Usage
 =====
