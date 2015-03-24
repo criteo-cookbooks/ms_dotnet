@@ -2,6 +2,9 @@ ms_dotnet CHANGELOG
 ===================
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
+2.2.1
+-----
+- minkaotic  - Fix .NET 3.5 install guard clause.
 2.2.0
 -----
 - b.courtois - Do not use the windows_reboot resource and its request action.
