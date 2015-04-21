@@ -19,8 +19,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+guard_file = ::File.join(::Chef::Config['file_cache_path'], 'aspnet_regiis')
+# register once and only if IIS is not installed
 execute 'aspnet_regiis' do
-  command '%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable'
   action :run
+  command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis.exe -i -enable > #{guard_file}"
+  creates guard_file
+  only_if 'sc.exe query W3SVC'
 end
