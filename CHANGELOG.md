@@ -2,7 +2,6 @@ ms_dotnet CHANGELOG
 ===================
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
-
 2.3.0
 -----
 - b.courtois - Register aspnet to iis once and only if ISS is present.
