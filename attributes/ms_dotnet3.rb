@@ -18,5 +18,12 @@
 # limitations under the License.
 #
 
-default['ms_dotnet']['timeout'] = 600
+if platform? 'windows'
+  nt_version = node['platform_version'].to_f
 
+  default['ms_dotnet']['v3']['enable_all_features']            = false  
+
+  ## DISM /add is only available on NT Version 6.2 (Windows 8/2012) or newer. 
+  default['ms_dotnet']['v3']['enable_all_features']            = true if nt_version >= 6.2  
+ 
+end
