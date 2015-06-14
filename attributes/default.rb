@@ -20,11 +20,3 @@
 
 default['ms_dotnet']['timeout'] = 600
 
-if platform? 'windows'
-  nt_version = node['platform_version'].to_f
-  if nt_version >= 6.2
-    default['ms_dotnet']['feature']['enable_all']            = true
-  else
-  	default['ms_dotnet']['feature']['enable_all']            = false
-  end
-end
