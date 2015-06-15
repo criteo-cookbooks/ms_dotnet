@@ -1,7 +1,9 @@
 ms_dotnet Cookbook
 ==================
-Install the Microsoft .NET Framework.
+[![Cookbook Version][cookbook_version]][cookbook]
+[![Build Status][build_status]][build_status]
 
+Install the Microsoft .NET Framework.
 
 Requirements
 ------------
@@ -89,3 +91,6 @@ limitations under the License.
 [jmauro]:                   https://github.com/jmauro
 [repository]:               https://github.com/criteo-cookbooks/wsus-client
 [powershell_cookbook]:      https://community.opscode.com/cookbooks/powershell
+[build_status]:             https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg
+[cookbook_version]:         https://img.shields.io/cookbook/v/ms_dotnet.svg
+[cookbook]:                 https://supermarket.chef.io/cookbooks/ms_dotnet

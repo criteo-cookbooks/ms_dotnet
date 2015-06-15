@@ -2,6 +2,9 @@ ms_dotnet CHANGELOG
 ===================
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
+2.4.0
+-----
+- Y.Siu - Support .Net3.5 on Windows 8.1 and Server 2012R2.
 2.3.0
 -----
 - b.courtois - Register aspnet to iis once and only if ISS is present.
