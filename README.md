@@ -91,6 +91,6 @@ limitations under the License.
 [jmauro]:                   https://github.com/jmauro
 [repository]:               https://github.com/criteo-cookbooks/wsus-client
 [powershell_cookbook]:      https://community.opscode.com/cookbooks/powershell
-[build_status]:             https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg
+[build_status]:             https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
 [cookbook_version]:         https://img.shields.io/cookbook/v/ms_dotnet.svg
 [cookbook]:                 https://supermarket.chef.io/cookbooks/ms_dotnet
