@@ -6,6 +6,7 @@ gem 'fauxhai',    '>= 2.2'
 gem 'foodcritic', '>= 4.0'
 gem 'rake'
 
-platforms :mri_19 do
-  gem 'ohai', '~> 7.4.0'
+if RUBY_VERSION < '2.0'
+  gem 'chef', '< 12.0'
+  gem 'ohai', '< 8.0'
 end
