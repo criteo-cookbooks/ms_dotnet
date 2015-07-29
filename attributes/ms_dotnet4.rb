@@ -57,7 +57,7 @@ if platform? 'windows'
     # Starting with windows 8 and Server 2012 old version of .NET Framework 4 are builtin or included as feature
     if nt_version >= 6.2
       require 'chef/win32/version'
-      if node['kernel']['os_info']['product_type'] != Chef::ReservedNames::Win32::Version::VER_NT_WORKSTATION
+      if node['kernel']['os_info']['product_type'] == Chef::ReservedNames::Win32::Version::VER_NT_WORKSTATION
         feature_name = :builtin # .NET 4 can't be disabled on windows 8 and windows 8.1
       else
         feature_name = Chef::ReservedNames::Win32::Version.new.core? && nt_version != 6.3 ? 'netFx4-Server-Core' : 'netFx4'
