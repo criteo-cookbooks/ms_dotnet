@@ -71,5 +71,15 @@ if platform? 'windows'
       hotfix_id = nt_version == 6.3 ? 'KB2934520' : 'KB2901982'
       default['ms_dotnet']['versions']['4.5.2']['package']['not_if']      = "wmic path Win32_QuickFixEngineering WHERE HotFixID='#{hotfix_id}' | FindStr #{hotfix_id}"
     end
+
+    if nt_version < 10.0
+      default['ms_dotnet']['versions']['4.6']['package']['name']          = 'Microsoft .NET Framework 4.6'
+      default['ms_dotnet']['versions']['4.6']['package']['url']           = 'http://download.microsoft.com/download/C/3/A/C3A5200B-D33C-47E9-9D70-2F7C65DAAD94/NDP46-KB3045557-x86-x64-AllOS-ENU.exe'
+      default['ms_dotnet']['versions']['4.6']['package']['checksum']      = 'b21d33135e67e3486b154b11f7961d8e1cfd7a603267fb60febb4a6feab5cf87'
+    else
+      default['ms_dotnet']['versions']['4.5.1']['feature']                = :builtin
+      default['ms_dotnet']['versions']['4.5.2']['feature']                = :builtin
+      default['ms_dotnet']['versions']['4.6']['feature']                  = :builtin
+    end
   end
 end
