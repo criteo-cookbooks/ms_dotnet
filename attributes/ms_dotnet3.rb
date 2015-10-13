@@ -19,10 +19,8 @@
 #
 
 if platform? 'windows'
-  nt_version = node['platform_version'].to_f
-
   # DISM /all is only available on NT Version 6.2 (Windows 8/2012) or newer.
-  default['ms_dotnet']['v3']['enable_all_features'] = nt_version >= 6.2
+  default['ms_dotnet']['v3']['enable_all_features'] = true
 
   # DISM /source is only available on NT Version 6.2 (Windows 8/2012) or newer.
   # It can be used to use custom source folder e.g:

@@ -20,15 +20,22 @@
 
 if platform?('windows')
   include_recipe 'ms_dotnet'
-  if win_version.windows_server_2012? || win_version.windows_server_2012_r2? || win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?
+
+  nt_version = node['platform_version'].to_f
+
+  if nt_version >= 6.0
     windows_feature 'NetFx3' do
       action :install
-      source node['ms_dotnet']['v3']['source']
-      all node['ms_dotnet']['v3']['enable_all_features']
       not_if { File.exists?('C:/Windows/Microsoft.NET/Framework/v3.5') }
+
+      # Below attributes are not supported before NT 6.2
+      if nt_version >= 6.2
+        source node['ms_dotnet']['v3']['source']
+        all node['ms_dotnet']['v3']['enable_all_features']
+      end
     end
-  elsif win_version.windows_server_2003_r2? || win_version.windows_server_2003? || win_version.windows_xp?
-    Chef::Log.warn('The Microsoft .NET Framework 3.5 Chef recipe currently only supports Windows Vista, 7, 2008, and 2008 R2.')
+  else
+    Chef::Log.warn('The Microsoft .NET Framework 3.5 Chef recipe does not support version older than Windows Vista/2008.')
   end
 else
   Chef::Log.warn('Microsoft Framework .NET 3.5 can only be installed on the Windows platform.')
