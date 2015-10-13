@@ -23,6 +23,7 @@ if platform?('windows')
   if win_version.windows_server_2012? || win_version.windows_server_2012_r2? || win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?
     windows_feature 'NetFx3' do
       action :install
+      source node['ms_dotnet']['v3']['source']
       all node['ms_dotnet']['v3']['enable_all_features']
       not_if { File.exists?('C:/Windows/Microsoft.NET/Framework/v3.5') }
     end

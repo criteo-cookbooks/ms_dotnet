@@ -35,6 +35,10 @@ Attributes
   * `node['ms_dotnet']['v2']['url']` - used to configure the source of the Windows Package
   * `node['ms_dotnet']['v2']['checksum']` - used to configure the checksum of the Windows Package
 
+#### ms_dotnet::ms_dotnet3
+  * `node['ms_dotnet']['v3']['enable_all_features']` - enable all parent features when installing NetFx3 (default to `true` on NT Version 6.2 or newer)
+  * `node['ms_dotnet']['v3']['source']` - used to configure the source of the Windows Package (only supported on NT Version 6.2 or newer)
+
 #### ms_dotnet::ms_dotnet4
   * `node['ms_dotnet']['v4']['version']` - used to configure the desired version of .NET4 ('4.0', '4.5', '4.5.1', '4.5.2')
   * `node['ms_dotnet']['versions'][desired_version][feature]['name']` - used to configure the Feature name to use instead of a Windows Package for the specified `desired_version`
@@ -42,8 +46,8 @@ Attributes
   * `node['ms_dotnet']['versions'][desired_version][package]['url']` - used to configure the source of the Windows Package for the specified `desired_version`
   * `node['ms_dotnet']['versions'][desired_version][package]['checksum']` - used to configure the checksum of the Windows Package for the specified `desired_version`
   * `node['ms_dotnet']['versions'][desired_version][patch]['name']` - used to configure the Windows Package name of the patch to apply for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][patch]['url']` - used to configure the source of the Windows Package of the patch to apply  for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][patch]['checksum']` - used to configure the checksum of the Windows Package of the patch to apply  for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][patch]['url']` - used to configure the source of the Windows Package of the patch to apply for the specified `desired_version`
+  * `node['ms_dotnet']['versions'][desired_version][patch]['checksum']` - used to configure the checksum of the Windows Package of the patch to apply for the specified `desired_version`
 
 Usage
 -----
@@ -54,6 +58,10 @@ You can use a custom windows package by specifing the 3 attributes specified in 
 
 #### ms_dotnet::ms_dotnet3
 To install Microsoft .NET Framework 3.0 on your node, just include the recipe `ms_dotnet::ms_dotnet3` in its `run_list`.
+
+> NB: Starting with NT Version 6.2 (Windows 8/2012) .NET 3 is an _on demand feature_.
+> Meaning that you need either to use the installing media or a custom windows image to enable the feature.
+> See: http://msdn.microsoft.com/library/hh506443
 
 #### ms_dotnet::ms_dotnet4
 To install Microsoft .NET Framework 4 on your node, just include the recipe `ms_dotnet::ms_dotnet4` in its `run_list`.
