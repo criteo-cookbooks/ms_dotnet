@@ -33,7 +33,7 @@ if platform? 'windows'
     end
   else
     package_info = version_info['package']
-    windows_package package_info['name'] do
+    windows_package package_info['name'] do # ~FC009
       source          package_info['url']
       checksum        package_info['checksum']
       installer_type  :custom
@@ -48,7 +48,7 @@ if platform? 'windows'
   # Install patch if available
   if version_info['patch']
     patch_info = version_info['patch']
-    windows_package patch_info['name'] do
+    windows_package patch_info['name'] do # ~FC009
       source          patch_info['url']
       checksum        patch_info['checksum']
       installer_type  :custom
