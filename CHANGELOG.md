@@ -2,6 +2,12 @@ ms_dotnet CHANGELOG
 ===================
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
+2.5.0
+-----
+- b.courtois - Supports custom source for .Net 3.5 install
+- b.courtois - Use travis container-based infrastructure
+- b.courtois - Use travis bundler caching
+- b.courtois - Don't test agains ruby 1.9.3 anymore
 2.4.0
 -----
 - Y.Siu - Support .Net3.5 on Windows 8.1 and Server 2012R2.
