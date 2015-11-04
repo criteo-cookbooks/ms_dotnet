@@ -2,6 +2,10 @@ ms_dotnet CHANGELOG
 ===================
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
+
+2.5.1
+-----
+- b.courtois - Trust windows_feature behavior in recipe ms_dotnet3
 2.5.0
 -----
 - b.courtois - Supports custom source for .Net 3.5 install
