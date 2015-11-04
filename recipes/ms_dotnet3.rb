@@ -26,7 +26,6 @@ if platform?('windows')
   if nt_version >= 6.0
     windows_feature 'NetFx3' do
       action :install
-      not_if { File.exists?('C:/Windows/Microsoft.NET/Framework/v3.5') }
 
       # Below attributes are not supported before NT 6.2
       if nt_version >= 6.2
