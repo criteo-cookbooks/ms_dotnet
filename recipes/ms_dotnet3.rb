@@ -24,7 +24,15 @@ if platform?('windows')
   nt_version = node['platform_version'].to_f
 
   if nt_version >= 6.0
-    windows_feature 'NetFx3' do
+    # Windows Server 2012 and earlier have Server features
+    # see https://msdn.microsoft.com/en-us/windows/desktop/ms724358 for product types
+    if nt_version >= 6.2 && node['kernel']['os_info']['product_type'] != 0x1
+      feature_name = 'NetFx3ServerFeatures'
+    else
+      feature_name = 'NetFx3'
+    end
+
+    windows_feature feature_name do
       action :install
 
       # Below attributes are not supported before NT 6.2
