@@ -21,12 +21,11 @@
 if platform?('windows')
   include_recipe 'ms_dotnet'
 
-  nt_version = node['platform_version'].to_f
+  nt_version = ::Windows::VersionHelper.nt_version(node)
 
   if nt_version >= 6.0
     # Windows Server 2012 and earlier have Server features
-    # see https://msdn.microsoft.com/en-us/windows/desktop/ms724358 for product types
-    if nt_version >= 6.2 && node['kernel']['os_info']['product_type'] != 0x1
+    if nt_version >= 6.2 && ::Windows::VersionHelper.server_version?(node)
       feature_name = 'NetFx3ServerFeatures'
     else
       feature_name = 'NetFx3'

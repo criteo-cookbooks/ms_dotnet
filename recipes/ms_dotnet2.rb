@@ -21,13 +21,11 @@
 case node['platform']
 when 'windows'
 
-  require 'chef/win32/version'
-  windows_version = Chef::ReservedNames::Win32::Version.new
-
   include_recipe 'ms_dotnet'
-  if windows_version.core?
-    # Windows Server 2008 R2 Core does not come with .NET or Powershell 2.0 enabled
-    include_recipe 'ms_dotnet'
+  nt_version = ::Windows::VersionHelper.nt_version(node)
+
+  if nt_version < 6.2 && ::Windows::VersionHelper.core_version?(node)
+  # Windows Server 2008 & 2008R2 Core does not come with .NET or Powershell 2.0 enabled
     windows_feature 'NetFx2-ServerCore' do
       action :install
     end
@@ -35,26 +33,22 @@ when 'windows'
       action :install
       only_if { node['kernel']['machine'] == 'x86_64' }
     end
-  elsif windows_version.windows_server_2008? || windows_version.windows_server_2003_r2? ||
-    windows_version.windows_server_2003? || windows_version.windows_xp?
-
-    if windows_version.windows_server_2008?
-      # Windows PowerShell 2.0 requires version 2.0 of the common language runtime (CLR).
-      # CLR 2.0 is included with the Microsoft .NET Framework versions 2.0, 3.0, or 3.5 with Service Pack 1.
-      windows_feature 'NET-Framework-Core' do
-        action :install
-      end
-    else
-      # XP, 2003 and 2003R2 don't have DISM or servermanagercmd, so download .NET 2.0 manually
-      windows_package node['ms_dotnet']['v2']['name'] do # ~FC009
-        source node['ms_dotnet']['v2']['url']
-        checksum node['ms_dotnet']['v2']['checksum']
-        installer_type :custom
-        options '/quiet /norestart'
-        success_codes [0, 3010]
-        timeout node['ms_dotnet']['timeout']
-        action :install
-      end
+  elsif nt_version == 6.0 && ::Windows::VersionHelper.server_version?(node)
+    # Windows PowerShell 2.0 requires version 2.0 of the common language runtime (CLR).
+    # CLR 2.0 is included with the Microsoft .NET Framework versions 2.0, 3.0, or 3.5 with Service Pack 1.
+    windows_feature 'NET-Framework-Core' do
+      action :install
+    end
+  elsif nt_version.between? 5.1, 5.2
+    # XP, 2003 and 2003R2 don't have DISM or servermanagercmd, so download .NET 2.0 manually
+    windows_package node['ms_dotnet']['v2']['name'] do # ~FC009
+      source node['ms_dotnet']['v2']['url']
+      checksum node['ms_dotnet']['v2']['checksum']
+      installer_type :custom
+      options '/quiet /norestart'
+      success_codes [0, 3010]
+      timeout node['ms_dotnet']['timeout']
+      action :install
     end
   else
     log '.NET Framework 2.0 is already enabled on this version of Windows' do
