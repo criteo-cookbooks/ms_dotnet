@@ -20,7 +20,7 @@
 # limitations under the License.
 
 guard_file = ::File.join(::Chef::Config['file_cache_path'], 'aspnet_regiis')
-# register once and only if IIS is not installed
+# register once and only if IIS is installed
 execute 'aspnet_regiis' do
   action :run
   command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis.exe -i -enable > #{guard_file}"
