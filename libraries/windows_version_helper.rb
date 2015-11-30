@@ -18,6 +18,7 @@
 # limitations under the License.
 #
 # This module should be part of the windows cookbook.
+# see: https://github.com/chef-cookbooks/windows/pull/312
 module Windows
   # Module based on windows ohai kernel.cs_info providing version helpers
   module VersionHelper
