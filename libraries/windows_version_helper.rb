@@ -40,6 +40,15 @@ module Windows
       STANDARD_SERVER_V   = 0x28 unless defined?(STANDARD_SERVER_V)
     end
 
+    # Module referencing product type contants
+    # see. https://msdn.microsoft.com/windows/desktop/ms724833#VER_NT_SERVER
+    # n.b. Prefix - VER_NT_ - has been removed
+    module ProductType
+      WORKSTATION         = 0x1
+      DOMAIN_CONTROLLER   = 0x2
+      SERVER              = 0x3
+    end
+
     # Determines whether current node is running a windows Core version
     def self.core_version?(node)
       validate_platform node
@@ -50,8 +59,7 @@ module Windows
     # Determine whether current node is a workstation version
     def self.workstation_version?(node)
       validate_platform node
-      # see https://msdn.microsoft.com/library/windows/desktop/ms724833#VER_NT_SERVER for product types
-      node['kernel']['os_info']['product_type'] == 0x1
+      node['kernel']['os_info']['product_type'] == ProductType::WORKSTATION
     end
 
     # Determine whether current node is a server version
