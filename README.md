@@ -27,6 +27,15 @@ The following cookbook is required as noted:
     `ms_dotnet::ms_dotnet2` and `ms_dotnet::ms_dotnet4` leverage the windows_package LWRP
     `ms_dotnet::ms_dotnet2`, `ms_dotnet::ms_dotnet3` and `ms_dotnet::ms_dotnet4` leverage the windows_feature LWRP
 
+Known Issues
+------------
+Here are the known issues you can encounter with ms_dotnet recipes:
+* "Access denied" error on windows_package when running chef via WinRM
+  * `Cause`: winrm limitation
+  * `Common environment`: knife windows bootstrap, chef-provisioning, test-kitchen
+  * `Best solution`: your remoting system should try to simulate a local session (psexec or schedule task)
+  * `Other solution`: create your custom wrapper to simulate a local session
+
 Attributes
 ----------
 
