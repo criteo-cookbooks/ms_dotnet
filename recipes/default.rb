@@ -1,4 +1,5 @@
 #
+# Author:: Timothy Smith (<tsmith@chef.io>)
 # Cookbook Name:: ms_dotnet45
 # Recipe:: default
 #
