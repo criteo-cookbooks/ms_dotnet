@@ -1,4 +1,5 @@
 #
+# Author:: Timothy Smith (<tsmith@chef.io>)
 # Cookbook Name:: ms_dotnet45
 # Recipe:: default
 #
@@ -18,7 +19,7 @@
 
 if platform?('windows')
   if win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?
-    unless File.exists?('C:/Windows/Microsoft.NET/Framework/v4.0.30319/Microsoft.Activities.Build.dll')
+    unless File.exist?('C:/Windows/Microsoft.NET/Framework/v4.0.30319/Microsoft.Activities.Build.dll')
       windows_package 'Microsoft .NET Framework 4.5' do
         source node['ms_dotnet45']['http_url']
         installer_type :custom
