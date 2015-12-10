@@ -1,5 +1,5 @@
 # ms_dotnet4 Cookbook CHANGELOG
-This file is used to list changes made in each version of the ms_dotnet45 cookbook.
+This file is used to list changes made in each version of the ms_dotnet4 cookbook.
 
 ## v1.0.3 (2015-12-09)
 - Transfer ownership to Chef
