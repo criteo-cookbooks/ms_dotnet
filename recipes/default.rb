@@ -18,7 +18,7 @@
 
 if platform?('windows')
   if win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?
-    unless File.exists?('C:/Windows/Microsoft.NET/Framework/v4.0.30319')
+    unless File.exist?('C:/Windows/Microsoft.NET/Framework/v4.0.30319')
       windows_package 'Microsoft .NET Framework 4 Client Profile' do
         source node['ms_dotnet4']['http_url']
         installer_type :custom
