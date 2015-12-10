@@ -23,6 +23,7 @@ if platform?("windows")
         source node['ms_dotnet4']['http_url']
         installer_type :custom
         options "/quiet /norestart"
+        success_codes [0, 3010]
         action :install
        end
 	 end
