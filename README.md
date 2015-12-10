@@ -1,5 +1,5 @@
 # ms_dotnet45 Cookbook
-[![Build Status](https://travis-ci.org/tas50/ms_dotnet45.svg?branch=2.0.0)](https://travis-ci.org/tas50/ms_dotnet45)
+[![Build Status](https://travis-ci.org/chef-cookbooks/ms_dotnet45.svg?branch=master)](https://travis-ci.org/chef-cookbooks/ms_dotnet45)
 [![Cookbook Version](https://img.shields.io/cookbook/v/ms_dotnet45.svg)](https://supermarket.chef.io/cookbooks/ms_dotnet45)
 
 This cookbook installs the Microsoft .NET Framework 4.5
