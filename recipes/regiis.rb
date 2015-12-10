@@ -19,8 +19,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-execute "aspnet_regiis" do
-    command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable"
-    action :run
+execute 'aspnet_regiis' do
+  command '%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis -i -enable'
+  action :run
 end

@@ -1,5 +1,5 @@
 #
-# Author:: Timothy Smith (<tim.smith@webtrends.com>)
+# Author:: Timothy Smith (<tsmith@llnw.com>)
 # Cookbook Name:: ms_dotnet4
 # Attribute:: default
 #
