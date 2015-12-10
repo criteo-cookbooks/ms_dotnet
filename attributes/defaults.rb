@@ -1,5 +1,5 @@
 #
-# Author:: Timothy Smith (<tsmith@llnw.com>)
+# Author:: Timothy Smith (<tsmith@chef.io>)
 # Cookbook Name:: ms_dotnet4
 # Attribute:: default
 #
