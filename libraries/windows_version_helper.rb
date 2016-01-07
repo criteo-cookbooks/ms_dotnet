@@ -44,9 +44,9 @@ module Windows
     # see. https://msdn.microsoft.com/windows/desktop/ms724833#VER_NT_SERVER
     # n.b. Prefix - VER_NT_ - has been removed
     module ProductType
-      WORKSTATION         = 0x1
-      DOMAIN_CONTROLLER   = 0x2
-      SERVER              = 0x3
+      WORKSTATION         = 0x1 unless defined?(WORKSTATION)
+      DOMAIN_CONTROLLER   = 0x2 unless defined?(DOMAIN_CONTROLLER)
+      SERVER              = 0x3 unless defined?(SERVER)
     end
 
     # Determines whether current node is running a windows Core version
