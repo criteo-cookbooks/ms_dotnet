@@ -3,6 +3,10 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+2.6.1
+-----
+- kamaradclimber - Define Windows::VersionHelper::ProductType constants only once
+
 2.6.0
 -----
 - b.courtois - Use version helper everywhere to remove references to Win32::Version
