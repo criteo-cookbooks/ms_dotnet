@@ -19,9 +19,6 @@
 #
 
 if platform? 'windows'
-  # DISM /all is only available on NT Version 6.2 (Windows 8/2012) or newer.
-  default['ms_dotnet']['v3']['enable_all_features'] = true
-
   # DISM /source is only available on NT Version 6.2 (Windows 8/2012) or newer.
   # It can be used to use custom source folder e.g:
   # * Mounted Windows ISO: 'd:\sources\sxs'

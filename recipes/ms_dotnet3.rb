@@ -30,7 +30,7 @@ if platform?('windows')
       # Below attributes are not supported before NT 6.2
       if nt_version >= 6.2
         source node['ms_dotnet']['v3']['source']
-        all node['ms_dotnet']['v3']['enable_all_features']
+        all true
       end
     end
   else

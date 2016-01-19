@@ -45,7 +45,6 @@ Attributes
   * `node['ms_dotnet']['v2']['checksum']` - used to configure the checksum of the Windows Package
 
 #### ms_dotnet::ms_dotnet3
-  * `node['ms_dotnet']['v3']['enable_all_features']` - enable all parent features when installing NetFx3 (only supported on NT Version 6.2 or newer, default to `true`)
   * `node['ms_dotnet']['v3']['source']` - used to configure the source of the Windows Package (only supported on NT Version 6.2 or newer)
 
 #### ms_dotnet::ms_dotnet4
