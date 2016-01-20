@@ -24,20 +24,13 @@ if platform?('windows')
   nt_version = ::Windows::VersionHelper.nt_version(node)
 
   if nt_version >= 6.0
-    # Windows Server 2012 and earlier have Server features
-    if nt_version >= 6.2 && ::Windows::VersionHelper.server_version?(node)
-      feature_name = 'NetFx3ServerFeatures'
-    else
-      feature_name = 'NetFx3'
-    end
-
-    windows_feature feature_name do
+    windows_feature 'NetFx3' do
       action :install
 
       # Below attributes are not supported before NT 6.2
       if nt_version >= 6.2
         source node['ms_dotnet']['v3']['source']
-        all node['ms_dotnet']['v3']['enable_all_features']
+        all true
       end
     end
   else
