@@ -1,0 +1,5 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+cookbook 'ms_dotnet', path: '../../../'

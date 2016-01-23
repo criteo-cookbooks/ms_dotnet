@@ -21,6 +21,13 @@ def init_node(hash = {})
   ::Chef::Node.new.tap { |node| hash.each { |k, v| node.normal[k] = v } }
 end
 
+require 'registry_mock'
+def mock_registry(data_file)
+  require 'yaml'
+  data = YAML.load_file ::File.join(::File.dirname(__FILE__), 'data', "#{data_file}_registry.yml")
+  allow(::Chef::Win32::Registry).to receive(:new).and_return RegistryMock.new(data)
+end
+
 SUPPORTED_MAJOR_VERSIONS = [2, 3, 4].freeze
 
 FAUXHAI_WINDOWS_VERSIONS = {

@@ -1,0 +1,9 @@
+HKLM:
+  Software:
+    Microsoft:
+      Net Framework Setup:
+        NDP:
+          v4:
+            Full:
+              Release: 378758
+              Install: 1

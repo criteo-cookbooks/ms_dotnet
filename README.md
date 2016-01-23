@@ -26,6 +26,7 @@ The following cookbook is required as noted:
     `ms_dotnet::default` include the recipe 'windows::default'
     `ms_dotnet::ms_dotnet2` and `ms_dotnet::ms_dotnet4` leverage the windows_package LWRP
     `ms_dotnet::ms_dotnet2`, `ms_dotnet::ms_dotnet3` and `ms_dotnet::ms_dotnet4` leverage the windows_feature LWRP
+    `ms_dotnet_framework` LWRP leverage the windows_package LWRP
 
 Known Issues
 ------------
@@ -35,6 +36,33 @@ Here are the known issues you can encounter with ms_dotnet recipes:
   * `Common environment`: knife windows bootstrap, chef-provisioning, test-kitchen
   * `Best solution`: your remoting system should try to simulate a local session (psexec or schedule task)
   * `Other solution`: create your custom wrapper to simulate a local session
+
+Resource/Provider
+-----------------
+### ms_dotnet_framework
+#### Actions
+* `:install` - Install a specific .NET framework
+
+#### Attribute Parameters
+* `version` - Name attribute. Specify the .NET version to install.
+* `include_patches` - Determine whether patches should also be applied (default: `true`)
+* `feature_source` - Specify custom source for windows features. Only avaiable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
+* `package_sources` - Specify custom sources URL for windows packages. URL are indexed by their content SHA256 checkum.  (default: `{}`)
+* `require_support` - Determine whether chef should fail when given version is not supported on the current OS (default: `false`)
+
+> NB: `feature_source` works only on NT Version 6.2 (Windows 8/2012) or newer.
+
+#### Examples
+Install .NET 4.5.2 from custom sources
+
+```ruby
+ms_dotnet_framework '4.5.2' do
+  action            :install
+  include_patches   true
+  package_sources   { 6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781: 'http://my-own.site.com/NetFx452.exe' }
+  require_support   true
+end
+```
 
 Attributes
 ----------
