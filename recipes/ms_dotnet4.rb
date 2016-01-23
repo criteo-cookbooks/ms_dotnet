@@ -1,9 +1,9 @@
 #
 # Cookbook Name:: ms_dotnet
 # Recipe:: ms_dotnet4
-# Author:: Tim Smith (<tsmith@llnw.com>)
+# Author:: Baptiste Courtois (<b.courtois@criteo.com>)
 #
-# Copyright 2012, Webtrends, Inc.
+# Copyright (C) 2015-2016, Criteo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,47 +17,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-if platform? 'windows'
-  include_recipe 'ms_dotnet'
+return unless platform? 'windows'
 
-  version = node['ms_dotnet']['v4']['version']
-  version_info = node['ms_dotnet']['versions'][version]
-  raise("The version of Microsoft .NET specified is not supported: '#{version}'\n => Supported versions are: #{node['ms_dotnet']['versions'].keys}") unless version_info
+v4_info = node['ms_dotnet']['v4']
 
-  feature_name = version_info['feature']
-  if feature_name == :builtin
-    Chef::Log.info "Microsoft .NET Framework #{version} is builtin on your version of Windows."
-  elsif feature_name
-    windows_feature feature_name do
-      action :install
-    end
-  else
-    package_info = version_info['package']
-    windows_package package_info['name'] do # ~FC009
-      source          package_info['url']
-      checksum        package_info['checksum']
-      installer_type  :custom
-      options         '/q /norestart'
-      success_codes   [0, 3010]
-      timeout         node['ms_dotnet']['timeout']
-      action          :install
-      not_if          package_info['not_if'] if package_info['not_if']
-    end
-  end
-
-  # Install patch if available
-  if version_info['patch']
-    patch_info = version_info['patch']
-    windows_package patch_info['name'] do # ~FC009
-      source          patch_info['url']
-      checksum        patch_info['checksum']
-      installer_type  :custom
-      options         '/q /norestart'
-      success_codes   [0, 3010]
-      timeout         node['ms_dotnet']['timeout']
-      action          :install
-    end
-  end
-else
-  Chef::Log.info 'Microsoft .NET Framework can only be installed on the Windows platform.'
+ms_dotnet_framework v4_info['version'] do
+  timeout           node['ms_dotnet']['timeout']
+  include_patches   v4_info['include_patches']
+  feature_source    v4_info['feature_source']
+  package_sources   v4_info['package_sources']
+  require_support   v4_info['require_support']
 end

@@ -39,3 +39,11 @@ FAUXHAI_WINDOWS_VERSIONS = {
   '2012' => { arch: %w(x64), core: true, server: true },
   '2012R2' => { arch: %w(x64), core: true, server: true },
 }.freeze
+
+DEFAULT_FRAMEWORK_ATTRIBUTES = {
+  feature_source: nil,
+  include_patches: true,
+  package_sources: {},
+  require_support: false,
+  timeout: 600,
+}.freeze

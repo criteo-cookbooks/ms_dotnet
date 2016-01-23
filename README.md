@@ -23,9 +23,6 @@ The following cookbook is required as noted:
 
 * [windows](windows_cookbook) (> 1.36.1)
 
-    `ms_dotnet::default` include the recipe 'windows::default'
-    `ms_dotnet::ms_dotnet2` and `ms_dotnet::ms_dotnet4` leverage the windows_package LWRP
-    `ms_dotnet::ms_dotnet2`, `ms_dotnet::ms_dotnet3` and `ms_dotnet::ms_dotnet4` leverage the windows_feature LWRP
     `ms_dotnet_framework` LWRP leverage the windows_package LWRP
 
 Known Issues
@@ -36,6 +33,16 @@ Here are the known issues you can encounter with ms_dotnet recipes:
   * `Common environment`: knife windows bootstrap, chef-provisioning, test-kitchen
   * `Best solution`: your remoting system should try to simulate a local session (psexec or schedule task)
   * `Other solution`: create your custom wrapper to simulate a local session
+
+Usage
+-----
+This cookbook provides you two methods to install the major versions of .NET framework.
+
+### Common case - Recipes
+In common cases you can use the attributes driven recipes provided by this cookbook to setup .NET.
+### Custom case - LWRP
+In more custom cases, you might need to control in your own cookbook which .NET version should be installed and when the setup should be performed.
+You just need to use the `ms_dotnet_framework` LWRP  which handles for you the setup mode - feature vs package - and may also install all known patches.
 
 Resource/Provider
 -----------------
@@ -66,24 +73,72 @@ end
 
 Attributes
 ----------
+This cookbook is mostly attributes driven, default values should be enough for common cases.
+> NB: because this cookbook is usefull only for windows, attributes are not available on other platforms
 
-#### ms_dotnet::ms_dotnet2
-  * `node['ms_dotnet']['v2']['name']` - used to configure the Windows Package name
-  * `node['ms_dotnet']['v2']['url']` - used to configure the source of the Windows Package
-  * `node['ms_dotnet']['v2']['checksum']` - used to configure the checksum of the Windows Package
+### Common attributes
+Below attributes are accessible via `node['ms_dotnet']['ATTRIBUTE_NAME']` and are common to all recipes:
+* `timeout` - Control the execution timeout in seconds of .NET setup packages (default: `600`)
 
-#### ms_dotnet::ms_dotnet3
-  * `node['ms_dotnet']['v3']['source']` - used to configure the source of the Windows Package (only supported on NT Version 6.2 or newer)
+### .NET recipes attributes
+Recipes `ms_dotnet2`, `ms_dotnet3` and `ms_dotnet4` are controlled by the following attributes accessible via `node['ms_dotnet']['vX']['ATTRIBUTE_NAME']` - where `X` is the .NET major version:
 
-#### ms_dotnet::ms_dotnet4
-  * `node['ms_dotnet']['v4']['version']` - used to configure the desired version of .NET4 ('4.0', '4.5', '4.5.1', '4.5.2')
-  * `node['ms_dotnet']['versions'][desired_version][feature]['name']` - used to configure the Feature name to use instead of a Windows Package for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][package]['name']` - used to configure the Windows Package name for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][package]['url']` - used to configure the source of the Windows Package for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][package]['checksum']` - used to configure the checksum of the Windows Package for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][patch]['name']` - used to configure the Windows Package name of the patch to apply for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][patch]['url']` - used to configure the source of the Windows Package of the patch to apply for the specified `desired_version`
-  * `node['ms_dotnet']['versions'][desired_version][patch]['checksum']` - used to configure the checksum of the Windows Package of the patch to apply for the specified `desired_version`
+* `version` - Specify the .NET version to install (default: `2.0.SP2`, `3.5.SP1`, `4.0`)
+* `include_patches` - Determine whether patches should also be applied (default: `true`)
+* `feature_source` - Specify custom source for windows features. Only avaiable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
+* `package_sources` - Specify custom sources URL for windows packages. URL are indexed by their content SHA256 checkum.  (default: `{}`)
+* `require_support` - Determine whether chef should fail when given version is not supported on the current OS (default: `false`)
+
+> NB: `feature_source` works only on NT Version 6.2 (Windows 8/2012) or newer.
+
+### Examples
+#### Install .NET 3.5 SP1 using a Windows UNC Share
+Custom node file to install .NET 3.5 SP1 with no patch on a Windows Server 2012R2, using a Windows share for features binaries:
+```json
+{
+  "name": "my-node.examples.com",
+  "run_list": [ "recipe[ms_dotnet::ms_dotnet3" ],
+  "normal": {
+    "ms_dotnet": {
+      "v3": {
+        "include_patches": "false",
+        "feature_source": "\\ShareSvr\sxs"
+      }
+    }
+  }
+}
+```
+
+#### Install .NET 4.5.2 using a package hosted on a custom site
+Custom node file to install .NET 4.5.2 from a custom site:
+```json
+{
+  "name": "my-node.examples.com",
+  "run_list": [ "recipe[ms_dotnet::ms_dotnet4" ],
+  "normal": {
+    "ms_dotnet": {
+      "v4": {
+        "version": "4.5.2",
+        "package_sources": {
+          "6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781": "://my-own.site.com/NetFx452.exe"
+        }
+      }
+    }
+  }
+}
+```
+
+Recipes
+-------
+#### ms_dotnet::default
+This recipe does nothing.
+
+#### ms_dotnet::ms_dotnet2, ms_dotnet::ms_dotnet3, ms_dotnet::ms_dotnet4
+Each of these recipes allow you to install a specific major version of .NET Framework, just by including the recipe in your node `run_list`.
+They are attribute driven recipes, please referes to the `Attributes` section of this README to know how to control their behavior.
+
+### ms_dotnet::regiis
+This recipe register .NET 4 to IIS once and only if IIS service exist.
 
 Libraries
 ---------
@@ -129,24 +184,6 @@ Get all .NET versions supported on the current node OS
 ### V2Helper, V3Helper, V4Helper
 Subclass of the `VersionHelper`, providing helpers for a specific major version of the .NET Framework.
 
-Usage
------
-
-#### ms_dotnet::ms_dotnet2
-To install Microsoft .NET Framework 2.0 on your node, just include the recipe `ms_dotnet::ms_dotnet2` in its `run_list`.
-You can use a custom windows package by specifing the 3 attributes specified in the above section.
-
-#### ms_dotnet::ms_dotnet3
-To install Microsoft .NET Framework 3.0 on your node, just include the recipe `ms_dotnet::ms_dotnet3` in its `run_list`.
-
-> NB: Starting with NT Version 6.2 (Windows 8/2012) .NET 3 is an _on demand feature_.
-> Meaning that you need either to use the installing media or a custom windows image to enable the feature.
-> See: http://msdn.microsoft.com/library/hh506443
-
-#### ms_dotnet::ms_dotnet4
-To install Microsoft .NET Framework 4 on your node, just include the recipe `ms_dotnet::ms_dotnet4` in its `run_list`.
-Modify the version to install by changing the attribute `node['ms_dotnet']['v4']['version']`.
-
 Contributing
 ------------
 1. Fork the repository on Github
@@ -178,7 +215,6 @@ limitations under the License.
 [annih]:                    https://github.com/Annih
 [jmauro]:                   https://github.com/jmauro
 [repository]:               https://github.com/criteo-cookbooks/ms_dotnet
-[powershell_cookbook]:      https://community.opscode.com/cookbooks/powershell
 [build_status]:             https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
 [cookbook_version]:         https://img.shields.io/cookbook/v/ms_dotnet.svg
 [cookbook]:                 https://supermarket.chef.io/cookbooks/ms_dotnet
