@@ -41,6 +41,11 @@ module MSDotNet
 
     def packages
       @packages ||= ::Mash.new(
+        '1.1' => {
+          name:     'Microsoft .NET Framework 1.1',
+          url:      'https://download.microsoft.com/download/E/D/A/EDA9D4EA-8EC9-4431-8EFA-75391FB91421/dotnetfx.exe',
+          checksum: '68703731b2042d2d14c24c545a71b0a3c71770795c66dbd19041f07617d40791',
+        },
         '2.0.SP2' => {
           name:     'Microsoft .NET Framework 2.0 Service Pack 2',
           url:      "https://download.microsoft.com/download/C/6/E/C6E88215-0178-4C6C-B5F3-158FF77B1F38/NetFx20SP2_#{arch}.exe",
@@ -89,6 +94,11 @@ module MSDotNet
         ###########
         # Patches
         ###########
+        'KB867460' => {
+          name:     'Microsoft .NET Framework 1.1',
+          url:      'https://download.microsoft.com/download/8/B/4/8B4ADDD8-E957-4DEA-BDB8-C4E00AF5B94B/NDP1.1sp1-KB867460-X86.exe',
+          checksum: '2c0a35409ff0873cfa28b70b8224e9aca2362241c1f0ed6f622fef8d4722fd9a',
+        },
         # TODO: handle theses patches
         # http://www.microsoft.com/en-us/download/details.aspx?id=10006
         # http://www.microsoft.com/en-us/download/details.aspx?id=1055

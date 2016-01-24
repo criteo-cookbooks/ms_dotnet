@@ -21,6 +21,13 @@ return unless platform? 'windows'
 
 default['ms_dotnet']['timeout'] = 600
 
+# .NET 1 attributes
+default['ms_dotnet']['v1']['version']         = '1.1'
+default['ms_dotnet']['v1']['include_patches'] = true
+default['ms_dotnet']['v1']['feature_source']  = nil
+default['ms_dotnet']['v1']['package_sources'] = {}
+default['ms_dotnet']['v1']['require_support'] = false
+
 # .NET 2 attributes
 default['ms_dotnet']['v2']['version']         = '2.0.SP2'
 default['ms_dotnet']['v2']['include_patches'] = true
