@@ -22,7 +22,7 @@ if platform? 'windows'
 
   version = node['ms_dotnet']['v4']['version']
   version_info = node['ms_dotnet']['versions'][version]
-  fail("The version of Microsoft .NET specified is not supported: '#{version}'\n => Supported versions are: #{node['ms_dotnet']['versions'].keys}") unless version_info
+  raise("The version of Microsoft .NET specified is not supported: '#{version}'\n => Supported versions are: #{node['ms_dotnet']['versions'].keys}") unless version_info
 
   feature_name = version_info['feature']
   if feature_name == :builtin

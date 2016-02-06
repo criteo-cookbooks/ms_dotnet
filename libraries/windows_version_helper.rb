@@ -74,10 +74,8 @@ module Windows
       node['platform_version'].to_f
     end
 
-    private
-
     def self.validate_platform(node)
-      fail 'Windows helper are only supported on windows platform!' if node['platform'] != 'windows'
+      raise 'Windows helper are only supported on windows platform!' if node['platform'] != 'windows'
     end
   end
 end

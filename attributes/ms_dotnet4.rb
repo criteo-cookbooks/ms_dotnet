@@ -17,10 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+# rubocop:disable Metrics/BlockNesting
 if platform? 'windows'
   nt_version = ::Windows::VersionHelper.nt_version(node)
-  default['ms_dotnet']['v4']['version']                                   = '4.0'
+  default['ms_dotnet']['v4']['version'] = '4.0'
   if nt_version >= 5.1 && nt_version <= 6.1
     default['ms_dotnet']['versions']['4.0']['package']['name']            = 'Microsoft .NET Framework 4 Extended'
     default['ms_dotnet']['versions']['4.0']['package']['url']             = 'http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe'
@@ -56,10 +56,10 @@ if platform? 'windows'
 
     # Starting with windows 8 and Server 2012 old version of .NET Framework 4 are builtin or included as feature
     if nt_version >= 6.2
-      if ::Windows::VersionHelper.workstation_version?(node)
-        feature_name = :builtin # .NET 4 can't be disabled on windows 8 and windows 8.1
+      feature_name = if ::Windows::VersionHelper.workstation_version?(node)
+        :builtin # .NET 4 can't be disabled on windows 8 and windows 8.1
       else
-        feature_name = ::Windows::VersionHelper.core_version?(node) && nt_version != 6.3 ? 'netFx4-Server-Core' : 'netFx4'
+        ::Windows::VersionHelper.core_version?(node) && nt_version != 6.3 ? 'netFx4-Server-Core' : 'netFx4'
       end
 
       default['ms_dotnet']['versions']['4.0']['feature']                  = feature_name
@@ -68,7 +68,7 @@ if platform? 'windows'
 
       # .NET 4.5.2 is installed as an update on 2012 & 2012R2
       hotfix_id = nt_version == 6.3 ? 'KB2934520' : 'KB2901982'
-      default['ms_dotnet']['versions']['4.5.2']['package']['not_if']      = "wmic path Win32_QuickFixEngineering WHERE HotFixID='#{hotfix_id}' | FindStr #{hotfix_id}"
+      default['ms_dotnet']['versions']['4.5.2']['package']['not_if'] = "wmic path Win32_QuickFixEngineering WHERE HotFixID='#{hotfix_id}' | FindStr #{hotfix_id}"
     end
   end
 end
