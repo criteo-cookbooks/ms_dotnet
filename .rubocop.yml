@@ -1,0 +1,19 @@
+LineLength:
+  Enabled: no
+Lint/EndAlignment:
+  AlignWith: variable
+MethodLength:
+  Enabled: no
+Metrics/ClassLength:
+  Enabled: no
+Metrics/CyclomaticComplexity:
+  Enabled: no
+Metrics/LineLength:
+  Enabled: no
+Style/CaseIndentation:
+  IndentWhenRelativeTo: end
+  IndentOneStep: yes
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: consistent_comma
