@@ -28,7 +28,7 @@ module MSDotNet
         registry_key = "HKLM/Software/Microsoft/Net Framework Setup/NDP/v#{version}"
         next unless registry_key_exists? registry_key
 
-        values = ::Hash[registry_get_values(registry_key).map { |e| [e[:name], e[:data]] }]
+        values = ::Mash[registry_get_values(registry_key).map { |e| [e[:name], e[:data]] }]
         next if values[:Install].to_i != 1
 
         case sp = values[:SP].to_i

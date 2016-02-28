@@ -28,7 +28,8 @@ module MSDotNet
     def installed_version
       return unless registry_key_exists? REGISTRY_KEY
 
-      values = ::Hash[registry_get_values(REGISTRY_KEY).map { |e| [e[:name], e[:data]] }]
+      values = ::Mash[registry_get_values(REGISTRY_KEY).map { |e| [e[:name], e[:data]] }]
+
       case values[:Release].to_i
         when 0 then '4.0'
         when 378_389 then '4.5'
