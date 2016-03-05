@@ -57,6 +57,50 @@ Attributes
   * `node['ms_dotnet']['versions'][desired_version][patch]['url']` - used to configure the source of the Windows Package of the patch to apply for the specified `desired_version`
   * `node['ms_dotnet']['versions'][desired_version][patch]['checksum']` - used to configure the checksum of the Windows Package of the patch to apply for the specified `desired_version`
 
+Libraries
+---------
+### Default
+Provides convenients method for the `ms_dotnet` cookbook.
+
+#### version_helper
+Provides a factory to get specific VersionHelper instance.
+
+### PackageHelper
+References all official .NET setup & patches packages supported by this cookbook.
+
+#### packages
+Retrieve a Hash containing .NET setup packages info - `name`, `checksum`, `url` & `not_if` guard.
+
+#### core?
+Determine whether the current node is running on a Core version of Windows.
+
+#### server?
+Determine whether the current node is running on a Server version of Windows.
+
+#### x64?
+Determine whether the architecture of the current node is 64-bits.
+
+### VersionHelper
+Base abstract class inheriting from `PackageHelper` and providing convenient methods to determine which .NET version the current node supports, and how the setup should be handled.
+
+#### features
+Get windows features required by the given .NET version
+
+#### installed_version
+Get installed .NET version on the current node
+
+#### package
+Get windows package required by the given .NET version
+
+#### patches
+Get windows patches required by the given .NET version
+
+#### supported_versions
+Get all .NET versions supported on the current node OS
+
+### V2Helper, V3Helper, V4Helper
+Subclass of the `VersionHelper`, providing helpers for a specific major version of the .NET Framework.
+
 Usage
 -----
 
