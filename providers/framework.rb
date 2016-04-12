@@ -84,6 +84,7 @@ def unsupported?
 end
 
 def install_required?
+  # If current version == desired version; we need to pass by install steps to ensure everything is OK
   @current_resource.nil? || ::Gem::Version.new(version) >= ::Gem::Version.new(@current_resource.version)
 end
 

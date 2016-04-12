@@ -23,7 +23,7 @@ require_relative 'version_helper'
 module MSDotNet
   # Provides information about .NET 2 setup
   class V2Helper < VersionHelper
-    REGISTRY_KEY = 'HKLM/Software/Microsoft/Net Framework Setup/NDP/v2.0.50727/'.freeze unless defined? REGISTRY_KEY
+    REGISTRY_KEY = 'HKLM\Software\Microsoft\Net Framework Setup\NDP\v2.0.50727'.freeze unless defined? REGISTRY_KEY
 
     def installed_version
       return unless registry_key_exists? REGISTRY_KEY
