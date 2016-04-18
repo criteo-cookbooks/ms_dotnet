@@ -70,5 +70,29 @@ if platform? 'windows'
       hotfix_id = nt_version == 6.3 ? 'KB2934520' : 'KB2901982'
       default['ms_dotnet']['versions']['4.5.2']['package']['not_if']      = "wmic path Win32_QuickFixEngineering WHERE HotFixID='#{hotfix_id}' | FindStr #{hotfix_id}"
     end
+
+    if nt_version < 10.0
+      default['ms_dotnet']['versions']['4.6']['package']['name']          = 'Microsoft .NET Framework 4.6'
+      default['ms_dotnet']['versions']['4.6']['package']['url']           = 'http://download.microsoft.com/download/C/3/A/C3A5200B-D33C-47E9-9D70-2F7C65DAAD94/NDP46-KB3045557-x86-x64-AllOS-ENU.exe'
+      default['ms_dotnet']['versions']['4.6']['package']['checksum']      = 'b21d33135e67e3486b154b11f7961d8e1cfd7a603267fb60febb4a6feab5cf87'
+      # .NET 4.6 is installed as an update on 2012 & 2012R2
+      hotfix_id = nt_version == 6.3 ? 'KB3045562' : 'KB3045563'
+      default['ms_dotnet']['versions']['4.6']['package']['not_if']      = "wmic path Win32_QuickFixEngineering WHERE HotFixID='#{hotfix_id}' | FindStr #{hotfix_id}"
+    else
+      default['ms_dotnet']['versions']['4.5.1']['feature']                = :builtin
+      default['ms_dotnet']['versions']['4.5.2']['feature']                = :builtin
+      default['ms_dotnet']['versions']['4.6']['feature']                  = :builtin
+    end
+
+    default['ms_dotnet']['versions']['4.6.1']['package']['name']          = 'Microsoft .NET Framework 4.6.1'
+    default['ms_dotnet']['versions']['4.6.1']['package']['url']           = 'https://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.exe'
+    default['ms_dotnet']['versions']['4.6.1']['package']['checksum']      = 'beaa901e07347d056efe04e8961d5546c7518fab9246892178505a7ba631c301'
+    # .NET 4.6.1 is installed as an update on 2012, 2012R2 & 10
+    hotfix_id = case nt_version
+                when 6.2 then 'KB3102439'
+                when 6.3 then 'KB3102467'
+                when 10 then 'KB3102495'
+                end
+    default['ms_dotnet']['versions']['4.6.1']['package']['not_if']      = "wmic path Win32_QuickFixEngineering WHERE HotFixID='#{hotfix_id}' | FindStr #{hotfix_id}"
   end
 end
