@@ -18,17 +18,16 @@
 # limitations under the License.
 
 if platform?('windows')
-  if win_version.windows_server_2008? || win_version.windows_server_2008_r2? || win_version.windows_7? || win_version.windows_vista?
-    unless File.exist?('C:/Windows/Microsoft.NET/Framework/v4.0.30319/Microsoft.Activities.Build.dll')
-      windows_package 'Microsoft .NET Framework 4.5' do
-        source node['ms_dotnet45']['http_url']
-        installer_type :custom
-        options '/quiet /norestart'
-        timeout node['ms_dotnet45']['timeout']
-        action :install
-      end
+  if node['platform_version'].to_i >= 6
+    windows_package 'Microsoft .NET Framework 4.5' do
+      source node['ms_dotnet45']['http_url']
+      installer_type :custom
+      options '/quiet /norestart'
+      timeout node['ms_dotnet45']['timeout']
+      action :install
+      not_if { File.exist?('C:/Windows/Microsoft.NET/Framework/v4.0.30319/Microsoft.Activities.Build.dll') }
     end
-  elsif win_version.windows_server_2003_r2? || win_version.windows_server_2003? || win_version.windows_xp?
+  else
     Chef::Log.warn('The .NET 4.5 Chef recipe only supports Windows Vista, 7, 2008, and 2008 R2.')
   end
 else
