@@ -25,6 +25,7 @@ if platform?('windows')
       options '/quiet /norestart'
       timeout node['ms_dotnet45']['timeout']
       action :install
+      success_codes [0, 3010]
       not_if { File.exist?('C:/Windows/Microsoft.NET/Framework/v4.0.30319/Microsoft.Activities.Build.dll') }
     end
   else
