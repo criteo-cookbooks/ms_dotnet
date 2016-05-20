@@ -1,0 +1,30 @@
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 4096
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: pester
+
+platforms:
+  - name: windows-2008r2
+    driver_config:
+      box: chef/windows-server-2008r2-standard
+  - name: windows-2012r2
+    driver_config:
+      box: chef/windows-server-2012r2-standard
+  - name: windows-8.1
+    driver_config:
+      box: chef/windows-8.1-professional
+  - name: windows-7
+    driver_config:
+      box: chef/windows-7-professional
+
+suites:
+  - name: default
+    run_list:
+      - recipe[ms_dotnet45::default]
