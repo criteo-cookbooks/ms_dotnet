@@ -1,12 +1,19 @@
 # ms_dotnet45 Cookbook CHANGELOG
+
 This file is used to list changes made in each version of the ms_dotnet45 cookbook.
 
+## v2.0.2 (2016-05-19)
+
+- Add 3010 as a successful install code
+
 ## v2.0.1 (2015-12-09)
+
 - Transfer ownership to Chef
 - Add contributing.md, maintainers.md, and testing.md files
 - Add Rakefile for easy testings
 
 # 2.0.0
+
 - Add travis.yml file to run Rubocop and Foodcritic
 - Update Rubocop rules
 - Fix Rubocop warnings
