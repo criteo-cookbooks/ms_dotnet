@@ -18,7 +18,7 @@ class RegistryMock
     fetch(key_path).select { |_, v| !v.is_a? Hash }.map { |k, v| { name: k, data: v } }
   end
 
-  def has_subkeys?(key_path) # rubocop:disable Style/PredicateName
+  def has_subkeys?(key_path)
     fetch(key_path).values.any? { |v| v.is_a? Hash }
   end
 
