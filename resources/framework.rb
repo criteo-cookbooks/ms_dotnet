@@ -22,7 +22,7 @@ default_action :install
 # The provides method is available on chef >= 12.0 only
 provides :ms_dotnet_framework, os: 'windows' if respond_to?(:provides)
 
-attribute :feature_source,  default: nil,         kind_of: String
+attribute :feature_source,  default: nil,         kind_of: [String, nil]
 attribute :include_patches, default: true,        kind_of: [TrueClass, FalseClass]
 attribute :package_sources, default: {}.freeze,   kind_of: Hash
 attribute :require_support, default: false,       kind_of: [TrueClass, FalseClass]

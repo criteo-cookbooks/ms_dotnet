@@ -24,7 +24,7 @@ v4_info = node['ms_dotnet']['v4']
 ms_dotnet_framework v4_info['version'] do
   timeout           node['ms_dotnet']['timeout']
   include_patches   v4_info['include_patches']
-  feature_source    v4_info['feature_source']
+  feature_source    v4_info['feature_source'] unless v4_info['feature_source'].nil?
   package_sources   v4_info['package_sources']
   require_support   v4_info['require_support']
 end

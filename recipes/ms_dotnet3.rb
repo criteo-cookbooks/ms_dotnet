@@ -24,7 +24,7 @@ v3_info = node['ms_dotnet']['v3']
 ms_dotnet_framework v3_info['version'] do
   timeout           node['ms_dotnet']['timeout']
   include_patches   v3_info['include_patches']
-  feature_source    v3_info['feature_source']
+  feature_source    v3_info['feature_source'] unless v3_info['feature_source'].nil?
   package_sources   v3_info['package_sources']
   require_support   v3_info['require_support']
 end
