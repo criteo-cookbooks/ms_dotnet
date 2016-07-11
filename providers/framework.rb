@@ -47,8 +47,8 @@ action :install do
       end
     end
 
-    # Handle packages (main setup + patches)
-    ([package] + patches).each do |pkg|
+    # Handle packages (prerequisites + main setup + patches)
+    (prerequisites + [package] + patches).each do |pkg|
       next if pkg.nil?
       windows_package pkg[:name] do # ~FC009 ~FC022
         action          :install
@@ -90,6 +90,10 @@ end
 
 def package
   version_helper.package version
+end
+
+def prerequisites
+  version_helper.prerequisites version
 end
 
 def features

@@ -71,5 +71,9 @@ module MSDotNet
         else []
       end
     end
+
+    def prerequisite_names
+      @patch_names ||= {}
+    end
   end
 end

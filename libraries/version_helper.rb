@@ -57,6 +57,11 @@ module MSDotNet
       (patch_names[version] || []).map { |patch| packages[patch] }
     end
 
+    # Get windows packages required prior to install the given .NET version
+    def prerequisites(version)
+      (prerequisite_names[version] || []).map { |package| packages[package] }
+    end
+
     # Get all .NET versions supported on the current node OS
     # Returns an Array<string>
     def supported_versions
@@ -86,6 +91,12 @@ module MSDotNet
     # Get all .NET versions requiring windows package install on the current node OS
     # Returns an Array<string>
     def package_setup
+      raise NotImplementedError
+    end
+
+    # Get prerequisite package's names for each minor .NET versions on the current node OS
+    # Returns a Hash<string,Array<string>> with .NET version as key, and package names as value
+    def prerequisites_names
       raise NotImplementedError
     end
   end
