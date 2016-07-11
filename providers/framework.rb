@@ -54,7 +54,7 @@ action :install do
         action          :install
         installer_type  :custom
         success_codes   [0, 3010]
-        options         '/q /norestart'
+        options         pkg[:options] || '/q /norestart'
         timeout         new_resource.timeout
         # Package specific info
         checksum        pkg[:checksum]
