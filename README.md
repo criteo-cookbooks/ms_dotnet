@@ -66,7 +66,7 @@ Install .NET 4.5.2 from custom sources
 ms_dotnet_framework '4.5.2' do
   action            :install
   include_patches   true
-  package_sources   { 6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781: 'http://my-own.site.com/NetFx452.exe' }
+  package_sources   { '6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781' => 'http://my-own.site.com/NetFx452.exe' }
   require_support   true
 end
 ```
