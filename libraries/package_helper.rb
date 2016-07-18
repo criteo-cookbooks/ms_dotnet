@@ -105,17 +105,15 @@ module MSDotNet
           checksum: x64? ? 'bf850afc7e7987d513fd2c19c9398d014bcbaaeb1691357fa0400529975edace' : '41e675937d023828d648c7a245e19695ed12f890c349d8b6f2b620e6e58e038e',
           not_if:   'reg query "HKLM\SOFTWARE\Microsoft\Updates\Microsoft .NET Framework 4.6\KB3083186" | FindStr /Ec:"ThisVersionInstalled +REG_SZ +Y"',
         },
-        'KB2919355-x64' => {
+        'KB2919355' => {
           name:     'Update for Microsoft Windows (KB2919355)',
-          url:      'https://download.microsoft.com/download/2/5/6/256CCCFB-5341-4A8D-A277-8A81B21A1E35/Windows8.1-KB2919355-x64.msu',
+          url:      if x64?
+                      'https://download.microsoft.com/download/2/5/6/256CCCFB-5341-4A8D-A277-8A81B21A1E35/Windows8.1-KB2919355-x64.msu'
+                    else
+                      'https://download.microsoft.com/download/4/E/C/4EC66C83-1E15-43FD-B591-63FB7A1A5C04/Windows8.1-KB2919355-x86.msu'
+                    end,
           options:  '/norestart /quiet',
-          checksum: 'b0c9ada530f5ee90bb962afa9ed26218c582362315e13b1ba97e59767cb7825d',
-        },
-        'KB2919355-x86' => {
-          name:     'Update for Microsoft Windows (KB2919355)',
-          url:      'https://download.microsoft.com/download/4/E/C/4EC66C83-1E15-43FD-B591-63FB7A1A5C04/Windows8.1-KB2919355-x86.msu',
-          options:  '/norestart /quiet',
-          checksum: 'f8beca5b463a36e1fef45ad0dca6a0de7606930380514ac1852df5ca6e3f6c1d',
+          checksum: x64? ? 'b0c9ada530f5ee90bb962afa9ed26218c582362315e13b1ba97e59767cb7825d' : 'f8beca5b463a36e1fef45ad0dca6a0de7606930380514ac1852df5ca6e3f6c1d',
         },
       ).tap do |packages|
         # Some packages are installed as QFE updates on 2012, 2012R2 & 10
@@ -123,7 +121,7 @@ module MSDotNet
           when 6.2
             { '4.5.2' => 'KB2901982', '4.6' => 'KB3045562', '4.6.1' => 'KB3102439' }
           when 6.3
-            { '4.5.2' => 'KB2934520', '4.6' => 'KB3045563', '4.6.1' => 'KB3102467', "KB2919355-#{arch}" => 'KB2919355' }
+            { '4.5.2' => 'KB2934520', '4.6' => 'KB3045563', '4.6.1' => 'KB3102467', 'KB2919355' => 'KB2919355' }
           when 10
             { '4.6.1' => 'KB3102495' }
           else
