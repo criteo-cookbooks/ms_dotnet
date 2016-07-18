@@ -105,6 +105,16 @@ module MSDotNet
           checksum: x64? ? 'bf850afc7e7987d513fd2c19c9398d014bcbaaeb1691357fa0400529975edace' : '41e675937d023828d648c7a245e19695ed12f890c349d8b6f2b620e6e58e038e',
           not_if:   'reg query "HKLM\SOFTWARE\Microsoft\Updates\Microsoft .NET Framework 4.6\KB3083186" | FindStr /Ec:"ThisVersionInstalled +REG_SZ +Y"',
         },
+        'KB2919442' => {
+          name:     'Update for Microsoft Windows (KB2919442)',
+          url:      if x64?
+                      'https://download.microsoft.com/download/D/6/0/D60ED3E0-93A5-4505-8F6A-8D0A5DA16C8A/Windows8.1-KB2919442-x64.msu'
+                    else
+                      'https://download.microsoft.com/download/9/D/A/9DA6C939-9E65-4681-BBBE-A8F73A5C116F/Windows8.1-KB2919442-x86.msu'
+                    end,
+          options:  '/norestart /quiet',
+          checksum: x64? ? 'c10787e669b484674584a990e069295e8b81b5366f98508010a3ae181b729482' : '3368c3a329f402fd982b15b399368627b96973f008a5456b5286bdfc10c1169b',
+        },
         'KB2919355' => {
           name:     'Update for Microsoft Windows (KB2919355)',
           url:      if x64?
@@ -121,7 +131,7 @@ module MSDotNet
           when 6.2
             { '4.5.2' => 'KB2901982', '4.6' => 'KB3045562', '4.6.1' => 'KB3102439' }
           when 6.3
-            { '4.5.2' => 'KB2934520', '4.6' => 'KB3045563', '4.6.1' => 'KB3102467', 'KB2919355' => 'KB2919355' }
+            { '4.5.2' => 'KB2934520', '4.6' => 'KB3045563', '4.6.1' => 'KB3102467', 'KB2919442' => 'KB2919442', 'KB2919355' => 'KB2919355' }
           when 10
             { '4.6.1' => 'KB3102495' }
           else
