@@ -24,16 +24,15 @@ module MSDotNet
   class V3Helper < VersionHelper
     def installed_version
       # Order is important because we want the maximum version
-      %w(3.5 3.0).each do |version|
+      %w(3.5 3.0).map do |version|
         registry_key = "HKLM\\Software\\Microsoft\\Net Framework Setup\\NDP\\v#{version}"
         next unless registry_key_exists? registry_key
 
         values = ::Mash[registry_get_values(registry_key).map { |e| [e[:name], e[:data]] }]
         next if values[:Install].to_i != 1
 
-        # return from installed_version method - not only the each loop
-        return values[:SP].to_i == '0' ? version : "#{version}.SP#{values[:SP]}"
-      end
+        values[:SP].to_i == '0' ? version : "#{version}.SP#{values[:SP]}"
+      end.compact.first
     end
 
     def supported_versions
