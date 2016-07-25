@@ -31,8 +31,8 @@ Here are the known issues you can encounter with ms_dotnet recipes:
 * "Access denied" error on windows_package when running chef via WinRM
   * `Cause`: winrm limitation
   * `Common environment`: knife windows bootstrap, chef-provisioning, test-kitchen
-  * `Best solution`: your remoting system should try to simulate a local session (psexec or schedule task)
-  * `Other solution`: create your custom wrapper to simulate a local session
+  * `Theoretical solution`: try to simulate a local session by wrapping your chef-client call in psexec or a schedule task.
+  * `Test-Kitchen solution`: with v1.8.0 you can use [the winrm-elevated feature](issue_winrm_elevated) that'll run chef via a schedule task
 
 Usage
 -----
@@ -218,3 +218,4 @@ limitations under the License.
 [build_status]:             https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
 [cookbook_version]:         https://img.shields.io/cookbook/v/ms_dotnet.svg
 [cookbook]:                 https://supermarket.chef.io/cookbooks/ms_dotnet
+[winrm_elevated_issue]:     https://github.com/test-kitchen/test-kitchen/issues/876#issuecomment-222006913
