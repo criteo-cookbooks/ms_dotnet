@@ -3,6 +3,24 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+3.0.0
+-----
+
+### Improvments
+
+* Introduce new framework LWRP to setup a specific .NET Version with all its prerequisites and patches.
+* Detection of the current installed version is now way more accurate.
+* Setup of .NET 3.5 is working properly.
+* Proper support of .NET 4.6 and .NET 4.6.1.
+* Packages and sources overriding is attribute driven.
+* Attribute structure is now the same for .NET 2, 3.5 and 4.
+* Add chefspecs and rspecs tests.
+
+### Breaking changes
+
+Default recipes and attributes structure have been updated to use the new LWRP.
+Refers to the README for description and examples of the new attributes.
+
 2.6.1
 -----
 - kamaradclimber - Define Windows::VersionHelper::ProductType constants only once
