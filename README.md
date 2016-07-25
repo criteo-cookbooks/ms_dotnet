@@ -178,6 +178,9 @@ Get windows package required by the given .NET version
 #### patches
 Get windows patches required by the given .NET version
 
+#### prerequisites
+Get windows packages required before installing the given .NET version
+
 #### supported_versions
 Get all .NET versions supported on the current node OS
 
