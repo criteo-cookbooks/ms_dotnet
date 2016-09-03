@@ -1,7 +1,15 @@
 # ms_dotnet4 Cookbook CHANGELOG
+
 This file is used to list changes made in each version of the ms_dotnet4 cookbook.
 
+## 2.0.0 (2016-09-02)
+
+- Require Chef 12.1+ and remove the windows cookbook dependency since windows_package is now built in
+- Resolve foodcritic warnings
+- Testing updates
+
 ## v1.0.3 (2015-12-09)
+
 - Transfer ownership to Chef
 - Add chefignore and .gitignore files
 - Add travis.yml for testing
