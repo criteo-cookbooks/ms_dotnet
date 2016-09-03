@@ -6,13 +6,12 @@ This cookbook installs the Microsoft .NET Framework 4.0
 
 ## Requirements
 ### Platforms
--Windows Vista SP1 or later
--Windows Server 2008 (not supported on Server Core Role)
 -Windows 7
 -Windows Server 2008 R2 (not supported on Server Core Role)
 
 ### Chef
-- Chef 11+
+
+- Chef 12.1+
 
 ### Cookbooks
 - windows
