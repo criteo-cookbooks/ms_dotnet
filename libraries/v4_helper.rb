@@ -39,11 +39,12 @@ module MSDotNet
         when 379_893 then '4.5.2'
         when 393_295, 393_297 then '4.6'
         when 394_254, 394_271 then '4.6.1'
+        when 394_802, 394_806 then '4.6.2'
       end
     end
 
     def supported_versions
-      @supported_versions ||= %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1)
+      @supported_versions ||= %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2)
     end
 
     protected
@@ -89,13 +90,13 @@ module MSDotNet
         # Windows Vista & Server 2008
         when 6.0 then %w(4.0 4.5 4.5.1 4.5.2 4.6)
         # Windows 7 & Server 2008R2
-        when 6.1 then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1)
+        when 6.1 then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2)
         # Windows 8 & Server 2012
         when 6.2 then %w(4.5.1 4.5.2 4.6 4.6.1)
         # Windows 8.1 & Server 2012R2
-        when 6.3 then %w(4.5.2 4.6 4.6.1)
+        when 6.3 then %w(4.5.2 4.6 4.6.1 4.6.2)
         # Windows 10
-        when 10 then %w(4.6.1)
+        when 10 then %w(4.6.1 4.6.2)
         # Other versions
         else []
       end
@@ -104,8 +105,12 @@ module MSDotNet
     def prerequisite_names
       @patch_names ||= case nt_version
         when 6.3
-          prerequisites46 = %w(KB2919442 KB2919355)
-          { '4.6' => prerequisites46, '4.6.1' => prerequisites46 }
+          prerequisites46 = %w(KB3021910 KB2919355)
+          {
+            '4.6' => prerequisites46,
+            '4.6.1' => prerequisites46,
+            '4.6.2' => prerequisites46,
+          }
         else
           {}
       end

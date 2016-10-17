@@ -86,6 +86,11 @@ module MSDotNet
           url:      'https://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.exe',
           checksum: 'beaa901e07347d056efe04e8961d5546c7518fab9246892178505a7ba631c301',
         },
+        '4.6.2' => {
+          name:     'Microsoft .NET Framework 4.6.2',
+          url:      'https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe',
+          checksum: '28886593e3b32f018241a4c0b745e564526dbb3295cb2635944e3a393f4278d4',
+        },
         ###########
         # Patches
         ###########
@@ -105,15 +110,15 @@ module MSDotNet
           checksum: x64? ? 'bf850afc7e7987d513fd2c19c9398d014bcbaaeb1691357fa0400529975edace' : '41e675937d023828d648c7a245e19695ed12f890c349d8b6f2b620e6e58e038e',
           not_if:   'reg query "HKLM\SOFTWARE\Microsoft\Updates\Microsoft .NET Framework 4.6\KB3083186" | FindStr /Ec:"ThisVersionInstalled +REG_SZ +Y"',
         },
-        'KB2919442' => {
-          name:     'Update for Microsoft Windows (KB2919442)',
+        'KB3021910' => {
+          name:     'Update for Microsoft Windows (KB3021910)',
           url:      if x64?
-                      'https://download.microsoft.com/download/D/6/0/D60ED3E0-93A5-4505-8F6A-8D0A5DA16C8A/Windows8.1-KB2919442-x64.msu'
+                      'https://download.microsoft.com/download/7/7/4/77476115-26DA-42FC-B00F-031D2BB3740F/Windows8.1-KB3021910-x64.msu'
                     else
-                      'https://download.microsoft.com/download/9/D/A/9DA6C939-9E65-4681-BBBE-A8F73A5C116F/Windows8.1-KB2919442-x86.msu'
+                      'https://download.microsoft.com/download/2/B/8/2B832205-A313-45A4-9356-DF5E47B70663/Windows8.1-KB3021910-x86.msu'
                     end,
           options:  '/norestart /quiet',
-          checksum: x64? ? 'c10787e669b484674584a990e069295e8b81b5366f98508010a3ae181b729482' : '3368c3a329f402fd982b15b399368627b96973f008a5456b5286bdfc10c1169b',
+          checksum: x64? ? 'feb03c1c3d5719ec2e7873c0b9b85bb9e9db44df88c75f9ddd5222942e4bf928' : '971d1b18cb26e578926591ee944f7183be7a6d7abfc2e255b930803666eebc20',
         },
         'KB2919355' => {
           name:     'Update for Microsoft Windows (KB2919355)',
@@ -128,12 +133,30 @@ module MSDotNet
       ).tap do |packages|
         # Some packages are installed as QFE updates on 2012, 2012R2 & 10
         case nt_version
+          # Windows 8 & Server 2012
           when 6.2
-            { '4.5.2' => 'KB2901982', '4.6' => 'KB3045562', '4.6.1' => 'KB3102439' }
+            {
+              '4.5.2' => 'KB2901982',
+              '4.6' => 'KB3045562',
+              '4.6.1' => 'KB3102439',
+              '4.6.2' => 'KB3151804',
+            }
+          # Windows 8.1 & Server 2012R2
           when 6.3
-            { '4.5.2' => 'KB2934520', '4.6' => 'KB3045563', '4.6.1' => 'KB3102467', 'KB2919442' => 'KB2919442', 'KB2919355' => 'KB2919355' }
+            {
+              '4.5.2' => 'KB2934520',
+              '4.6' => 'KB3045563',
+              '4.6.1' => 'KB3102467',
+              '4.6.2' => 'KB3151864',
+              'KB3021910' => 'KB3021910',
+              'KB2919355' => 'KB2919355',
+            }
+          # Windows 10
           when 10
-            { '4.6.1' => 'KB3102495' }
+            {
+              '4.6.1' => 'KB3102495',
+              '4.6.2' => 'KB3151900',
+            }
           else
             {}
         end.each { |v, kb| packages[v][:not_if] = "C:\\Windows\\System32\\wbem\\wmic.exe QFE where HotFixID='#{kb}' | FindStr #{kb}" }
