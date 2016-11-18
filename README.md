@@ -32,7 +32,7 @@ Here are the known issues you can encounter with ms_dotnet recipes:
   * `Cause`: winrm limitation
   * `Common environment`: knife windows bootstrap, chef-provisioning, test-kitchen
   * `Theoretical solution`: try to simulate a local session by wrapping your chef-client call in psexec or a schedule task.
-  * `Test-Kitchen solution`: with v1.8.0 you can use [the winrm-elevated feature](issue_winrm_elevated) that'll run chef via a schedule task
+  * `Test-Kitchen solution`: with v1.8.0 you can use [the winrm-elevated feature][winrm_elevated] that'll run chef via a schedule task
 
 Usage
 -----
@@ -215,10 +215,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-[annih]:                    https://github.com/Annih
-[jmauro]:                   https://github.com/jmauro
-[repository]:               https://github.com/criteo-cookbooks/ms_dotnet
-[build_status]:             https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
-[cookbook_version]:         https://img.shields.io/cookbook/v/ms_dotnet.svg
-[cookbook]:                 https://supermarket.chef.io/cookbooks/ms_dotnet
-[winrm_elevated_issue]:     https://github.com/test-kitchen/test-kitchen/issues/876#issuecomment-222006913
+[annih]:            https://github.com/Annih
+[jmauro]:           https://github.com/jmauro
+[repository]:       https://github.com/criteo-cookbooks/ms_dotnet
+[build_status]:     https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
+[cookbook_version]: https://img.shields.io/cookbook/v/ms_dotnet.svg
+[cookbook]:         https://supermarket.chef.io/cookbooks/ms_dotnet
+[winrm_elevated]:   https://discourse.chef.io/t/released-test-kitchen-1-8-0/8421
