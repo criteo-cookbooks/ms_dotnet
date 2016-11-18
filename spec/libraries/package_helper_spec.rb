@@ -33,14 +33,15 @@ FAUXHAI_WINDOWS_VERSIONS.each do |windows_version, version_support|
   is_server = version_support[:server]
 
   version_support[:arch].each do |arch|
-    is_64 = arch == '64'
+    is_arch64 = arch == '64'
 
     describe "On Windows#{windows_version}-#{arch}" do
-      include_examples 'package_helper', data, x64?: is_64, server?: is_server, core?: false
+      include_examples 'package_helper', data, x64?: is_arch64, server?: is_server, core?: false
     end
 
+    next unless version_support[:core]
     describe "On Windows#{windows_version}-#{arch}-CORE" do
-      include_examples 'package_helper', data, x64?: is_64, server?: is_server, core?: true
-    end if version_support[:core]
+      include_examples 'package_helper', data, x64?: is_arch64, server?: is_server, core?: true
+    end
   end
 end

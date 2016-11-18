@@ -29,10 +29,12 @@ module MSDotNet
       return unless registry_key_exists? REGISTRY_KEY
 
       values = ::Mash[registry_get_values(REGISTRY_KEY).map { |e| [e[:name], e[:data]] }]
+      return if values[:Install].to_i != 1
+
       case sp = values[:SP].to_i
         when 0 then '2.0'
         else "2.0.SP#{sp}"
-      end if values[:Install].to_i == 1
+      end
     end
 
     def supported_versions

@@ -26,5 +26,5 @@ attribute :feature_source,  default: nil,         kind_of: [String, nil]
 attribute :include_patches, default: true,        kind_of: [TrueClass, FalseClass]
 attribute :package_sources, default: {}.freeze,   kind_of: Hash
 attribute :require_support, default: false,       kind_of: [TrueClass, FalseClass]
-attribute :timeout,         default: 600,         kind_of: Fixnum
+attribute :timeout,         default: 600,         kind_of: Integer
 attribute :version,         name_attribute: true, kind_of: String

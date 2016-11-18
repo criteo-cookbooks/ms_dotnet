@@ -30,6 +30,8 @@ module MSDotNet
 
       values = ::Mash[registry_get_values(REGISTRY_KEY).map { |e| [e[:name], e[:data]] }]
 
+      return if values[:Install].to_i != 1
+
       case values[:Release].to_i
         when 0 then '4.0'
         when 378_389 then '4.5'
@@ -37,7 +39,7 @@ module MSDotNet
         when 379_893 then '4.5.2'
         when 393_295, 393_297 then '4.6'
         when 394_254, 394_271 then '4.6.1'
-      end if values[:Install].to_i == 1
+      end
     end
 
     def supported_versions
@@ -102,8 +104,8 @@ module MSDotNet
     def prerequisite_names
       @patch_names ||= case nt_version
         when 6.3
-          prerequisites_46 = %w(KB2919442 KB2919355)
-          { '4.6' => prerequisites_46, '4.6.1' => prerequisites_46 }
+          prerequisites46 = %w(KB2919442 KB2919355)
+          { '4.6' => prerequisites46, '4.6.1' => prerequisites46 }
         else
           {}
       end
