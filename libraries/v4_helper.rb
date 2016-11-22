@@ -103,7 +103,7 @@ module MSDotNet
     end
 
     def prerequisite_names
-      @patch_names ||= case nt_version
+      @prerequisite_names ||= case nt_version
         when 6.3
           prerequisites46 = %w(KB3021910 KB2919355)
           {
