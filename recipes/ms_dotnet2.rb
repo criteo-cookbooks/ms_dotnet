@@ -25,6 +25,7 @@ ms_dotnet_framework v2_info['version'] do
   timeout           node['ms_dotnet']['timeout']
   include_patches   v2_info['include_patches']
   feature_source    v2_info['feature_source'] unless v2_info['feature_source'].nil?
+  perform_reboot    v2_info['perform_reboot']
   package_sources   v2_info['package_sources']
   require_support   v2_info['require_support']
 end

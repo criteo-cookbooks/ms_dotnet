@@ -8,6 +8,6 @@ version          '3.0.0'
 supports         'windows'
 depends          'windows', '>= 1.36.1'
 
-chef_version '>= 11.10' if respond_to?(:chef_version)
+chef_version '>= 12.1' if respond_to?(:chef_version)
 source_url 'https://github.com/criteo-cookbooks/ms_dotnet' if respond_to?(:source_url)
 issues_url 'https://github.com/criteo-cookbooks/ms_dotnet/issues' if respond_to?(:issues_url)

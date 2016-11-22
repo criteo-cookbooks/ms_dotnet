@@ -39,32 +39,58 @@ action :install do
     raise "Can't install unsupported .NET version `#{version}'" if new_resource.require_support
   elsif install_required?
     # Handle features
-    features.each do |feature|
-      windows_feature feature do
-        action        :install
-        all           version_helper.nt_version >= 6.2
-        source        new_resource.feature_source unless new_resource.feature_source.nil?
-      end
-    end
+    install_features
 
     # Handle packages (prerequisites + main setup + patches)
-    (prerequisites + [package] + patches).each do |pkg|
-      next if pkg.nil?
-      windows_package pkg[:name] do # ~FC009 ~FC022
-        action          :install
-        installer_type  :custom
-        success_codes   [0, 3010]
-        options         pkg[:options] || '/q /norestart'
-        timeout         new_resource.timeout
-        # Package specific info
-        checksum        pkg[:checksum]
-        source          new_resource.package_sources[pkg[:checksum]] || pkg[:url]
-        not_if          pkg[:not_if] unless pkg[:not_if].nil?
-      end
-    end
+    install_packages
   else
     ::Chef::Log.info ".NET `#{version}' is not needed because .NET `#{@current_resource.version}' is already installed"
   end
+end
+
+def install_features
+  features.each do |feature|
+    windows_feature feature do
+      action        :install
+      all           version_helper.nt_version >= 6.2
+      source        new_resource.feature_source unless new_resource.feature_source.nil?
+    end
+
+    # Perform automatic reboot now, if required
+    reboot "Reboot for ms_dotnet feature '#{feature}'" do
+      action   :reboot_now
+      reason   name
+      only_if  { should_reboot? }
+    end
+  end
+end
+
+def install_packages
+  (prerequisites + [package] + patches).each do |pkg|
+    next if pkg.nil?
+    windows_package pkg[:name] do # ~FC009 ~FC022
+      action          :install
+      installer_type  :custom
+      success_codes   [0, 3010]
+      options         pkg[:options] || '/q /norestart'
+      timeout         new_resource.timeout
+      # Package specific info
+      checksum        pkg[:checksum]
+      source          new_resource.package_sources[pkg[:checksum]] || pkg[:url]
+      not_if          pkg[:not_if] unless pkg[:not_if].nil?
+    end
+
+    # Perform automatic reboot now, if required
+    reboot "Reboot for ms_dotnet package '#{pkg[:name]}'" do
+      action   :reboot_now
+      reason   name
+      only_if  { should_reboot? }
+    end
+  end
+end
+
+def should_reboot?
+  new_resource.perform_reboot && reboot_pending?
 end
 
 def version

@@ -25,6 +25,7 @@ default['ms_dotnet']['timeout'] = 600
 default['ms_dotnet']['v2']['version']         = '2.0.SP2'
 default['ms_dotnet']['v2']['include_patches'] = true
 default['ms_dotnet']['v2']['feature_source']  = nil
+default['ms_dotnet']['v2']['perform_reboot']  = false
 default['ms_dotnet']['v2']['package_sources'] = {}
 default['ms_dotnet']['v2']['require_support'] = false
 
@@ -32,6 +33,7 @@ default['ms_dotnet']['v2']['require_support'] = false
 default['ms_dotnet']['v3']['version']         = '3.5.SP1'
 default['ms_dotnet']['v3']['include_patches'] = true
 default['ms_dotnet']['v3']['feature_source']  = nil
+default['ms_dotnet']['v3']['perform_reboot']  = false
 default['ms_dotnet']['v3']['package_sources'] = {}
 default['ms_dotnet']['v3']['require_support'] = false
 
@@ -39,5 +41,6 @@ default['ms_dotnet']['v3']['require_support'] = false
 default['ms_dotnet']['v4']['version']         = '4.0'
 default['ms_dotnet']['v4']['include_patches'] = true
 default['ms_dotnet']['v4']['feature_source']  = nil
+default['ms_dotnet']['v4']['perform_reboot']  = false
 default['ms_dotnet']['v4']['package_sources'] = {}
 default['ms_dotnet']['v4']['require_support'] = false

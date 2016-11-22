@@ -23,6 +23,7 @@ ms_dotnet_framework 'install' do
   timeout           fwk_info['timeout']         unless fwk_info['timeout'].nil?
   include_patches   fwk_info['include_patches'] unless fwk_info['include_patches'].nil?
   feature_source    fwk_info['feature_source']  unless fwk_info['feature_source'].nil?
+  perform_reboot    fwk_info['perform_reboot']  unless fwk_info['perform_reboot'].nil?
   package_sources   fwk_info['package_sources'] unless fwk_info['package_sources'].nil?
   require_support   fwk_info['require_support'] unless fwk_info['require_support'].nil?
 end

@@ -7,7 +7,7 @@ Install the Microsoft .NET Framework.
 
 Requirements
 ------------
-This cookbook supports Chef 11.10.0+
+This cookbook supports and requires Chef 12.1+ to take advantage of the `reboot` and `windows_package` built-in resources.
 
 ### Platforms
 * Windows XP
@@ -23,7 +23,7 @@ The following cookbook is required as noted:
 
 * [windows](windows_cookbook) (> 1.36.1)
 
-    `ms_dotnet_framework` LWRP leverage the windows_package LWRP
+    `ms_dotnet_framework` LWRP leverage the `windows_feature` LWRP
 
 Known Issues
 ------------
@@ -54,6 +54,7 @@ Resource/Provider
 * `version` - Name attribute. Specify the .NET version to install.
 * `include_patches` - Determine whether patches should also be applied (default: `true`)
 * `feature_source` - Specify custom source for windows features. Only avaiable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
+* `perform_reboot` - Determine whether chef should perform required reboot after installing new packages or feature. (default: `false`)
 * `package_sources` - Specify custom sources URL for windows packages. URL are indexed by their content SHA256 checkum.  (default: `{}`)
 * `require_support` - Determine whether chef should fail when given version is not supported on the current OS (default: `false`)
 
@@ -66,6 +67,7 @@ Install .NET 4.5.2 from custom sources
 ms_dotnet_framework '4.5.2' do
   action            :install
   include_patches   true
+  perform_reboot    true
   package_sources   { '6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781' => 'http://my-own.site.com/NetFx452.exe' }
   require_support   true
 end
@@ -86,6 +88,7 @@ Recipes `ms_dotnet2`, `ms_dotnet3` and `ms_dotnet4` are controlled by the follow
 * `version` - Specify the .NET version to install (default: `2.0.SP2`, `3.5.SP1`, `4.0`)
 * `include_patches` - Determine whether patches should also be applied (default: `true`)
 * `feature_source` - Specify custom source for windows features. Only avaiable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
+* `perform_reboot` - Determine whether chef should perform required reboot after installing new packages or feature. (default: `false`)
 * `package_sources` - Specify custom sources URL for windows packages. URL are indexed by their content SHA256 checkum.  (default: `{}`)
 * `require_support` - Determine whether chef should fail when given version is not supported on the current OS (default: `false`)
 
@@ -120,7 +123,7 @@ Custom node file to install .NET 4.5.2 from a custom site:
       "v4": {
         "version": "4.5.2",
         "package_sources": {
-          "6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781": "://my-own.site.com/NetFx452.exe"
+          "6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781": "http://my-own.site.com/NetFx452.exe"
         }
       }
     }
