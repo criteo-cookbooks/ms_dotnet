@@ -17,6 +17,7 @@ This cookbook supports and requires Chef 12.1+ to take advantage of the `reboot`
 * Windows Server 2008 (R1, R2)
 * Windows 8 and 8.1
 * Windows Server 2012 (R1, R2)
+* Windows Server 2016
 
 ### Cookbooks
 The following cookbook is required as noted:

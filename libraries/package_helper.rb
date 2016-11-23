@@ -151,7 +151,7 @@ module MSDotNet
               'KB3021910' => 'KB3021910',
               'KB2919355' => 'KB2919355',
             }
-          # Windows 10
+          # Windows 10 & Server 2016
           when 10
             {
               '4.6.1' => 'KB3102495',

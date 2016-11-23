@@ -65,7 +65,7 @@ module MSDotNet
         when 6.2 then %(4.0 4.5)
         # Windows 8.1 & Server 2012R2
         when 6.3 then %(4.0 4.5 4.5.1)
-        # Windows 10
+        # Windows 10 & Server 2016
         when 10 then %(4.0 4.5 4.5.1 4.5.2)
         # Other versions
         else []
@@ -95,7 +95,7 @@ module MSDotNet
         when 6.2 then %w(4.5.1 4.5.2 4.6 4.6.1)
         # Windows 8.1 & Server 2012R2
         when 6.3 then %w(4.5.2 4.6 4.6.1 4.6.2)
-        # Windows 10
+        # Windows 10 & Server 2016
         when 10 then %w(4.6.1 4.6.2)
         # Other versions
         else []
