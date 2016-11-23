@@ -3,6 +3,14 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+3.1.0
+-----
+- b.courtois - Support Windows Server 2016.
+- [PR 35][pr-35] b.courtois - Add ability to perform required reboot when installing prerequisites and patches.
+- [PR 34][pr-34] b.courtois - Fix patches feature due to invalid prerequisites variable.
+- [PR 31][pr-31] Matasx - Add support for .NET version 4.6.2.
+- [PR 31][pr-31] Matasx - Resolve `0x80240017 WU_E_NOT_APPLICABLE` [issue with KB2919442][issue-29].
+
 3.0.0
 -----
 
@@ -93,3 +101,8 @@ Refers to the README for description and examples of the new attributes.
 0.1.0
 -----
 - j.mauro - Initial release of ms_dotnet
+
+[issue-29]: https://github.com/criteo-cookbooks/ms_dotnet/issues/29
+[pr-31]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/31
+[pr-34]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/34
+[pr-35]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/35
