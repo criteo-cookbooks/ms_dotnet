@@ -7,7 +7,7 @@ MethodLength:
 Metrics/AbcSize:
   Enabled: no
 Metrics/BlockLength:
-  Max: 80
+  Max: 90
 Metrics/ClassLength:
   Enabled: no
 Metrics/CyclomaticComplexity:
