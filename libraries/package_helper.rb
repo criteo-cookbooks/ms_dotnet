@@ -110,15 +110,15 @@ module MSDotNet
           checksum: x64? ? 'bf850afc7e7987d513fd2c19c9398d014bcbaaeb1691357fa0400529975edace' : '41e675937d023828d648c7a245e19695ed12f890c349d8b6f2b620e6e58e038e',
           not_if:   'reg query "HKLM\SOFTWARE\Microsoft\Updates\Microsoft .NET Framework 4.6\KB3083186" | FindStr /Ec:"ThisVersionInstalled +REG_SZ +Y"',
         },
-        'KB3021910' => {
-          name:     'Update for Microsoft Windows (KB3021910)',
+        'KB3173424' => {
+          name:     'Update for Microsoft Windows (KB3173424)',
           url:      if x64?
-                      'https://download.microsoft.com/download/7/7/4/77476115-26DA-42FC-B00F-031D2BB3740F/Windows8.1-KB3021910-x64.msu'
+                      'https://download.microsoft.com/download/E/2/C/E2CA92A3-8D60-4702-98E2-2AB396FEA1BC/Windows8.1-KB3173424-x64.msu'
                     else
-                      'https://download.microsoft.com/download/2/B/8/2B832205-A313-45A4-9356-DF5E47B70663/Windows8.1-KB3021910-x86.msu'
+                      'https://download.microsoft.com/download/4/5/F/45F8AA2A-1C72-460A-B9E9-83D3966DDA46/Windows8.1-KB3173424-x86.msu'
                     end,
           options:  '/norestart /quiet',
-          checksum: x64? ? 'feb03c1c3d5719ec2e7873c0b9b85bb9e9db44df88c75f9ddd5222942e4bf928' : '971d1b18cb26e578926591ee944f7183be7a6d7abfc2e255b930803666eebc20',
+          checksum: x64? ? '2c6c577e4e231ce6b020e5b9a2766154f474c6ecae82735ba5ec03875d64895b' : '91bf481343be03cc310c50167be8ea1af92113048c99b7b91f1b2b03628b0dcd',
         },
         'KB2919355' => {
           name:     'Update for Microsoft Windows (KB2919355)',
@@ -148,7 +148,7 @@ module MSDotNet
               '4.6' => 'KB3045563',
               '4.6.1' => 'KB3102467',
               '4.6.2' => 'KB3151864',
-              'KB3021910' => 'KB3021910',
+              'KB3173424' => 'KB3173424',
               'KB2919355' => 'KB2919355',
             }
           # Windows 10 & Server 2016
