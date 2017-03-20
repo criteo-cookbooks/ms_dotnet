@@ -6,7 +6,7 @@ description      'Installs/Configures ms_dotnet'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '3.1.1'
 supports         'windows'
-depends          'windows', '>= 1.36.1'
+depends          'windows', '>= 3.0'
 
 chef_version '>= 12.1' if respond_to?(:chef_version)
 source_url 'https://github.com/criteo-cookbooks/ms_dotnet' if respond_to?(:source_url)
