@@ -17,15 +17,121 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-actions :install
-default_action :install
+
 # The provides method is available on chef >= 12.0 only
 provides :ms_dotnet_framework, os: 'windows' if respond_to?(:provides)
 
-attribute :feature_source,  default: nil,         kind_of: [String, nil]
-attribute :include_patches, default: true,        kind_of: [TrueClass, FalseClass]
-attribute :package_sources, default: {}.freeze,   kind_of: Hash
-attribute :perform_reboot,  default: false,       kind_of: [TrueClass, FalseClass]
-attribute :require_support, default: false,       kind_of: [TrueClass, FalseClass]
-attribute :timeout,         default: 600,         kind_of: Integer
-attribute :version,         name_attribute: true, kind_of: String
+property :feature_source,  String
+property :include_patches, [true, false], default: true
+property :package_sources, Hash, default: {}.freeze
+property :perform_reboot, [true, false], default: false
+property :require_support, [true, false], default: false
+property :timeout, Integer, default: 600
+property :version, String, name_property: true
+
+load_current_value do |desired|
+  version_helper = ::MSDotNet.version_helper node, desired.version.to_i
+  version version_helper.installed_version unless version_helper.installed_version.nil?
+end
+
+action :install do
+  if unsupported?
+    ::Chef::Log.info "Unsupported .NET version: #{new_resource.version}"
+    raise "Can't install unsupported .NET version `#{new_resource.version}'" if new_resource.require_support
+  elsif install_required?
+    # Handle features
+    converge_by("Installing .NET version: #{new_resource.version}") do
+      install_features
+
+      # Handle packages (prerequisites + main setup + patches)
+      install_packages
+    end
+  else
+    ::Chef::Log.info ".NET `#{new_resource.version}' is not needed because .NET `#{current_resource.version}' is already installed"
+  end
+end
+
+action_class do
+  def install_features
+    features.each do |feature|
+      windows_feature feature do
+        action        :install
+        all           version_helper.nt_version >= 6.2
+        source        new_resource.feature_source unless new_resource.feature_source.nil?
+      end
+
+      # Perform automatic reboot now, if required
+      reboot "Reboot for ms_dotnet feature '#{feature}'" do
+        action   :reboot_now
+        reason   new_resource.name
+        only_if  { should_reboot? }
+      end
+    end
+  end
+
+  def install_packages
+    (prerequisites + [package] + patches).each do |pkg|
+      next if pkg.nil?
+      windows_package pkg[:name] do # ~FC009 ~FC022
+        action          :install
+        installer_type  :custom
+        success_codes   [0, 3010] if respond_to? :success_codes
+        returns         [0, 3010] if respond_to? :returns
+        options         pkg[:options] || '/q /norestart'
+        timeout         new_resource.timeout
+        # Package specific info
+        checksum        pkg[:checksum]
+        source          new_resource.package_sources[pkg[:checksum]] || pkg[:url]
+        not_if          pkg[:not_if] unless pkg[:not_if].nil?
+      end
+
+      # Perform automatic reboot now, if required
+      reboot "Reboot for ms_dotnet package '#{pkg[:name]}'" do
+        action   :reboot_now
+        reason   new_resource.name
+        only_if  { should_reboot? }
+      end
+    end
+  end
+
+  def should_reboot?
+    new_resource.perform_reboot && reboot_pending?
+  end
+
+  def version
+    @version ||= new_resource.version
+  end
+
+  def major_version
+    @major_version ||= new_resource.version.to_i
+  end
+
+  def version_helper
+    @version_helper ||= ::MSDotNet.version_helper node, major_version
+  end
+
+  def unsupported?
+    !version_helper.supported_versions.include?(new_resource.version)
+  end
+
+  def install_required?
+    # If current version == desired version; we need to pass by install steps to ensure everything is OK
+    current_resource.nil? || ::Gem::Version.new(new_resource.version) > ::Gem::Version.new(current_resource.version)
+  end
+
+  def package
+    version_helper.package new_resource.version
+  end
+
+  def prerequisites
+    version_helper.prerequisites new_resource.version
+  end
+
+  def features
+    version_helper.features new_resource.version
+  end
+
+  def patches
+    new_resource.include_patches ? version_helper.patches(new_resource.version) : []
+  end
+end

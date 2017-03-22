@@ -1,0 +1,44 @@
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 4096
+
+transport:
+  name: winrm
+  elevated: true
+
+provisioner:
+  name: chef_zero
+  deprecations_as_errors: true
+  retry_on_exit_code:
+    - 35 # 35 is the exit code signaling that the node is rebooting
+  max_retries: 1
+  client_rb:
+    exit_status: :enabled # Opt-in to the standardized exit codes
+    client_fork: false  # Forked instances don't return the real exit code
+
+platforms:
+  - name: windows-7
+    driver_config:
+      box: chef/windows-7-professional
+  - name: windows-8.1
+    driver_config:
+      box: chef/windows-8.1-professional
+  - name: windows-2008r2
+    driver_config:
+      box: chef/windows-server-2008r2-standard
+  - name: windows-2012r2
+    driver_config:
+      box: chef/windows-server-2012r2-standard
+
+suites:
+  - name: dotnet2
+    run_list:
+      - recipe[ms_dotnet::ms_dotnet2]
+  - name: dotnet3
+    run_list:
+      - recipe[ms_dotnet::ms_dotnet3]
+  - name: dotnet4
+    run_list:
+      - recipe[ms_dotnet::ms_dotnet4]
