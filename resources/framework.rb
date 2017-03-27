@@ -40,18 +40,20 @@ action :install do
     raise "Can't install unsupported .NET version `#{new_resource.version}'" if new_resource.require_support
   elsif install_required?
     # Handle features
-    converge_by("Installing .NET version: #{new_resource.version}") do
-      install_features
+    install_features
 
-      # Handle packages (prerequisites + main setup + patches)
-      install_packages
-    end
+    # Handle packages (prerequisites + main setup + patches)
+    install_packages
   else
     ::Chef::Log.info ".NET `#{new_resource.version}' is not needed because .NET `#{current_resource.version}' is already installed"
   end
 end
 
 action_class do
+  def whyrun_supported?
+    true
+  end
+
   def install_features
     features.each do |feature|
       windows_feature feature do
