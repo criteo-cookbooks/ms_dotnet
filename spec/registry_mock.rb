@@ -15,7 +15,7 @@ class RegistryMock
   end
 
   def get_values(key_path)
-    fetch(key_path).select { |_, v| !v.is_a? Hash }.map { |k, v| { name: k, data: v } }
+    fetch(key_path).reject { |_, v| v.is_a? Hash }.map { |k, v| { name: k, data: v } }
   end
 
   def has_subkeys?(key_path)

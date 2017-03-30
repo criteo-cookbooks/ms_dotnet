@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Cookbook Name:: ms_dotnet
 # Library:: v4_helper

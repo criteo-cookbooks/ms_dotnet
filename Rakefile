@@ -6,4 +6,4 @@ FoodCritic::Rake::LintTask.new
 RuboCop::RakeTask.new
 RSpec::Core::RakeTask.new(:rspec)
 
-task default: [:rubocop, :foodcritic, :rspec]
+task default: %i(rubocop foodcritic rspec)
