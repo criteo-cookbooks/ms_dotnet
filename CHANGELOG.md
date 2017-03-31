@@ -3,6 +3,10 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+3.1.1
+-----
+- [PR 38][pr-38] Jakauppila - Update .NET 4.6 prerequisites (KB3173424)
+
 3.1.0
 -----
 - b.courtois - Support Windows Server 2016.
@@ -106,3 +110,4 @@ Refers to the README for description and examples of the new attributes.
 [pr-31]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/31
 [pr-34]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/34
 [pr-35]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/35
+[pr-38]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/38
