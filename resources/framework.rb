@@ -31,7 +31,7 @@ property :version, String, name_property: true
 
 load_current_value do |desired|
   version_helper = ::MSDotNet.version_helper node, desired.version.to_i
-  version version_helper.installed_version unless version_helper.installed_version.nil?
+  version version_helper.installed_version.nil? ? '0' : version_helper.installed_version
 end
 
 action :install do
