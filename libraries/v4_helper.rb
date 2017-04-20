@@ -106,7 +106,7 @@ module MSDotNet
     def prerequisite_names
       @prerequisite_names ||= case nt_version
         when 6.3
-          prerequisites46 = %w(KB2919442 KB2919355 KB3173424)
+          prerequisites46 = %w(KB2919355 KB3173424)
           {
             '4.6' => prerequisites46,
             '4.6.1' => prerequisites46,
