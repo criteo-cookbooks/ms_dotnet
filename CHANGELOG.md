@@ -3,6 +3,12 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+3.2.1
+-----
+- [PR 53][pr-53] olive42 - Fix install requirement check
+- [PR 49][pr-49] jugatsu - Improve ms_dotnet_framework example in README
+- [PR 46][pr-46] olivierlemasle - Install KB2919442 before KB2919355 for .NET 4.6
+- [PR 44][pr-44] smurawski - Fix version detection when none installed
 3.2.0
 -----
 - [PR 43][pr-43] smurawski - Migrate framework LWRP to custom resource
@@ -116,3 +122,7 @@ Refers to the README for description and examples of the new attributes.
 [pr-35]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/35
 [pr-38]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/38
 [pr-43]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/43
+[pr-44]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/44
+[pr-46]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/46
+[pr-49]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/49
+[pr-53]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/53
