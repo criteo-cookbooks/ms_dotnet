@@ -38,14 +38,14 @@ action :install do
   if unsupported?
     ::Chef::Log.info "Unsupported .NET version: #{new_resource.version}"
     raise "Can't install unsupported .NET version `#{new_resource.version}'" if new_resource.require_support
-  elsif install_required?
+  elsif superseded?
+    ::Chef::Log.info ".NET `#{new_resource.version}' has been superseded by .NET `#{current_resource.version}'. Nothing to do!"
+  else
     # Handle features
     install_features
 
     # Handle packages (prerequisites + main setup + patches)
     install_packages
-  else
-    ::Chef::Log.info ".NET `#{new_resource.version}' is not needed because .NET `#{current_resource.version}' is already installed"
   end
 end
 
@@ -116,9 +116,10 @@ action_class do
     !version_helper.supported_versions.include?(new_resource.version)
   end
 
-  def install_required?
-    # If current version == desired version; we need to pass by install steps to ensure everything is OK
-    current_resource.nil? || ::Gem::Version.new(new_resource.version) >= ::Gem::Version.new(current_resource.version)
+  # This method determines whether a more recent minor version of .NET is present
+  # In this case, there is no need to do anything.
+  def superseded?
+    !current_resource.nil? && ::Gem::Version.new(new_resource.version) < ::Gem::Version.new(current_resource.version)
   end
 
   def package
