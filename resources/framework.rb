@@ -31,7 +31,13 @@ property :version, String, name_property: true
 
 load_current_value do |desired|
   version_helper = ::MSDotNet.version_helper node, desired.version.to_i
-  version version_helper.installed_version.nil? ? '0' : version_helper.installed_version
+
+  version_helper.installed_version.tap do |installed_version|
+    # Indicate the value does not exist when there is no installed version
+    current_value_does_not_exist! if installed_version.nil?
+    # Otherwise set it to current_value
+    version installed_version
+  end
 end
 
 action :install do
