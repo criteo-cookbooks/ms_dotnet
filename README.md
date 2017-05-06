@@ -159,6 +159,9 @@ References all official .NET setup & patches packages supported by this cookbook
 #### packages
 Retrieve a Hash containing .NET setup packages info - `name`, `checksum`, `url` & `not_if` guard.
 
+A string `not_if` guard represents a custom command to determine whether the package should be installed.
+A string Array `not_if` guard represents the list of QFE representing or superseding the package.
+
 #### core?
 Determine whether the current node is running on a Core version of Windows.
 
