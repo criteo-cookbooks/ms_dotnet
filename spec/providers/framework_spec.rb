@@ -36,7 +36,7 @@ describe 'ms_dotnet_framework' do
 
         it 'logs an information message' do
           allow(::Chef::Log).to receive(:info)
-          expect(::Chef::Log).to receive(:info).with '.NET `4.0\' is not needed because .NET `4.5.1\' is already installed'
+          expect(::Chef::Log).to receive(:info).with '.NET `4.0\' has been superseded by .NET `4.5.1\'. Nothing to do!'
           run_chef('windows', '2012R2', version: '4.0')
         end
       end
