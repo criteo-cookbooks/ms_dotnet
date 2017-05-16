@@ -104,6 +104,18 @@ module MSDotNet
           url:      "https://download.microsoft.com/download/2/B/F/2BF4D7D1-E781-4EE0-9E4F-FDD44A2F8934/NDP40-KB2468871-v2-#{arch}.exe",
           checksum: x64? ? 'b1b53c3953377b111fe394dd57592d342cfc8a3261a5575253b211c1c2e48ff8' : '8822672fc864544e0766c80b635973bd9459d719b1af75f51483ff36cfb26f03',
         },
+        'KB3083184' => {
+          name:     'Update for Microsoft .NET Framework 4.6 (KB3083184)',
+          url:      "https://download.microsoft.com/download/C/2/8/C28720A0-2970-47F2-B7CF-E054FABCE6C0/Windows8-RT-KB3083184-#{arch}.msu",
+          options:  '/norestart /quiet',
+          checksum: x64? ? '6b685ecd2c996ff55265f53994fb53063a2665257fa194afa2fc14c3974b574c' : 'f59208f6e9c1e45c099f59e78d69c0354e2a9b9012bf345b7e3940ff1743a7b6',
+        },
+        'KB3083185' => {
+          name:     'Update for Microsoft .NET Framework 4.6 (KB3083185)',
+          url:      "https://download.microsoft.com/download/1/B/1/1B153916-43F3-4DD8-AD60-27F157E70149/Windows8.1-KB3083185-#{arch}.msu",
+          options:  '/norestart /quiet',
+          checksum: x64? ? '7f75909608907749c6b1de4f1ee461ae937772145a0921b32ab8b78af790a1bf' : '359d741ed99a5b3e846221099c2aaa67c7a8b1e599e7597531a84806ce68d987',
+        },
         'KB3083186' => {
           name:     'Update for Microsoft .NET Framework 4.6 (KB3083186)',
           url:      "https://download.microsoft.com/download/3/E/C/3EC59EE9-5699-4159-9691-E04E38D677CC/NDP46-KB3083186-#{arch}.exe",
@@ -150,6 +162,7 @@ module MSDotNet
               '4.6' => 'KB3045562',
               '4.6.1' => 'KB3102439',
               '4.6.2' => 'KB3151804',
+              'KB3083184' => 'KB3083184',
             }
           # Windows 8.1 & Server 2012R2
           when 6.3
@@ -161,6 +174,7 @@ module MSDotNet
               'KB2919442' => 'KB2919442',
               'KB3173424' => 'KB3173424',
               'KB2919355' => 'KB2919355',
+              'KB3083185' => 'KB3083185',
             }
           # Windows 10 & Server 2016
           when 10

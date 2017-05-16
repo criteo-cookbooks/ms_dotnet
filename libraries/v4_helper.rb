@@ -77,8 +77,12 @@ module MSDotNet
       @patch_names ||= case nt_version
         when 5.1, 5.2
           { '4.0' => %w(KB2468871) }
-        when 6.0, 6.1, 6.2, 6.3, 10
+        when 6.0, 6.1
           { '4.6' => %w(KB3083186) }
+        when 6.2
+          { '4.6' => %w(KB3083184) }
+        when 6.3
+          { '4.6' => %w(KB3083185) }
         else
           {}
       end
