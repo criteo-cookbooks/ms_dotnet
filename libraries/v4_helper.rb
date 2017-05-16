@@ -41,11 +41,12 @@ module MSDotNet
         when 393_295, 393_297 then '4.6'
         when 394_254, 394_271 then '4.6.1'
         when 394_802, 394_806 then '4.6.2'
+        when 460_798, 460_805 then '4.7'
       end
     end
 
     def supported_versions
-      @supported_versions ||= %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2)
+      @supported_versions ||= %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7)
     end
 
     protected
@@ -109,6 +110,10 @@ module MSDotNet
 
     def prerequisite_names
       @prerequisite_names ||= case nt_version
+        when 6.1
+          { '4.7' => 'KB4019990-6.1' }
+        when 6.2
+          { '4.7' => 'KB4019990-6.2' }
         when 6.3
           prerequisites46 = %w(KB2919442 KB2919355 KB3173424)
           {

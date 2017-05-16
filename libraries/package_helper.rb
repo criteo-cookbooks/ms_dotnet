@@ -91,6 +91,11 @@ module MSDotNet
           url:      'https://download.microsoft.com/download/F/9/4/F942F07D-F26F-4F30-B4E3-EBD54FABA377/NDP462-KB3151800-x86-x64-AllOS-ENU.exe',
           checksum: '28886593e3b32f018241a4c0b745e564526dbb3295cb2635944e3a393f4278d4',
         },
+        '4.7' => {
+          name:     'Microsoft .NET Framework 4.7',
+          url:      'https://download.microsoft.com/download/D/D/3/DD35CC25-6E9C-484B-A746-C5BE0C923290/NDP47-KB3186497-x86-x64-AllOS-ENU.exe',
+          checksum: '24762159579ec9763baec8c23555464360bd31677ee8894a58bdb67262e7e470',
+        },
         ###########
         # Patches
         ###########
@@ -152,9 +157,26 @@ module MSDotNet
           options:  '/norestart /quiet',
           checksum: x64? ? 'b0c9ada530f5ee90bb962afa9ed26218c582362315e13b1ba97e59767cb7825d' : 'f8beca5b463a36e1fef45ad0dca6a0de7606930380514ac1852df5ca6e3f6c1d',
         },
+        'KB4019990-6.1' => {
+          name:     'Update for Microsoft Windows (KB4019990)',
+          url:      "https://download.microsoft.com/download/2/F/4/2F4F48F4-D980-43AA-906A-8FFF40BCB832/Windows6.1-KB4019990-#{arch}.msu",
+          options:  '/norestart /quiet',
+          checksum: x64? ? '4ee562192cf21716f3c38cac3c2b17ef73b76708001d8a075d31df0996f0c6b3' : '62101125e4619575a55a4ff63d049debd33e04b485b6616058862c525050e210',
+        },
+        'KB4019990-6.2' => {
+          name:     'Update for Microsoft Windows (KB4019990)',
+          url:      'https://download.microsoft.com/download/2/F/4/2F4F48F4-D980-43AA-906A-8FFF40BCB832/Windows8-RT-KB4019990-x64.msu',
+          options:  '/norestart /quiet',
+          checksum: 'f50efbd614094ebe84b0bccb0f89903e5619e5a380755d0e8170e8e893af7a9f',
+        },
       ).tap do |packages|
         # Some packages are installed as QFE updates on 2012, 2012R2 & 10
         case nt_version
+          # Windows 7 or Server 2008R2
+          when 6.1
+            {
+              'KB4019990-6.1' => 'KB4019990',
+            }
           # Windows 8 & Server 2012
           when 6.2
             {
@@ -162,7 +184,9 @@ module MSDotNet
               '4.6' => 'KB3045562',
               '4.6.1' => 'KB3102439',
               '4.6.2' => 'KB3151804',
+              '4.7' => 'KB3186505',
               'KB3083184' => 'KB3083184',
+              'KB4019990-6.2' => 'KB4019990',
             }
           # Windows 8.1 & Server 2012R2
           when 6.3
@@ -171,6 +195,7 @@ module MSDotNet
               '4.6' => 'KB3045563',
               '4.6.1' => 'KB3102467',
               '4.6.2' => 'KB3151864',
+              '4.7' => 'KB3186539',
               'KB2919442' => 'KB2919442',
               'KB3173424' => 'KB3173424',
               'KB2919355' => 'KB2919355',
@@ -181,6 +206,7 @@ module MSDotNet
             {
               '4.6.1' => 'KB3102495',
               '4.6.2' => 'KB3151900',
+              '4.7' => 'KB3186568',
             }
           else
             {}
