@@ -46,21 +46,16 @@ describe 'ms_dotnet_framework' do
         it 'does install packages or features' do
           chef_run = run_chef('windows', '2012R2', version: '4.5.2')
           # ChefSpec matchers doesn't allow `.or`
-          expect(install_windows_feature(/.*/).matches?(chef_run) || install_windows_package(/.*/).matches?(chef_run)).to be true
+          expect(chef_run).to install_windows_package('Microsoft .NET Framework 4.5.2')
         end
         it 'does not reboot if not asked' do
           chef_run = run_chef('windows', '2012R2', version: '4.5.2', perform_reboot: false)
-          expect(chef_run).not_to now_reboot(/^Reboot for ms_dotnet package/)
-        end
-        it 'does not reboot if asked but no reboot are pending' do
-          expect_any_instance_of(::Chef::DSL::RebootPending).to receive(:reboot_pending?).and_return false
-          chef_run = run_chef('windows', '2012R2', version: '4.5.2', perform_reboot: true)
-          expect(chef_run).not_to now_reboot(/^Reboot for ms_dotnet package/)
+          expect(chef_run).not_to reboot_if_pending_ms_dotnet_reboot('Reboot for ms_dotnet[install]')
+          expect(chef_run.windows_package('Microsoft .NET Framework 4.5.2')).not_to notify('ms_dotnet_reboot[Reboot for ms_dotnet[install]]')
         end
         it 'reboots if asked' do
-          expect_any_instance_of(::Chef::DSL::RebootPending).to receive(:reboot_pending?).and_return true
           chef_run = run_chef('windows', '2012R2', version: '4.5.2', perform_reboot: true)
-          expect(chef_run).to now_reboot(/^Reboot for ms_dotnet package/)
+          expect(chef_run.windows_package('Microsoft .NET Framework 4.5.2')).to notify('ms_dotnet_reboot[Reboot for ms_dotnet[install]]')
         end
       end
 

@@ -60,19 +60,20 @@ action_class.class_eval do
     true
   end
 
+  def reboot_resource
+    @reboot_resource ||= ms_dotnet_reboot "Reboot for ms_dotnet[#{new_resource.name}]" do
+      action :nothing
+    end
+  end
+
   def install_features
     features.each do |feature|
       windows_feature feature do
         action        :install
         all           version_helper.nt_version >= 6.2
         source        new_resource.feature_source unless new_resource.feature_source.nil?
-      end
-
-      # Perform automatic reboot now, if required
-      reboot "Reboot for ms_dotnet feature '#{feature}'" do
-        action   :reboot_now
-        reason   new_resource.name
-        only_if  { should_reboot? }
+        # Perform automatic reboot now, if required
+        notifies :reboot_if_pending, reboot_resource, :immediately if new_resource.perform_reboot
       end
     end
   end
@@ -101,19 +102,10 @@ action_class.class_eval do
               !filter.empty? && ::WmiLite::Wmi.new.query("SELECT HotFixID FROM Win32_QuickFixEngineering WHERE #{filter}").any?
             end
         end
-      end
-
-      # Perform automatic reboot now, if required
-      reboot "Reboot for ms_dotnet package '#{pkg[:name]}'" do
-        action   :reboot_now
-        reason   new_resource.name
-        only_if  { should_reboot? }
+        # Perform automatic reboot now, if required
+        notifies :reboot_if_pending, reboot_resource, :immediately if new_resource.perform_reboot
       end
     end
-  end
-
-  def should_reboot?
-    new_resource.perform_reboot && reboot_pending?
   end
 
   def version_helper
