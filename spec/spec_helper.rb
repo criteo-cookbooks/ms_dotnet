@@ -11,6 +11,10 @@ require_relative '../libraries/default.rb'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.order = 'random'
+
+  config.before(:all) do
+    ::ChefSpec::SoloRunner.new(platform: 'windows', version: '2012R2').converge('windows')
+  end
 end
 
 def fauxhai_data(platform = 'windows', version = '2012R2')

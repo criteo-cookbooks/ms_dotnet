@@ -2,11 +2,13 @@ require 'spec_helper'
 
 shared_examples 'package_helper' do |data, conf|
   describe ::MSDotNet::PackageHelper do
-    # Set Core SKU
-    data['kernel']['os_info']['operating_system_sku'] = conf[:core?] ? 0x0D : 0x00
-    # Set arch
-    data['kernel']['machine'] = conf[:x64?] ? 'x86_64' : 'x86'
-    package_helper = ::MSDotNet::PackageHelper.new init_node(data)
+    let(:package_helper) do
+      # Set Core SKU
+      data['kernel']['os_info']['operating_system_sku'] = conf[:core?] ? 0x0D : 0x00
+      # Set arch
+      data['kernel']['machine'] = conf[:x64?] ? 'x86_64' : 'x86'
+      ::MSDotNet::PackageHelper.new init_node(data)
+    end
 
     describe 'packages' do
       it 'returns a Mash' do
