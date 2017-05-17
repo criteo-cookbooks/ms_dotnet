@@ -23,7 +23,7 @@ provides :ms_dotnet_framework, os: 'windows' if respond_to?(:provides)
 
 property :feature_source,  String
 property :include_patches, [true, false], default: true
-property :package_sources, Hash, default: {}.freeze
+property :package_sources, Hash, default: lazy { ::Mash.new }
 property :perform_reboot, [true, false], default: false
 property :require_support, [true, false], default: false
 property :timeout, Integer, default: 600
@@ -78,8 +78,7 @@ action_class.class_eval do
   end
 
   def install_packages
-    (prerequisites + [package] + patches).each do |pkg|
-      next if pkg.nil?
+    [*prerequisites, package, *patches].compact.each do |pkg|
       windows_package pkg[:name] do # ~FC009 ~FC022
         action          :install
         installer_type  :custom
@@ -106,16 +105,8 @@ action_class.class_eval do
     new_resource.perform_reboot && reboot_pending?
   end
 
-  def version
-    @version ||= new_resource.version
-  end
-
-  def major_version
-    @major_version ||= new_resource.version.to_i
-  end
-
   def version_helper
-    @version_helper ||= ::MSDotNet.version_helper node, major_version
+    @version_helper ||= ::MSDotNet.version_helper node, new_resource.version.to_i
   end
 
   def unsupported?
