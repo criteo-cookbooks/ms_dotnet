@@ -17,8 +17,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-require_relative 'windows_version_helper.rb'
-
 module MSDotNet
   # References the main official .NET setup and patch packages
   class PackageHelper
