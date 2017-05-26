@@ -89,7 +89,18 @@ action_class.class_eval do
         # Package specific info
         checksum        pkg[:checksum]
         source          new_resource.package_sources[pkg[:checksum]] || pkg[:url]
-        not_if          pkg[:not_if] unless pkg[:not_if].nil?
+        # Handle not_if guards
+        case pkg[:not_if]
+          when String # Execute the given string guard
+            not_if      pkg[:not_if]
+          when Array # Ensure given array of QFE KB is not installed
+            # Some packages are installed as QFE updates on 2012, 2012R2 & 10 or may have been superseded by other updates
+            not_if do
+              require 'wmi-lite'
+              filter = pkg[:not_if].map { |kb| " HotFixID='#{kb}'" }.join(' OR')
+              !filter.empty? && ::WmiLite::Wmi.new.query("SELECT HotFixID FROM Win32_QuickFixEngineering WHERE #{filter}").any?
+            end
+        end
       end
 
       # Perform automatic reboot now, if required

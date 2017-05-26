@@ -19,7 +19,8 @@ describe 'ms_dotnet_framework' do
     context 'on Windows' do
       before do
         mock_registry '2012R2'
-        stub_command("C:\\Windows\\System32\\wbem\\wmic.exe QFE where HotFixID='KB2934520' | FindStr KB2934520").and_return(false)
+        stub_const('WmiLite::Wmi', Class.new)
+        allow(::WmiLite::Wmi).to receive_message_chain(:new, :query).and_return double('WmiQuery', any?: false)
       end
 
       it 'tries to install a .NET framework' do
