@@ -28,4 +28,5 @@ execute 'aspnet_regiis' do
   command "%WINDIR%\\Microsoft.Net\\Framework64\\v4.0.30319\\aspnet_regiis.exe -i -enable > #{guard_file}"
   creates guard_file
   only_if 'sc.exe query W3SVC'
+  not_if { File.exist?(guard_file) }
 end
