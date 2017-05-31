@@ -115,7 +115,7 @@ module MSDotNet
         when 6.2
           { '4.7' => 'KB4019990-6.2' }
         when 6.3
-          prerequisites46 = %w(KB2919442 KB2919355 KB3173424)
+          prerequisites46 = %w(KB2919355 KB3173424)
           {
             '4.6' => prerequisites46,
             '4.6.1' => prerequisites46,
