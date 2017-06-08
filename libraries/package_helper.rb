@@ -20,10 +20,11 @@
 module MSDotNet
   # References the main official .NET setup and patch packages
   class PackageHelper
-    attr_reader :arch, :nt_version, :is_core, :is_server, :machine_type
+    attr_reader :arch, :full_version, :nt_version, :is_core, :is_server, :machine_type
 
     def initialize(node)
       @arch = node['kernel']['machine'] == 'x86_64' ? 'x64' : 'x86'
+      @full_version = node['platform_version']
       @nt_version = ::Windows::VersionHelper.nt_version(node)
       @is_core = ::Windows::VersionHelper.core_version?(node)
       @is_server = ::Windows::VersionHelper.server_version?(node)
