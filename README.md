@@ -2,6 +2,7 @@ ms_dotnet Cookbook
 ==================
 [![Cookbook Version][cookbook_version]][cookbook]
 [![Build Status][build_status]][build_status]
+[![License][license]][license]
 
 Install the Microsoft .NET Framework.
 
@@ -209,7 +210,7 @@ License and Authors
 Authors: [Baptiste Courtois][annih] (<b.courtois@criteo.com>), [Jeremy Mauro][jmauro] (<j.mauro@criteo.com>)
 
 ```text
-Copyright 2014-2015, Criteo.
+Copyright 2014-2017, Criteo.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -229,4 +230,5 @@ limitations under the License.
 [build_status]:     https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
 [cookbook_version]: https://img.shields.io/cookbook/v/ms_dotnet.svg
 [cookbook]:         https://supermarket.chef.io/cookbooks/ms_dotnet
+[license]:          https://img.shields.io/github/license/criteo-cookbooks/ms_dotnet.svg
 [winrm_elevated]:   https://discourse.chef.io/t/released-test-kitchen-1-8-0/8421

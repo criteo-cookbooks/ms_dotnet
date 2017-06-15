@@ -1,7 +1,7 @@
 name             'ms_dotnet'
 maintainer       'Criteo'
 maintainer_email 'b.courtois@criteo.com'
-license          'Apache 2.0'
+license          'Apache-2.0'
 description      'Installs/Configures ms_dotnet'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '3.2.1'
