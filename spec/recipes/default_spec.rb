@@ -12,7 +12,7 @@ describe 'ms_dotnet::default' do
   end
   describe 'On non-windows platform' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new.converge(described_recipe)
+      ChefSpec::SoloRunner.new(platform: 'centos', version: '7.3.1611').converge(described_recipe)
     end
 
     it 'does nothing' do
