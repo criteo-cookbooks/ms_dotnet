@@ -12,7 +12,7 @@ describe 'ms_dotnet_reboot' do
 
     context 'on non Windows platform' do
       it 'fails' do
-        expect { run_chef 'centos', '7.0' }.to raise_error(/Cannot find a resource for ms_dotnet_reboot/)
+        expect { run_chef 'centos', '7.3.1611' }.to raise_error(/Cannot find a resource for ms_dotnet_reboot/)
       end
     end
 
