@@ -96,11 +96,11 @@ module MSDotNet
         # Windows Vista & Server 2008
         when /^6.0/ then %w(4.0 4.5 4.5.1 4.5.2 4.6)
         # Windows 7 & Server 2008R2
-        when /^6.1/ then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2)
+        when /^6.1/ then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7)
         # Windows 8 & Server 2012
-        when /^6.2/ then %w(4.5.1 4.5.2 4.6 4.6.1)
+        when /^6.2/ then %w(4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7)
         # Windows 8.1 & Server 2012R2
-        when /^6.3/ then %w(4.5.2 4.6 4.6.1 4.6.2)
+        when /^6.3/ then %w(4.5.2 4.6 4.6.1 4.6.2 4.7)
         # Windows 10 RTM
         when '10.0.10240' then %w(4.6.1 4.6.2 4.7)
         # Windows 10 v1511 (November Update)
