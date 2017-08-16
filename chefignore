@@ -79,6 +79,7 @@ CHANGELOG*
 
 # Kitchen #
 ##########
+.kitchen
 .kitchen.yml
 
 # Strainer #

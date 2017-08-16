@@ -24,11 +24,12 @@ provides :ms_dotnet_reboot, os: 'windows' if respond_to?(:provides)
 property :source, [String, Resource], desired_state: false
 
 action :reboot_if_pending do
-  source_name = source || 'ms_dotnet_framework'
+  source_name = new_resource.source || 'ms_dotnet_framework'
   reboot "Reboot for #{source_name}" do
-    action   :reboot_now
-    reason   "Reboot by chef for #{source_name}"
-    only_if  { reboot_pending? }
+    action :reboot_now
+    delay_mins node['ms_dotnet']['reboot']['delay']
+    reason "Reboot by chef for #{source_name}"
+    only_if { reboot_pending? }
   end
 end
 
