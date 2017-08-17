@@ -20,6 +20,7 @@
 return unless platform? 'windows'
 
 default['ms_dotnet']['timeout'] = 600
+default['ms_dotnet']['reboot']['delay'] = 1
 
 # .NET 2 attributes
 default['ms_dotnet']['v2']['version']         = '2.0.SP2'
