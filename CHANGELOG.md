@@ -3,6 +3,22 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+4.0.0
+-----
+
+### Improvments
+- Fix .NET 4.6.2 on Windows Server 2008R2 & Server 2012 (thanks Taliesin Sisson)
+- Properly supports .NET 4 for Windows 10 & Windows Server 2016
+- Add support for .NET 4.7
+- Leverage version helpers from windows cookbook
+- Reboot only for .NET packages (thanks Jakauppila)
+- Remove some Chef 13 deprecation warnings
+- Enhanced patches & prerequisites system
+
+### Breaking changes
+- Requires Chef >= 12.6 for proper custom resource definition
+- Requires Windows cookbook >= 2.1.0 for Windows version's helpers
+
 3.2.1
 -----
 - [PR 53][pr-53] olive42 - Fix install requirement check
