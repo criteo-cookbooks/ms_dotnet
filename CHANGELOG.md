@@ -3,6 +3,10 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+4.0.1
+-----
+- [PR 75][pr-75] Fix prerequisites for .NET 4.7 (thanks nadobando)
+
 4.0.0
 -----
 
@@ -142,3 +146,4 @@ Refers to the README for description and examples of the new attributes.
 [pr-46]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/46
 [pr-49]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/49
 [pr-53]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/53
+[pr-75]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/75
