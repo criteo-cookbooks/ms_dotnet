@@ -76,15 +76,17 @@ module MSDotNet
     end
 
     def patch_names
-      @patch_names ||= case nt_version
-        when 5.1, 5.2
+      @patch_names ||= case full_version
+        when /^5\.1/, /^5\.2/
           { '4.0' => %w(KB2468871) }
-        when 6.0, 6.1
-          { '4.6' => %w(KB3083186) }
-        when 6.2
-          { '4.6' => %w(KB3083184) }
-        when 6.3
-          { '4.6' => %w(KB3083185) }
+        when /^6\.0/, /^6\.1/
+          { '4.6' => %w(KB3083186), '4.7.1' => %w(KB4054856) }
+        when /^6\.2/
+          { '4.6' => %w(KB3083184), '4.7.1' => %w(KB4054856) }
+        when /^6\.3/
+          { '4.6' => %w(KB3083185), '4.7.1' => %w(KB4054856) }
+        when '10.0.10240', '10.0.10586', '10.0.14393', '10.0.15063'
+          { '4.7.1' => %w(KB4054856) }
         else
           {}
       end
@@ -93,15 +95,15 @@ module MSDotNet
     def package_setup
       @package_setup ||= case full_version
         # Windows XP & Windows Server 2003
-        when /^5.0/, /^5.1/ then %w(4.0)
+        when /^5\.0/, /^5\.1/ then %w(4.0)
         # Windows Vista & Server 2008
-        when /^6.0/ then %w(4.0 4.5 4.5.1 4.5.2 4.6)
+        when /^6\.0/ then %w(4.0 4.5 4.5.1 4.5.2 4.6)
         # Windows 7 & Server 2008R2
-        when /^6.1/ then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
+        when /^6\.1/ then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
         # Windows 8 & Server 2012
-        when /^6.2/ then %w(4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
+        when /^6\.2/ then %w(4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
         # Windows 8.1 & Server 2012R2
-        when /^6.3/ then %w(4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
+        when /^6\.3/ then %w(4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
         # Windows 10 RTM (TH1)
         when '10.0.10240' then %w(4.6.1 4.6.2 4.7 4.7.1)
         # Windows 10 v1511 (TH2)
