@@ -104,6 +104,7 @@ module MSDotNet
           name:     'Microsoft .NET Framework 4.7.1',
           url:      'https://download.microsoft.com/download/9/E/6/9E63300C-0941-4B45-A0EC-0008F96DD480/NDP471-KB4033342-x86-x64-AllOS-ENU.exe',
           checksum: '63dc850df091f3f137b5d4392f47917f847f8926dc8af1da9bfba6422e495805',
+          not_if: %w(KB4033342 KB4033345 KB4033369 KB4033393),
         },
         ###########
         # Patches
