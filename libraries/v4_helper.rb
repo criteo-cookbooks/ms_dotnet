@@ -63,13 +63,21 @@ module MSDotNet
     end
 
     def feature_setup
-      @feature_setup ||= case nt_version
+      @feature_setup ||= case full_version
         # Windows 8 & Server 2012
-        when 6.2 then %(4.0 4.5)
+        when /^6\.2/ then %w(4.0 4.5)
         # Windows 8.1 & Server 2012R2
-        when 6.3 then %(4.0 4.5 4.5.1)
-        # Windows 10 & Server 2016
-        when 10 then %(4.0 4.5 4.5.1 4.5.2)
+        when /^6\.3/ then %w(4.0 4.5 4.5.1)
+        # Windows 10 RTM (TH1)
+        when '10.0.10240' then %w(4.0 4.5 4.5.1 4.5.2 4.6)
+        # Windows 10 v1511 (TH2)
+        when '10.0.10586' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1)
+        # Windows 10 & Server 2016 v1607 (RS1)
+        when '10.0.14393' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2)
+        # Windows 10 v1703 (RS2)
+        when '10.0.15063' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7)
+        # Windows 10 & Server 2016 v1709 (RS3)
+        when '10.0.16299' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
         # Other versions
         else []
       end
