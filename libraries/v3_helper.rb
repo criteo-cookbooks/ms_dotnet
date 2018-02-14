@@ -50,7 +50,7 @@ module MSDotNet
         # Vista & Server 2008
         when 6.0 then %w(3.0)
         # 7, 8, 8.1, 10 & Server 2008R2, 2012, 2012R2
-        when 6.1, 6.2, 6.3, 10 then %(3.0 3.5 3.5.SP1)
+        when 6.1, 6.2, 6.3, 10 then %w(3.0 3.5 3.5.SP1)
         # Other versions
         else []
       end
