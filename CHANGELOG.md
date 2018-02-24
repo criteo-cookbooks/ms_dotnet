@@ -3,6 +3,11 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+4.1.0
+-----
+- Fix setup via windows feature for.NET 3.5 & .NET 4
+- Add support for .NET 4.7.1 with KB4054856
+
 4.0.1
 -----
 - [PR 75][pr-75] Fix prerequisites for .NET 4.7 (thanks nadobando)
