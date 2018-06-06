@@ -192,12 +192,32 @@ module MSDotNet
           checksum: 'f50efbd614094ebe84b0bccb0f89903e5619e5a380755d0e8170e8e893af7a9f',
           not_if: %w(KB4019990),
         },
-        'KB4054856' => {
-          name:     'Update for Microsoft Windows (KB4054856)',
+        'KB4054852' => {
+          name:     'Update for Microsoft .NET Framework 4.7.1 (KB4054852)',
           url:      'https://download.microsoft.com/download/8/5/E/85E5D4E2-7D95-40F7-AB83-9DBFCFBDBE6E/NDP471-KB4054856-x86-x64-AllOS.exe',
           options:  '/norestart /quiet',
           checksum: 'f98d12d84c803699d149a254ada3dd5dc0698307638e1baae209cc6f3a729e29',
-          not_if:   %w(KB4054852 KB4054853 KB4054854 KB4054855),
+        },
+        'KB4054853' => {
+          name:     'Update for Microsoft Windows (KB4054853)', # Cosmetic name
+          url:      'https://download.microsoft.com/download/8/5/E/85E5D4E2-7D95-40F7-AB83-9DBFCFBDBE6E/NDP471-KB4054856-x86-x64-AllOS.exe',
+          options:  '/norestart /quiet',
+          checksum: 'f98d12d84c803699d149a254ada3dd5dc0698307638e1baae209cc6f3a729e29',
+          not_if:   %w(KB4054853),
+        },
+        'KB4054854' => {
+          name:     'Update for Microsoft Windows (KB4054854)', # Cosmetic name
+          url:      'https://download.microsoft.com/download/8/5/E/85E5D4E2-7D95-40F7-AB83-9DBFCFBDBE6E/NDP471-KB4054856-x86-x64-AllOS.exe',
+          options:  '/norestart /quiet',
+          checksum: 'f98d12d84c803699d149a254ada3dd5dc0698307638e1baae209cc6f3a729e29',
+          not_if:   %w(KB4054854),
+        },
+        'KB4054855' => {
+          name:     'Update for Microsoft Windows (KB4054855)', # Cosmetic name
+          url:      'https://download.microsoft.com/download/8/5/E/85E5D4E2-7D95-40F7-AB83-9DBFCFBDBE6E/NDP471-KB4054856-x86-x64-AllOS.exe',
+          options:  '/norestart /quiet',
+          checksum: 'f98d12d84c803699d149a254ada3dd5dc0698307638e1baae209cc6f3a729e29',
+          not_if:   %w(KB4054855),
         },
       )
     end
