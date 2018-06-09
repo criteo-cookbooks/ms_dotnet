@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'berkshelf'
-gem 'chef'
+gem 'chef', '< 14.0'
+gem 'chef-zero', '< 14.0'
 gem 'chefspec'
 gem 'fauxhai'
 gem 'foodcritic'
