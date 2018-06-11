@@ -3,6 +3,11 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+4.2.0
+-----
+- Add support for .NET 4.7.2
+- Fix idempotency of .NET 4.7.1 updates (KB405856) on Windows Server 2008R2
+
 4.1.0
 -----
 - Fix setup via windows feature for.NET 3.5 & .NET 4
