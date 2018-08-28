@@ -108,8 +108,8 @@ module MSDotNet
         },
         '4.7.2' => {
           name:     'Microsoft .NET Framework 4.7.2',
-          url:      'https://download.microsoft.com/download/3/D/7/3D72C5C2-4CCB-4EEF-925D-B5FA33EAC25A/NDP472-KB4054530-x86-x64-AllOS-ENU.exe',
-          checksum: '41eec7f2cfe216b7c063ca771485dcb18218ec329c48c80fd4ad1cdddfabc506',
+          url:      'https://download.microsoft.com/download/6/E/4/6E48E8AB-DC00-419E-9704-06DD46E5F81D/NDP472-KB4054530-x86-x64-AllOS-ENU.exe',
+          checksum: 'c908f0a5bea4be282e35acba307d0061b71b8b66ca9894943d3cbb53cad019bc',
           not_if: %w(KB4054542 KB4054566 KB4054590 KB4073120),
         },
         ###########
