@@ -3,6 +3,10 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+4.2.1
+-----
+- [PR 93][pr-93] Fix url for .NET 4.7.2 installer (thanks aae42)
+
 4.2.0
 -----
 - Add support for .NET 4.7.2
@@ -157,3 +161,4 @@ Refers to the README for description and examples of the new attributes.
 [pr-49]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/49
 [pr-53]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/53
 [pr-75]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/75
+[pr-93]:    https://github.com/criteo-cookbooks/ms_dotnet/pull/93
