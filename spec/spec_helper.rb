@@ -35,11 +35,11 @@ end
 SUPPORTED_MAJOR_VERSIONS = [2, 3, 4].freeze
 
 FAUXHAI_WINDOWS_VERSIONS = {
-  '8.1' => { arch: %w(x86 x64), core: false, server: false },
-  '10' => { arch: %w(x86 x64), core: false, server: false },
-  '2008R2' => { arch: %w(x64), core: true, server: true },
-  '2012' => { arch: %w(x64), core: true, server: true },
-  '2012R2' => { arch: %w(x64), core: true, server: true },
+  '8.1' => { arch: %w[x86 x64], core: false, server: false },
+  '10' => { arch: %w[x86 x64], core: false, server: false },
+  '2008R2' => { arch: %w[x64], core: true, server: true },
+  '2012' => { arch: %w[x64], core: true, server: true },
+  '2012R2' => { arch: %w[x64], core: true, server: true },
 }.freeze
 
 DEFAULT_FRAMEWORK_ATTRIBUTES = {

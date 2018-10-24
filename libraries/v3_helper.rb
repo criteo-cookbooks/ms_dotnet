@@ -24,7 +24,7 @@ module MSDotNet
   class V3Helper < VersionHelper
     def installed_version
       # Order is important because we want the maximum version
-      %w(3.5 3.0).map do |version|
+      %w[3.5 3.0].map do |version|
         registry_key = "HKLM\\Software\\Microsoft\\Net Framework Setup\\NDP\\v#{version}"
         next unless registry_key_exists? registry_key
 
@@ -36,21 +36,21 @@ module MSDotNet
     end
 
     def supported_versions
-      @supported_versions ||= %w(3.0 3.5 3.5.SP1)
+      @supported_versions ||= %w[3.0 3.5 3.5.SP1]
     end
 
     protected
 
     def feature_names
-      @feature_names ||= nt_version >= 6.0 ? %w(NetFx3) : []
+      @feature_names ||= nt_version >= 6.0 ? %w[NetFx3] : []
     end
 
     def feature_setup
       @feature_setup ||= case nt_version
         # Vista & Server 2008
-        when 6.0 then %w(3.0)
+        when 6.0 then %w[3.0]
         # 7, 8, 8.1, 10 & Server 2008R2, 2012, 2012R2
-        when 6.1, 6.2, 6.3, 10 then %w(3.0 3.5 3.5.SP1)
+        when 6.1, 6.2, 6.3, 10 then %w[3.0 3.5 3.5.SP1]
         # Other versions
         else []
       end
@@ -63,9 +63,9 @@ module MSDotNet
     def package_setup
       @package_setup ||= case nt_version
         # Windows XP & Server 2003
-        when 5.2, 5.3 then %w(3.0 3.5 3.5.SP1)
+        when 5.2, 5.3 then %w[3.0 3.5 3.5.SP1]
         # Vista & Server 2008
-        when 6.0 then %w(3.5 3.5.SP1)
+        when 6.0 then %w[3.5 3.5.SP1]
         # Other versions
         else []
       end

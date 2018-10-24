@@ -30,6 +30,7 @@ module MSDotNet
 
     def initialize(node)
       raise TypeError, 'MSDotNet::VersionHelper is an "abstract" class and must not be instanciated directly.' if self.class == ::MSDotNet::VersionHelper
+
       super
 
       # run_context is required by ::Chef::DSL::RegistryHelper
