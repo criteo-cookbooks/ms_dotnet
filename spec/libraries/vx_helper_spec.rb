@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-UNSUPPORTED_VERSIONS = %w(0.42.unsupported).freeze
+UNSUPPORTED_VERSIONS = %w[0.42.unsupported].freeze
 FAUXHAI_WINDOWS_VERSIONS.keys.each do |windows_version|
   describe "On Windows#{windows_version}" do
     let(:node) { init_node fauxhai_data('windows', windows_version) }
@@ -8,7 +8,7 @@ FAUXHAI_WINDOWS_VERSIONS.keys.each do |windows_version|
     SUPPORTED_MAJOR_VERSIONS.each do |major_version|
       describe ::MSDotNet.const_get("V#{major_version}Helper") do
         # Small lambda to check if a hash looks like a package
-        let(:package_like) { ->(hash) { %w(name url checksum).all? { |k| hash.key? k } } }
+        let(:package_like) { ->(hash) { %w[name url checksum].all? { |k| hash.key? k } } }
         let(:version_helper) { ::MSDotNet.version_helper node, major_version }
 
         describe 'installed_version' do

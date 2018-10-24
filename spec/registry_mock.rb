@@ -6,6 +6,7 @@ class RegistryMock
   def fetch(key_path)
     key_path.split(%r{\\|\/}).inject(@data) do |root, key|
       break unless root.is_a? Hash
+
       root[key.to_s]
     end
   end

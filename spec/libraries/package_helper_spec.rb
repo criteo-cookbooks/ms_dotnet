@@ -19,7 +19,7 @@ shared_examples 'package_helper' do |data, conf|
       end
     end
 
-    %i(x64? core? server?).each do |function|
+    %i[x64? core? server?].each do |function|
       describe function do
         it "returns #{conf[function]}" do
           expect(package_helper.send(function)).to be conf[function]
@@ -42,6 +42,7 @@ FAUXHAI_WINDOWS_VERSIONS.each do |windows_version, version_support|
     end
 
     next unless version_support[:core]
+
     describe "On Windows#{windows_version}-#{arch}-CORE" do
       include_examples 'package_helper', data, x64?: is_arch64, server?: is_server, core?: true
     end

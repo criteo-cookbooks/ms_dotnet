@@ -11,14 +11,14 @@ describe ::MSDotNet::VersionHelper do
     end
   end
 
-  %w(
+  %w[
     installed_version
     supported_versions
     feature_names
     feature_setup
     patch_names
     package_setup
-  ).each do |abstract_method|
+  ].each do |abstract_method|
     describe abstract_method do
       it 'fails with NotImplementedError' do
         expect { test_helper.send abstract_method.to_sym }.to raise_error NotImplementedError
