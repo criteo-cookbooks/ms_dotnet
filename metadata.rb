@@ -4,7 +4,7 @@ maintainer_email 'b.courtois@criteo.com'
 license          'Apache-2.0'
 description      'Installs/Configures ms_dotnet'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '4.2.1'
+version          '4.2.2'
 supports         'windows'
 depends          'windows', '>= 2.1.0'
 
