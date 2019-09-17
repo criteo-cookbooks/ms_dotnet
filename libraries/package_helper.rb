@@ -112,6 +112,12 @@ module MSDotNet
           checksum: 'c908f0a5bea4be282e35acba307d0061b71b8b66ca9894943d3cbb53cad019bc',
           not_if: %w[KB4054542 KB4054566 KB4054590 KB4073120],
         },
+        '4.8' => {
+          name:     'Microsoft .NET Framework 4.8',
+          url:      'https://go.microsoft.com/fwlink/?linkid=2088631',
+          checksum: '9b1f71cd1b86bb6ee6303f7be6fbbe71807a51bb913844c85fc235d5978f3a0f',
+          not_if: %w[KB4503548 KB4486081 KB4486105 KB4486105 KB4486129 KB4486153],
+        },
         ###########
         # Patches
         ###########
