@@ -100,7 +100,7 @@ module MSDotNet
         when '10.0.10240', '10.0.10586', '10.0.14393', '10.0.15063'
           { '4.7.1' => %w[KB4054855] }
         when '10.0.16299'
-          { '4.7.2' => %w[KB4512494] }
+          { '4.7.2' => %w[KB4073120] }
         else
           {}
       end
@@ -128,8 +128,8 @@ module MSDotNet
         when '10.0.15063' then %w[4.7.1 4.7.2]
         # Windows 10 & Server 2016 v1709 (RS3)
         when '10.0.16299' then %w[4.7.2]
-        # Windows 10 & Server 2016 v1709 (RS3)
-        when '10.0.17.134' then []
+        # Windows 10 & Server 2016 v1803 (RS4)
+        when '10.0.17134' then []
         # Other versions
         else []
       end
