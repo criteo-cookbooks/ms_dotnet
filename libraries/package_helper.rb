@@ -114,7 +114,7 @@ module MSDotNet
         },
         '4.8' => {
           name:     'Microsoft .NET Framework 4.8',
-          url:      'https://go.microsoft.com/fwlink/?linkid=2088631',
+          url:      'https://download.visualstudio.microsoft.com/download/pr/014120d7-d689-4305-befd-3cb711108212/0fd66638cde16859462a6243a4629a50/ndp48-x86-x64-allos-enu.exe',
           checksum: '9b1f71cd1b86bb6ee6303f7be6fbbe71807a51bb913844c85fc235d5978f3a0f',
           not_if: %w[KB4503548 KB4486081 KB4486105 KB4486105 KB4486129 KB4486153],
         },
