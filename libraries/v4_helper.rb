@@ -113,23 +113,23 @@ module MSDotNet
         # Windows Vista & Server 2008
         when /^6\.0/ then %w[4.0 4.5 4.5.1 4.5.2 4.6]
         # Windows 7 & Server 2008R2
-        when /^6\.1/ then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2]
+        when /^6\.1/ then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
         # Windows 8 & Server 2012
-        when /^6\.2/ then %w[4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2]
+        when /^6\.2/ then %w[4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
         # Windows 8.1 & Server 2012R2
-        when /^6\.3/ then %w[4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2]
+        when /^6\.3/ then %w[4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
         # Windows 10 RTM (TH1)
-        when '10.0.10240' then %w[4.6.1 4.6.2 4.7 4.7.1 4.7.2]
+        when '10.0.10240' then %w[4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
         # Windows 10 v1511 (TH2)
-        when '10.0.10586' then %w[4.6.2 4.7 4.7.1 4.7.2]
+        when '10.0.10586' then %w[4.6.2 4.7 4.7.1 4.7.2 4.8]
         # Windows 10 & Server 2016 v1607 (RS1)
-        when '10.0.14393' then %w[4.7 4.7.1 4.7.2]
+        when '10.0.14393' then %w[4.7 4.7.1 4.7.2 4.8]
         # Windows 10 v1703 (RS2)
-        when '10.0.15063' then %w[4.7.1 4.7.2]
+        when '10.0.15063' then %w[4.7.1 4.7.2 4.8]
         # Windows 10 & Server 2016 v1709 (RS3)
-        when '10.0.16299' then %w[4.7.2]
+        when '10.0.16299' then %w[4.7.2 4.8]
         # Windows 10 & Server 2016 v1803 (RS4)
-        when '10.0.17134' then []
+        when '10.0.17134' then %w[4.7.2 4.8]
         # Other versions
         else []
       end
