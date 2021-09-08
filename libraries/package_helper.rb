@@ -232,13 +232,6 @@ module MSDotNet
           checksum: 'b029cfe1d1995009c856a147560b35ed858faf1f300fd42c0a0b4e0df99bfcfa',
           not_if:   %w[KB4073120],
         },
-        'KB4512494' => {
-          name:     'Update for Microsoft Windows (KB4512494)', # Cosmetic name
-          url:      'http://download.windowsupdate.com/d/msdownload/update/software/updt/2019/08/windows10.0-kb4512494-x64_07c10d46847e75c4267ce5cfe376265b6a87ed78.msu',
-          options:  '/norestart /quiet',
-          checksum: 'dc5865db807a5f94ab39da8257c2f694bfead3d5c9ff05b623653fb8ff874633',
-          not_if:   %w[KB4512494],
-        },
       )
     end
 
