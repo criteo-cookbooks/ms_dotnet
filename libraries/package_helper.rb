@@ -112,6 +112,12 @@ module MSDotNet
           checksum: 'c908f0a5bea4be282e35acba307d0061b71b8b66ca9894943d3cbb53cad019bc',
           not_if: %w[KB4054542 KB4054566 KB4054590 KB4073120],
         },
+        '4.8' => {
+          name:     'Microsoft .NET Framework 4.8',
+          url:      'https://download.visualstudio.microsoft.com/download/pr/2d6bb6b2-226a-4baa-bdec-798822606ff1/8494001c276a4b96804cde7829c04d7f/ndp48-x86-x64-allos-enu.exe',
+          checksum: '68c9986a8dcc0214d909aa1f31bee9fb5461bb839edca996a75b08ddffc1483f',
+          not_if: %w[KB4503548 KB4486081 KB4486105 KB4486129 KB4486153],
+        },
         ###########
         # Patches
         ###########
@@ -218,6 +224,13 @@ module MSDotNet
           options:  '/norestart /quiet',
           checksum: 'f98d12d84c803699d149a254ada3dd5dc0698307638e1baae209cc6f3a729e29',
           not_if:   %w[KB4054855],
+        },
+        'KB4073120' => {
+          name:     'Update for Microsoft Windows (KB4073120)', # Cosmetic name
+          url:      'http://download.windowsupdate.com/d/msdownload/update/software/ftpk/2018/07/windows10.0-kb4073120-x64_3ec6124b919d92627020d226bdcc34695c7c7080.msu',
+          options:  '/norestart /quiet',
+          checksum: 'b029cfe1d1995009c856a147560b35ed858faf1f300fd42c0a0b4e0df99bfcfa',
+          not_if:   %w[KB4073120],
         },
       )
     end
