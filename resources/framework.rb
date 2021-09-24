@@ -41,7 +41,10 @@ load_current_value do |desired|
 end
 
 action :install do
-  if unsupported?
+  if unavailable?
+    ::Chef::Log.info ".NET `#{new_resource.version}' is unavailable in this cookbook"
+    raise "Can't install unavailable .NET version `#{new_resource.version}'"
+  elsif unsupported?
     ::Chef::Log.info "Unsupported .NET version: #{new_resource.version}"
     raise "Can't install unsupported .NET version `#{new_resource.version}'" if new_resource.require_support
   elsif superseded?
@@ -114,6 +117,10 @@ action_class.class_eval do
 
   def unsupported?
     !version_helper.supported_versions.include?(new_resource.version)
+  end
+
+  def unavailable?
+    features.empty? && package.empty?
   end
 
   # This method determines whether a more recent minor version of .NET is present
