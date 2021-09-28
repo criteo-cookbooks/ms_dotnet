@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Cookbook Name:: ms_dotnet
 # Recipe:: ms_dotnet2

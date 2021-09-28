@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 UNSUPPORTED_VERSIONS = %w[0.42.unsupported].freeze
