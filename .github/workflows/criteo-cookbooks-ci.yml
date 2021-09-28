@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+name: Criteo Cookbooks CI
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+          bundler-cache: true
+      - run: bundle exec rubocop --version
+      - run: bundle exec rubocop
+      - run: bundle exec foodcritic --version
+      - run: bundle exec foodcritic . --exclude spec -f any
+      - run: bundle exec rspec
+  kitchen:
+    needs: [rspec]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        windows_version: ['windows-2012r2', 'windows-2016', 'windows-2019']
+        # dotnet3 use some hacks that are not available on CI
+        dotnet_version: ['dotnet2', 'dotnet4']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+          bundler-cache: true
+      - run: KITCHEN_LOCAL_YAML=.kitchen.yml bundle exec kitchen verify ${{ matrix.dotnet_version }}-${{ matrix.windows_version }}
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SSH_KEY_ID: ${{ secrets.AWS_SSH_KEY_ID }}
+          AWS_SUBNET: ${{ secrets.AWS_SUBNET }}
+          AWS_SECURITY_GROUP: ${{ secrets.AWS_SECURITY_GROUP }}
