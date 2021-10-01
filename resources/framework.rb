@@ -25,7 +25,7 @@ property :feature_source,  String
 property :include_patches, [true, false], default: true
 property :package_sources, Hash, default: lazy { ::Mash.new }
 property :perform_reboot, [true, false], default: false
-property :require_support, [true, false], default: false
+property :require_support, [true, false], default: true
 property :timeout, Integer, default: 600
 property :version, String, name_property: true
 
