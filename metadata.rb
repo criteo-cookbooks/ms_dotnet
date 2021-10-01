@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 name             'ms_dotnet'
 maintainer       'Criteo'
 maintainer_email 'b.courtois@criteo.com'
