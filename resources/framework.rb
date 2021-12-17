@@ -85,8 +85,7 @@ action_class.class_eval do
       windows_package pkg[:name] do # ~FC009 ~FC022
         action          :install
         installer_type  :custom
-        success_codes   [0, 3010] if respond_to? :success_codes
-        returns         [0, 3010] if respond_to? :returns
+        returns         [0, 3010]
         options         pkg[:options] || '/q /norestart'
         timeout         new_resource.timeout
         # Package specific info

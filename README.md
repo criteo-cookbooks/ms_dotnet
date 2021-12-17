@@ -20,14 +20,6 @@ This cookbook supports and requires Chef 12.1+ to take advantage of the `reboot`
 * Windows Server 2012 (R1, R2)
 * Windows Server 2016
 
-### Cookbooks
-The following cookbook is required as noted:
-
-* [windows](windows_cookbook) (>= 2.1.0)
-
-    `ms_dotnet_framework` LWRP leverage the `windows_feature` LWRP
-    `MSDotNet::PackageHelper` class used in `ms_dotnet_framework` leverages the `::Windows::VersionHelper` module.
-
 Known Issues
 ------------
 Here are the known issues you can encounter with ms_dotnet recipes:

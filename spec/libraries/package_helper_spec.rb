@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require_relative '../../libraries/windows_version_helper'
 
 shared_examples 'package_helper' do |data, conf|
   describe ::MSDotNet::PackageHelper do
