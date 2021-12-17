@@ -31,6 +31,10 @@ jobs:
         # dotnet3 use some hacks that are not available on CI
         dotnet_version: ['dotnet2', 'dotnet4']
     steps:
+      - uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{secrets.AWS_SSH_PRIVATE_KEY}}
+          known_hosts: unnecessary
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
