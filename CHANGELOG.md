@@ -3,6 +3,20 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+5.0.0
+-----
+
+### Improvments
+- Added support for .NET Framework 4.8 (thanks sbielaw)
+- Added support for more recent Windows and Windows Server version
+- Dead package links have been replaced
+- Better CI and integration tests
+
+### Breaking changes
+- Requires Chef >= 14.7 for built-in windows package support
+- ms\_dotnet\_framework default to raise an error on unsupported version
+- Dependency to windows cookbook has been dropped
+
 4.2.1
 -----
 - [PR 93][pr-93] Fix url for .NET 4.7.2 installer (thanks aae42)
