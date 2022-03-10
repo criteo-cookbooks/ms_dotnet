@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 #
-# Cookbook Name:: ms_dotnet
+# Cookbook:: ms_dotnet
 # Library:: v2_helper
 # Author:: Baptiste Courtois (<b.courtois@criteo.com>)
 #
-# Copyright (C) 2015-2016, Criteo.
+# Copyright:: (C) 2015-2016, Criteo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,16 +39,16 @@ module MSDotNet
     end
 
     def supported_versions
-      @supported_versions ||= %w[2.0.SP2]
+      @supported_versions ||= %w(2.0.SP2)
     end
 
     protected
 
     def feature_names
       @feature_names ||= if nt_version == 6.0 && server?
-        %w[NET-Framework-Core]
+        %w(NET-Framework-Core)
       elsif nt_version.between?(6.0, 6.1) && core?
-        x64? ? %w[NetFx2-ServerCore NetFx2-ServerCore-WOW64] : %w[NetFx2-ServerCore]
+        x64? ? %w(NetFx2-ServerCore NetFx2-ServerCore-WOW64) : %w(NetFx2-ServerCore)
       else
         []
       end
@@ -57,7 +57,7 @@ module MSDotNet
     def feature_setup
       @feature_setup ||= case nt_version
         # Windows Vista & Server 2008
-        when 6.0, 6.1 then %w[2.0.SP2]
+        when 6.0, 6.1 then %w(2.0.SP2)
         # Other versions
         else []
       end
@@ -70,7 +70,7 @@ module MSDotNet
     def package_setup
       @package_setup ||= case nt_version
         # Windows XP & Windows Server 2003
-        when 5.1, 5.2 then %w[2.0.SP2]
+        when 5.1, 5.2 then %w(2.0.SP2)
         # Other versions
         else []
       end

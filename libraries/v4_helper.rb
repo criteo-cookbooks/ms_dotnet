@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 #
-# Cookbook Name:: ms_dotnet
+# Cookbook:: ms_dotnet
 # Library:: v4_helper
 # Author:: Baptiste Courtois (<b.courtois@criteo.com>)
 #
-# Copyright (C) 2015-2016, Criteo.
+# Copyright:: (C) 2015-2016, Criteo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ module MSDotNet
     end
 
     def supported_versions
-      @supported_versions ||= %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
+      @supported_versions ||= %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8)
     end
 
     protected
@@ -58,7 +58,7 @@ module MSDotNet
       @feature_names ||= case nt_version
         when 6.2, 6.3, 10
           # TODO: check 2012R2 Core feature name
-          core? ? %w[netFx4-Server-Core] : %w[NetFx4]
+          core? ? %w(netFx4-Server-Core) : %w(NetFx4)
         else
           []
       end
@@ -67,21 +67,21 @@ module MSDotNet
     def feature_setup
       @feature_setup ||= case full_version
         # Windows 8 & Server 2012
-        when /^6\.2/ then %w[4.0 4.5]
+        when /^6\.2/ then %w(4.0 4.5)
         # Windows 8.1 & Server 2012R2
-        when /^6\.3/ then %w[4.0 4.5 4.5.1]
+        when /^6\.3/ then %w(4.0 4.5 4.5.1)
         # Windows 10 RTM (TH1)
-        when '10.0.10240' then %w[4.0 4.5 4.5.1 4.5.2 4.6]
+        when '10.0.10240' then %w(4.0 4.5 4.5.1 4.5.2 4.6)
         # Windows 10 v1511 (TH2)
-        when '10.0.10586' then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1]
+        when '10.0.10586' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1)
         # Windows 10 & Server 2016 v1607 (RS1)
-        when '10.0.14393' then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2]
+        when '10.0.14393' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2)
         # Windows 10 v1703 (RS2)
-        when '10.0.15063' then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7]
+        when '10.0.15063' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7)
         # Windows 10 & Server 2016 v1709 (RS3)
-        when '10.0.16299' then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1]
+        when '10.0.16299' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1)
         # Windows 10 & Server 2016 v1803 (RS4)
-        when '10.0.17134' then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2]
+        when '10.0.17134' then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2)
         # Other versions
         else []
       end
@@ -90,17 +90,17 @@ module MSDotNet
     def patch_names
       @patch_names ||= case full_version
         when /^5\.1/, /^5\.2/
-          { '4.0' => %w[KB2468871] }
+          { '4.0' => %w(KB2468871) }
         when /^6\.0/, /^6\.1/
-          { '4.6' => %w[KB3083186], '4.7.1' => %w[KB4054852] }
+          { '4.6' => %w(KB3083186), '4.7.1' => %w(KB4054852) }
         when /^6\.2/
-          { '4.6' => %w[KB3083184], '4.7.1' => %w[KB4054853] }
+          { '4.6' => %w(KB3083184), '4.7.1' => %w(KB4054853) }
         when /^6\.3/
-          { '4.6' => %w[KB3083185], '4.7.1' => %w[KB4054854] }
+          { '4.6' => %w(KB3083185), '4.7.1' => %w(KB4054854) }
         when '10.0.10240', '10.0.10586', '10.0.14393', '10.0.15063'
-          { '4.7.1' => %w[KB4054855] }
+          { '4.7.1' => %w(KB4054855) }
         when '10.0.16299'
-          { '4.7.2' => %w[KB4073120] }
+          { '4.7.2' => %w(KB4073120) }
         else
           {}
       end
@@ -109,27 +109,27 @@ module MSDotNet
     def package_setup
       @package_setup ||= case full_version
         # Windows XP & Windows Server 2003
-        when /^5\.0/, /^5\.1/ then %w[4.0]
+        when /^5\.0/, /^5\.1/ then %w(4.0)
         # Windows Vista & Server 2008
-        when /^6\.0/ then %w[4.0 4.5 4.5.1 4.5.2 4.6]
+        when /^6\.0/ then %w(4.0 4.5 4.5.1 4.5.2 4.6)
         # Windows 7 & Server 2008R2
-        when /^6\.1/ then %w[4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
+        when /^6\.1/ then %w(4.0 4.5 4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8)
         # Windows 8 & Server 2012
-        when /^6\.2/ then %w[4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
+        when /^6\.2/ then %w(4.5.1 4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8)
         # Windows 8.1 & Server 2012R2
-        when /^6\.3/ then %w[4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
+        when /^6\.3/ then %w(4.5.2 4.6 4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8)
         # Windows 10 RTM (TH1)
-        when '10.0.10240' then %w[4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8]
+        when '10.0.10240' then %w(4.6.1 4.6.2 4.7 4.7.1 4.7.2 4.8)
         # Windows 10 v1511 (TH2)
-        when '10.0.10586' then %w[4.6.2 4.7 4.7.1 4.7.2 4.8]
+        when '10.0.10586' then %w(4.6.2 4.7 4.7.1 4.7.2 4.8)
         # Windows 10 & Server 2016 v1607 (RS1)
-        when '10.0.14393' then %w[4.7 4.7.1 4.7.2 4.8]
+        when '10.0.14393' then %w(4.7 4.7.1 4.7.2 4.8)
         # Windows 10 v1703 (RS2)
-        when '10.0.15063' then %w[4.7.1 4.7.2 4.8]
+        when '10.0.15063' then %w(4.7.1 4.7.2 4.8)
         # Windows 10 & Server 2016 v1709 (RS3)
-        when '10.0.16299' then %w[4.7.2 4.8]
+        when '10.0.16299' then %w(4.7.2 4.8)
         # Windows 10 & Server 2016 v1803 (RS4)
-        when '10.0.17134' then %w[4.7.2 4.8]
+        when '10.0.17134' then %w(4.7.2 4.8)
         # Other versions
         else []
       end
@@ -142,7 +142,7 @@ module MSDotNet
         when 6.2
           { '4.7' => ['KB4019990-6.2'] }
         when 6.3
-          prerequisites46 = %w[KB2919442 KB2919355 KB3173424]
+          prerequisites46 = %w(KB2919442 KB2919355 KB3173424)
           {
             '4.6' => prerequisites46,
             '4.6.1' => prerequisites46,
