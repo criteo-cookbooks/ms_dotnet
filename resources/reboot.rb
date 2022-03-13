@@ -20,9 +20,8 @@
 # limitations under the License.
 #
 
-# The provides method is available on chef >= 12.0 only
 provides :ms_dotnet_reboot, os: 'windows'
-unified_mode true if respond_to?(:provides)
+unified_mode true if respond_to?(:unified_mode)
 
 property :source, [String, Resource], desired_state: false
 
