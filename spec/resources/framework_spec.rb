@@ -78,7 +78,7 @@ describe 'ms_dotnet_framework' do
         it 'logs an information message and does nothing else' do
           allow(::Chef::Log).to receive(:info)
           expect(::Chef::Log).to receive(:info).with 'Unsupported .NET version: 4.42'
-          expect(run_chef('windows', '2012R2', version: '4.42').ms_dotnet_framework('install').updated_by_last_action?).to be false
+          expect(run_chef('windows', '2012R2', version: '4.42', require_support: false).ms_dotnet_framework('install').updated_by_last_action?).to be false
         end
 
         it 'fails if support required' do

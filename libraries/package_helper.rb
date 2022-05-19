@@ -27,9 +27,9 @@ module MSDotNet
     def initialize(node)
       @arch = node['kernel']['machine'] == 'x86_64' ? 'x64' : 'x86'
       @full_version = node['platform_version']
-      @nt_version = ::Windows::VersionHelper.nt_version(node)
-      @is_core = ::Windows::VersionHelper.core_version?(node)
-      @is_server = ::Windows::VersionHelper.server_version?(node)
+      @nt_version = @full_version.to_f
+      @is_core = ::MSDotNet::WindowsVersionHelper.core_version?(node)
+      @is_server = ::MSDotNet::WindowsVersionHelper.server_version?(node)
 
       @machine_type = if core?
         :core
