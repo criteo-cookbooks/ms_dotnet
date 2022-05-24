@@ -130,6 +130,8 @@ module MSDotNet
         when '10.0.16299' then %w(4.7.2 4.8)
         # Windows 10 & Server 2016 v1803 (RS4)
         when '10.0.17134' then %w(4.7.2 4.8)
+        # Windows Server 2019
+        when '10.0.17763' then %w(4.8)
         # Other versions
         else []
       end
