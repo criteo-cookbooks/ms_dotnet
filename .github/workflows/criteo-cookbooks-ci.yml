@@ -9,19 +9,28 @@ on:
     branches: [ master ]
 
 jobs:
+  cookstyle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Install Chef
+        uses: actionshub/chef-install@main
+      - name: Run Cookstyle
+        run: chef exec cookstyle --display-cop-names --extra-details
+        env:
+          CHEF_LICENSE: accept-no-persist
   rspec:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.5
-          bundler-cache: true
-      - run: bundle exec rubocop --version
-      - run: bundle exec rubocop
-      - run: bundle exec foodcritic --version
-      - run: bundle exec foodcritic . --exclude spec -f any
-      - run: bundle exec rspec
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Install Chef
+        uses: actionshub/chef-install@main
+      - name: Run RSpec
+        run: chef exec rspec
+        env:
+          CHEF_LICENSE: accept-no-persist
   kitchen:
     needs: [rspec]
     runs-on: ubuntu-latest

@@ -7,8 +7,7 @@ gem 'berkshelf'
 group :unit_test do
   gem 'chef', '= 14.7.17'
   gem 'chefspec', '>= 7.4.0'
-  gem 'fauxhai'
-  gem 'foodcritic'
+  gem 'fauxhai-ng'
   gem 'rspec'
 end
 

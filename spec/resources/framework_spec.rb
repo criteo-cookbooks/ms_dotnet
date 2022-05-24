@@ -14,7 +14,7 @@ describe 'ms_dotnet_framework' do
 
     context 'on non Windows platform' do
       it 'fails' do
-        expect { run_chef 'centos', '7.3.1611' }.to raise_error(/Cannot find a resource for ms_dotnet_framework/)
+        expect { run_chef 'centos', '7.8.2003' }.to raise_error(/Windows helper are only supported on windows platform!/)
       end
     end
 

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 #
-# Cookbook Name:: ms_dotnet
+# Cookbook:: ms_dotnet
 # Resource:: framework
 # Author:: Baptiste Courtois (<b.courtois@criteo.com>)
 #
-# Copyright (C) 2015-2016, Criteo.
+# Copyright:: (C) 2015-2016, Criteo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@
 # limitations under the License.
 #
 
-# The provides method is available on chef >= 12.0 only
-provides :ms_dotnet_framework, os: 'windows' if respond_to?(:provides)
+provides :ms_dotnet_framework, os: 'windows'
+unified_mode true if respond_to?(:unified_mode)
 
 property :feature_source,  String
 property :include_patches, [true, false], default: true
@@ -57,11 +57,7 @@ action :install do
   end
 end
 
-action_class.class_eval do
-  def whyrun_supported?
-    true
-  end
-
+action_class do
   def reboot_resource
     @reboot_resource ||= ms_dotnet_reboot "Reboot for ms_dotnet[#{new_resource.name}]" do
       action :nothing
@@ -82,7 +78,7 @@ action_class.class_eval do
 
   def install_packages
     [*prerequisites, package, *patches].compact.each do |pkg|
-      windows_package pkg[:name] do # ~FC009 ~FC022
+      windows_package pkg[:name] do
         action          :install
         installer_type  :custom
         returns         [0, 3010]

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 #
-# Cookbook Name:: ms_dotnet
+# Cookbook:: ms_dotnet
 # Resource:: reboot
 # Author:: Baptiste Courtois (<b.courtois@criteo.com>)
 #
-# Copyright (C) 2017, Criteo.
+# Copyright:: (C) 2017, Criteo.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,8 +20,8 @@
 # limitations under the License.
 #
 
-# The provides method is available on chef >= 12.0 only
-provides :ms_dotnet_reboot, os: 'windows' if respond_to?(:provides)
+provides :ms_dotnet_reboot, os: 'windows'
+unified_mode true if respond_to?(:unified_mode)
 
 property :source, [String, Resource], desired_state: false
 
@@ -42,7 +42,4 @@ def run_action(action, notification_type = nil, notifying_resource = nil)
 end
 
 action_class do
-  def whyrun_supported?
-    true
-  end
 end

@@ -22,7 +22,7 @@ shared_examples 'package_helper' do |data, conf|
       end
     end
 
-    %i[x64? core? server?].each do |function|
+    %i(x64? core? server?).each do |function|
       describe function do
         it "returns #{conf[function]}" do
           expect(package_helper.send(function)).to be conf[function]
