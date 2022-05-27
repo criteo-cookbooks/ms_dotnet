@@ -42,11 +42,6 @@ module MSDotNet
 
     def packages
       @packages ||= ::Mash.new(
-        '2.0.SP2' => {
-          name: 'Microsoft .NET Framework 2.0 Service Pack 2',
-          url: "https://download.microsoft.com/download/C/6/E/C6E88215-0178-4C6C-B5F3-158FF77B1F38/NetFx20SP2_#{arch}.exe",
-          checksum: x64? ? '430315c97c57ac158e7311bbdbb7130de3e88dcf5c450a25117c74403e558fbe' : '6e3f363366e7d0219b7cb269625a75d410a5c80d763cc3d73cf20841084e851f',
-        },
         '3.5' => {
           name: 'Microsoft .NET Framework 3.5',
           url: 'https://download.microsoft.com/download/6/0/F/60FC5854-3CB8-4892-B6DB-BD4F42510F28/dotnetfx35.exe',

@@ -78,9 +78,9 @@ Below attributes are accessible via `node['ms_dotnet']['ATTRIBUTE_NAME']` and ar
 * `timeout` - Control the execution timeout in seconds of .NET setup packages (default: `600`)
 
 ### .NET recipes attributes
-Recipes `ms_dotnet2`, `ms_dotnet3` and `ms_dotnet4` are controlled by the following attributes accessible via `node['ms_dotnet']['vX']['ATTRIBUTE_NAME']` - where `X` is the .NET major version:
+Recipes `ms_dotnet3` and `ms_dotnet4` are controlled by the following attributes accessible via `node['ms_dotnet']['vX']['ATTRIBUTE_NAME']` - where `X` is the .NET major version:
 
-* `version` - Specify the .NET version to install (default: `2.0.SP2`, `3.5.SP1`, `4.0`)
+* `version` - Specify the .NET version to install (default: `3.5.SP1`, `4.0`)
 * `include_patches` - Determine whether patches should also be applied (default: `true`)
 * `feature_source` - Specify custom source for windows features. Only avaiable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
 * `perform_reboot` - Determine whether chef should perform required reboot after installing new packages or feature. (default: `false`)
@@ -131,7 +131,7 @@ Recipes
 #### ms_dotnet::default
 This recipe does nothing.
 
-#### ms_dotnet::ms_dotnet2, ms_dotnet::ms_dotnet3, ms_dotnet::ms_dotnet4
+#### ms_dotnet::ms_dotnet3, ms_dotnet::ms_dotnet4
 Each of these recipes allow you to install a specific major version of .NET Framework, just by including the recipe in your node `run_list`.
 They are attribute driven recipes, please referes to the `Attributes` section of this README to know how to control their behavior.
 
@@ -185,7 +185,7 @@ Get windows packages required before installing the given .NET version
 #### supported_versions
 Get all .NET versions supported on the current node OS
 
-### V2Helper, V3Helper, V4Helper
+### V3Helper, V4Helper
 Subclass of the `VersionHelper`, providing helpers for a specific major version of the .NET Framework.
 
 Contributing

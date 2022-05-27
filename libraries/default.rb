@@ -19,7 +19,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-require_relative 'v2_helper'
 require_relative 'v3_helper'
 require_relative 'v4_helper'
 
@@ -28,8 +27,6 @@ module MSDotNet
   # Factory method to get VersionHelper for a given major .NET version
   def self.version_helper(node, major_version)
     case major_version
-      when 2
-        V2Helper.new node
       when 3
         V3Helper.new node
       when 4

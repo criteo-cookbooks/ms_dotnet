@@ -77,9 +77,6 @@ platforms:
         'owner-id': 801119661308
         name: 'Windows_Server-2022-English-Full-Base-20*'
 suites:
-  - name: dotnet2
-    run_list:
-      - recipe[ms_dotnet::ms_dotnet2]
   - name: dotnet3
     run_list:
       - recipe[ms_dotnet::ms_dotnet3]

@@ -30,7 +30,7 @@ def mock_registry(data_file)
   allow(::Chef::Win32::Registry).to receive(:new).and_return RegistryMock.new(data)
 end
 
-SUPPORTED_MAJOR_VERSIONS = [2, 3, 4].freeze
+SUPPORTED_MAJOR_VERSIONS = [3, 4].freeze
 
 FAUXHAI_WINDOWS_VERSIONS = {
   '8.1' => { arch: %w(x86 x64), core: false, server: false },

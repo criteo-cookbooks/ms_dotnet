@@ -38,7 +38,7 @@ jobs:
       matrix:
         windows_version: ['windows-2012r2', 'windows-2016', 'windows-2019', 'windows-2022']
         # dotnet3 use some hacks that are not available on CI
-        dotnet_version: ['dotnet2', 'dotnet4']
+        dotnet_version: ['dotnet4']
     steps:
       - uses: shimataro/ssh-key-action@v2
         with:
