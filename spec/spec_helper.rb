@@ -6,7 +6,7 @@
 # loaded once.
 #
 require 'chefspec'
-require 'chefspec/berkshelf'
+require 'chefspec/policyfile'
 
 require_relative '../libraries/default'
 

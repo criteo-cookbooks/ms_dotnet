@@ -67,15 +67,12 @@ Procfile
 */.hg/*
 */.svn/*
 
-# Berkshelf #
-#############
-cookbooks/*
-tmp
-
 # Cookbooks #
 #############
 CONTRIBUTING
 CHANGELOG*
+Policyfile.rb
+Policyfile.lock.json
 
 # Kitchen #
 ##########
