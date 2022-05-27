@@ -23,10 +23,11 @@ require_relative 'version_helper'
 
 module MSDotNet
   # Provides information about .NET 3 setup
+  # TODO: remove after 2029-01-09
   class V3Helper < VersionHelper
     def installed_version
       # Order is important because we want the maximum version
-      %w(3.5 3.0).map do |version|
+      %w(3.5).map do |version|
         registry_key = "HKLM\\Software\\Microsoft\\Net Framework Setup\\NDP\\v#{version}"
         next unless registry_key_exists? registry_key
 
@@ -38,7 +39,7 @@ module MSDotNet
     end
 
     def supported_versions
-      @supported_versions ||= %w(3.0 3.5 3.5.SP1)
+      @supported_versions ||= %w(3.5.SP1)
     end
 
     protected

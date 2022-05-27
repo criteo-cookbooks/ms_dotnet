@@ -42,11 +42,6 @@ module MSDotNet
 
     def packages
       @packages ||= ::Mash.new(
-        '3.5' => {
-          name: 'Microsoft .NET Framework 3.5',
-          url: 'https://download.microsoft.com/download/6/0/F/60FC5854-3CB8-4892-B6DB-BD4F42510F28/dotnetfx35.exe',
-          checksum: '3e3a4104bad9a0c270ed5cbe8abb986de9afaf0281a98998bdbdc8eaab85c3b6',
-        },
         '3.5.SP1' => {
           name: 'Microsoft .NET Framework 3.5 Service Pack 1',
           url: 'https://download.microsoft.com/download/2/0/E/20E90413-712F-438C-988E-FDAA79A8AC3D/dotnetfx35.exe',
