@@ -3,6 +3,15 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+6.0.0
+-----
+- Drop support for all .NET 2.X versions
+- Drop support for all .NET 3.X versions except 3.5.SP1
+- Drop support for .NET 4.x versions prior to 4.6.2
+- Drop support for Windows prior to 8.1 and Windows Server prior to 2012
+- Remove recipe ms_dotnet2
+- Add support for Windows 10 and Windows Server 2019 & 2022
+
 5.1.0
 -----
 - Add trivial support for Windows Server 2019 (thanks KenzoB73)
