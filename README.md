@@ -8,17 +8,15 @@ Install the Microsoft .NET Framework.
 
 Requirements
 ------------
-This cookbook supports and requires Chef 12.1+ to take advantage of the `reboot` and `windows_package` built-in resources.
+This cookbook supports and requires Chef 14.7+ to take advantage of the `reboot` and `windows_package` built-in resources.
 
 ### Platforms
-* Windows XP
-* Windows Vista
-* Windows Server 2003 R2
-* Windows 7 SP1
-* Windows Server 2008 (R1, R2)
-* Windows 8 and 8.1
+* Windows 8.1
+* Windows 10
 * Windows Server 2012 (R1, R2)
 * Windows Server 2016
+* Windows Server 2019
+* Windows Server 2022
 
 Known Issues
 ------------
@@ -35,9 +33,9 @@ This cookbook provides you two methods to install the major versions of .NET fra
 
 ### Common case - Recipes
 In common cases you can use the attributes driven recipes provided by this cookbook to setup .NET.
-### Custom case - LWRP
+### Custom case - Resources
 In more custom cases, you might need to control in your own cookbook which .NET version should be installed and when the setup should be performed.
-You just need to use the `ms_dotnet_framework` LWRP  which handles for you the setup mode - feature vs package - and may also install all known patches.
+You just need to use the `ms_dotnet_framework` custom resource which handles for you the setup mode - feature vs package - and may also install all known patches.
 
 Resource/Provider
 -----------------
@@ -56,14 +54,14 @@ Resource/Provider
 > NB: `feature_source` works only on NT Version 6.2 (Windows 8/2012) or newer.
 
 #### Examples
-Install .NET 4.5.2 from custom sources
+Install .NET 4.8 from custom sources
 
 ```ruby
-ms_dotnet_framework '4.5.2' do
+ms_dotnet_framework '4.8' do
   action            :install
   include_patches   true
   perform_reboot    true
-  package_sources('6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781' => 'http://my-own.site.com/NetFx452.exe')
+  package_sources('68c9986a8dcc0214d909aa1f31bee9fb5461bb839edca996a75b08ddffc1483f' => 'http://my-own.site.com/ndp48-x86-x64-allos-enu.exe')
   require_support   true
 end
 ```
@@ -82,7 +80,7 @@ Recipes `ms_dotnet3` and `ms_dotnet4` are controlled by the following attributes
 
 * `version` - Specify the .NET version to install (default: `3.5.SP1`, `4.0`)
 * `include_patches` - Determine whether patches should also be applied (default: `true`)
-* `feature_source` - Specify custom source for windows features. Only avaiable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
+* `feature_source` - Specify custom source for windows features. Only avaliable on NT Version 6.2 (Windows 8/2012) or newer. (default: `nil`)
 * `perform_reboot` - Determine whether chef should perform required reboot after installing new packages or feature. (default: `false`)
 * `package_sources` - Specify custom sources URL for windows packages. URL are indexed by their content SHA256 checkum.  (default: `{}`)
 * `require_support` - Determine whether chef should fail when given version is not supported on the current OS (default: `false`)
@@ -107,8 +105,8 @@ Custom node file to install .NET 3.5 SP1 with no patch on a Windows Server 2012R
 }
 ```
 
-#### Install .NET 4.5.2 using a package hosted on a custom site
-Custom node file to install .NET 4.5.2 from a custom site:
+#### Install .NET 4.8 using a package hosted on a custom site
+Custom node file to install .NET 4.8 from a custom site:
 ```json
 {
   "name": "my-node.examples.com",
@@ -116,9 +114,9 @@ Custom node file to install .NET 4.5.2 from a custom site:
   "normal": {
     "ms_dotnet": {
       "v4": {
-        "version": "4.5.2",
+        "version": "4.8",
         "package_sources": {
-          "6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781": "http://my-own.site.com/NetFx452.exe"
+          "68c9986a8dcc0214d909aa1f31bee9fb5461bb839edca996a75b08ddffc1483f": "http://my-own.site.com/ndp48-x86-x64-allos-enu.exe"
         }
       }
     }
@@ -202,7 +200,7 @@ License and Authors
 Authors: [Baptiste Courtois][annih] (<b.courtois@criteo.com>), [Jeremy Mauro][jmauro] (<j.mauro@criteo.com>)
 
 ```text
-Copyright 2014-2017, Criteo.
+Copyright 2014-2022, Criteo.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
