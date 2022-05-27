@@ -3,6 +3,11 @@ ms_dotnet CHANGELOG
 
 This file is used to list changes made in each version of the ms_dotnet cookbook.
 
+5.1.0
+-----
+- Add trivial support for Windows Server 2019 (thanks KenzoB73)
+- Use cookstyle instead of rubocop (thanks jakauppila)
+
 5.0.0
 -----
 

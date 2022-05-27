@@ -5,7 +5,7 @@ maintainer       'Criteo'
 maintainer_email 'b.courtois@criteo.com'
 license          'Apache-2.0'
 description      'Installs/Configures ms_dotnet'
-version          '5.0.0'
+version          '5.1.0'
 supports         'windows'
 
 chef_version '>= 14.7'
