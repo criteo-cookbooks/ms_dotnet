@@ -57,39 +57,6 @@ module MSDotNet
           url: 'https://download.microsoft.com/download/2/0/E/20E90413-712F-438C-988E-FDAA79A8AC3D/dotnetfx35.exe',
           checksum: '0582515bde321e072f8673e829e175ed2e7a53e803127c50253af76528e66bc1',
         },
-        '4.0' => {
-          name: 'Microsoft .NET Framework 4 Extended',
-          url: 'https://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe',
-          checksum: '65e064258f2e418816b304f646ff9e87af101e4c9552ab064bb74d281c38659f',
-        },
-        '4.5' => {
-          name: 'Microsoft .NET Framework 4.5',
-          url: 'https://download.microsoft.com/download/B/A/4/BA4A7E71-2906-4B2D-A0E1-80CF16844F5F/dotNetFx45_Full_x86_x64.exe',
-          checksum: 'a04d40e217b97326d46117d961ec4eda455e087b90637cb33dd6cc4a2c228d83',
-        },
-        '4.5.1' => {
-          name: 'Microsoft .NET Framework 4.5.1',
-          url: 'https://download.microsoft.com/download/1/6/7/167F0D79-9317-48AE-AEDB-17120579F8E2/NDP451-KB2858728-x86-x64-AllOS-ENU.exe',
-          checksum: '5ded8628ce233a5afa8e0efc19ad34690f05e9bb492f2ed0413508546af890fe',
-        },
-        '4.5.2' => {
-          name: 'Microsoft .NET Framework 4.5.2',
-          url: 'https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901907-x86-x64-AllOS-ENU.exe',
-          checksum: '6c2c589132e830a185c5f40f82042bee3022e721a216680bd9b3995ba86f3781',
-          not_if: %w(KB2901982 KB2934520),
-        },
-        '4.6' => {
-          name: 'Microsoft .NET Framework 4.6',
-          url: 'https://download.microsoft.com/download/C/3/A/C3A5200B-D33C-47E9-9D70-2F7C65DAAD94/NDP46-KB3045557-x86-x64-AllOS-ENU.exe',
-          checksum: 'b21d33135e67e3486b154b11f7961d8e1cfd7a603267fb60febb4a6feab5cf87',
-          not_if: %w(KB3045562 KB3045563),
-        },
-        '4.6.1' => {
-          name: 'Microsoft .NET Framework 4.6.1',
-          url: 'https://download.microsoft.com/download/E/4/1/E4173890-A24A-4936-9FC9-AF930FE3FA40/NDP461-KB3102436-x86-x64-AllOS-ENU.exe',
-          checksum: 'beaa901e07347d056efe04e8961d5546c7518fab9246892178505a7ba631c301',
-          not_if: %w(KB3102439 KB3102467 KB3102495),
-        },
         '4.6.2' => {
           name: 'Microsoft .NET Framework 4.6.2',
           url: 'https://download.visualstudio.microsoft.com/download/pr/8e396c75-4d0d-41d3-aea8-848babc2736a/80b431456d8866ebe053eb8b81a168b3/ndp462-kb3151800-x86-x64-allos-enu.exe',
@@ -123,36 +90,6 @@ module MSDotNet
         ###########
         # Patches
         ###########
-        # TODO: handle theses patches
-        # http://www.microsoft.com/en-us/download/details.aspx?id=10006
-        # http://www.microsoft.com/en-us/download/details.aspx?id=1055
-        # http://www.microsoft.com/en-us/download/details.aspx?id=16211
-        # http://www.microsoft.com/en-us/download/details.aspx?id=16921
-        'KB2468871' => {
-          name: 'Update for Microsoft .NET Framework 4 Extended (KB2468871)',
-          url: "https://download.microsoft.com/download/2/B/F/2BF4D7D1-E781-4EE0-9E4F-FDD44A2F8934/NDP40-KB2468871-v2-#{arch}.exe",
-          checksum: x64? ? 'b1b53c3953377b111fe394dd57592d342cfc8a3261a5575253b211c1c2e48ff8' : '8822672fc864544e0766c80b635973bd9459d719b1af75f51483ff36cfb26f03',
-        },
-        'KB3083184' => {
-          name: 'Update for Microsoft .NET Framework 4.6 (KB3083184)',
-          url: "https://download.microsoft.com/download/C/2/8/C28720A0-2970-47F2-B7CF-E054FABCE6C0/Windows8-RT-KB3083184-#{arch}.msu",
-          options: '/norestart /quiet',
-          checksum: x64? ? '6b685ecd2c996ff55265f53994fb53063a2665257fa194afa2fc14c3974b574c' : 'f59208f6e9c1e45c099f59e78d69c0354e2a9b9012bf345b7e3940ff1743a7b6',
-          not_if: %w(KB3083184),
-        },
-        'KB3083185' => {
-          name: 'Update for Microsoft .NET Framework 4.6 (KB3083185)',
-          url: "https://download.microsoft.com/download/1/B/1/1B153916-43F3-4DD8-AD60-27F157E70149/Windows8.1-KB3083185-#{arch}.msu",
-          options: '/norestart /quiet',
-          checksum: x64? ? '7f75909608907749c6b1de4f1ee461ae937772145a0921b32ab8b78af790a1bf' : '359d741ed99a5b3e846221099c2aaa67c7a8b1e599e7597531a84806ce68d987',
-          not_if: %w(KB3083185),
-        },
-        'KB3083186' => {
-          name: 'Update for Microsoft .NET Framework 4.6 (KB3083186)',
-          url: "https://download.microsoft.com/download/3/E/C/3EC59EE9-5699-4159-9691-E04E38D677CC/NDP46-KB3083186-#{arch}.exe",
-          checksum: x64? ? 'bf850afc7e7987d513fd2c19c9398d014bcbaaeb1691357fa0400529975edace' : '41e675937d023828d648c7a245e19695ed12f890c349d8b6f2b620e6e58e038e',
-          not_if: 'reg query "HKLM\SOFTWARE\Microsoft\Updates\Microsoft .NET Framework 4.6\KB3083186" | FindStr /Ec:"ThisVersionInstalled +REG_SZ +Y"',
-        },
         'KB2919442' => {
           name: 'Update for Microsoft Windows (KB2919442)',
           url: if x64?
@@ -185,13 +122,6 @@ module MSDotNet
           options: '/norestart /quiet',
           checksum: x64? ? 'b0c9ada530f5ee90bb962afa9ed26218c582362315e13b1ba97e59767cb7825d' : 'f8beca5b463a36e1fef45ad0dca6a0de7606930380514ac1852df5ca6e3f6c1d',
           not_if: %w(KB2919355),
-        },
-        'KB4019990-6.1' => {
-          name: 'Update for Microsoft Windows (KB4019990)',
-          url: "https://download.microsoft.com/download/2/F/4/2F4F48F4-D980-43AA-906A-8FFF40BCB832/Windows6.1-KB4019990-#{arch}.msu",
-          options: '/norestart /quiet',
-          checksum: x64? ? '4ee562192cf21716f3c38cac3c2b17ef73b76708001d8a075d31df0996f0c6b3' : '62101125e4619575a55a4ff63d049debd33e04b485b6616058862c525050e210',
-          not_if: %w(KB4019990),
         },
         'KB4019990-6.2' => {
           name: 'Update for Microsoft Windows (KB4019990)',

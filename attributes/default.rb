@@ -41,7 +41,7 @@ default['ms_dotnet']['v3']['package_sources'] = {}
 default['ms_dotnet']['v3']['require_support'] = false
 
 # .NET 4 attributes
-default['ms_dotnet']['v4']['version']         = '4.0'
+default['ms_dotnet']['v4']['version']         = '4.6.2'
 default['ms_dotnet']['v4']['include_patches'] = true
 default['ms_dotnet']['v4']['feature_source']  = nil
 default['ms_dotnet']['v4']['perform_reboot']  = false

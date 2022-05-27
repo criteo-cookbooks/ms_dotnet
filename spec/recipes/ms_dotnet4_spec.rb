@@ -9,7 +9,7 @@ describe 'ms_dotnet::ms_dotnet4' do
     end
 
     it 'installs .NET framework v4' do
-      expect(chef_run).to install_ms_dotnet_framework('4.0').with(DEFAULT_FRAMEWORK_ATTRIBUTES)
+      expect(chef_run).to install_ms_dotnet_framework('4.6.2').with(DEFAULT_FRAMEWORK_ATTRIBUTES)
     end
   end
 

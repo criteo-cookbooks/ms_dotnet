@@ -37,6 +37,8 @@ FAUXHAI_WINDOWS_VERSIONS = {
   '10' => { arch: %w(x86 x64), core: false, server: false },
   '2012' => { arch: %w(x64), core: true, server: true },
   '2012R2' => { arch: %w(x64), core: true, server: true },
+  '2016' => { arch: %w(x64), core: false, server: true },
+  '2019' => { arch: %w(x64), core: false, server: true },
 }.freeze
 
 DEFAULT_FRAMEWORK_ATTRIBUTES = {

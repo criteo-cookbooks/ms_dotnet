@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe 'ms_dotnet_reboot' do
   describe 'action reboot_if_pending' do
-    def run_chef(platform = 'windows', version = '2012R2', reboot_info = { action: 'reboot_if_pending' })
+    def run_chef(platform = 'windows', version = '2019', reboot_info = { action: 'reboot_if_pending' })
       ::ChefSpec::SoloRunner.new(platform: platform, version: version, log_level: :fatal, step_into: ['ms_dotnet_reboot']) do |node|
         reboot_info.each do |key, value|
           node.default['ms_dotnet_test']['reboot'][key] = value
