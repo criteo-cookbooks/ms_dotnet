@@ -1,7 +1,7 @@
 ms_dotnet Cookbook
 ==================
 [![Cookbook Version][cookbook_version]][cookbook]
-[![Build Status][build_status]][build_status]
+[![Build Status][build_badge]][build_status]
 [![License][license]][license]
 
 Install the Microsoft .NET Framework.
@@ -219,7 +219,8 @@ limitations under the License.
 [annih]:            https://github.com/Annih
 [jmauro]:           https://github.com/jmauro
 [repository]:       https://github.com/criteo-cookbooks/ms_dotnet
-[build_status]:     https://api.travis-ci.org/criteo-cookbooks/ms_dotnet.svg?branch=master
+[build_badge]:      https://github.com/criteo-cookbooks/ms_dotnet/actions/workflows/criteo-cookbooks-ci.yml/badge.svg?branch=master
+[build_status]:     https://github.com/criteo-cookbooks/ms_dotnet/actions/workflows/criteo-cookbooks-ci.yml
 [cookbook_version]: https://img.shields.io/cookbook/v/ms_dotnet.svg
 [cookbook]:         https://supermarket.chef.io/cookbooks/ms_dotnet
 [license]:          https://img.shields.io/github/license/criteo-cookbooks/ms_dotnet.svg
